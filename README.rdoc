@@ -2,7 +2,7 @@
 
 Xu Chen, Grace Kim, Alex Jin, Alex Neilson, Weijia Jin
 
-This is a private repository of the warm up project.
+This is a public repository for Callisto ReInvented.
 
 = Version Details
 ---
