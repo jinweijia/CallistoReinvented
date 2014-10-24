@@ -1,2 +1,22 @@
-<h1>Users#login</h1>
-<p>Find me in app/views/users/login.html.erb</p>
+<head>
+	<ul class="nav nav-tabs">
+		<li><%= link_to "Login" %></li>
+		<li><%= link_to "Profile", profile_path %></li>
+		<li><%= link_to "DashBoard", dashboard_path %></li>
+		<li><%= link_to "Calendar", calendar_path %></li>
+		<li><%= link_to "Jobs", jobs_path %></li>
+	</ul>
+</head>
+<body>
+	<div class="container">
+		<form class="form-signin" role="form">
+			<h1>Callisto ReInvented <small>Login Page</small></h1>
+			<input type="email" class="form-control" placeholder="Email address" required autofocus>
+			<input type="password" class="form-control" placeholder="Password" required>
+			<div class="register-buttons">
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+			</div>
+		</form>
+	</div>
+</body>

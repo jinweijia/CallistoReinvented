@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'users/login'
-
+  get 'users/profile' => 'users#profile', :as => :profile
+  get 'users/dashboard' => 'users#dashboard', :as => :dashboard
+  get 'users/calendar'  => 'users#calendar', :as => :calendar
+  get 'users/jobs' => 'users#jobs', :as => :jobs
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
