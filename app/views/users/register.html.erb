@@ -11,40 +11,62 @@
 		<h1 class="page-header">Student Registration</h1>
 		<div class="row">
 			<div class="col-xs-12">
-				<h5>Username <small>Choose display name</small></h5>
-				<input type="text" class="form-control" placeholder="Text input">
+				<form role="form">
+				  	<div class="form-group">
+				    	<h5>Email Address <small>Must be great than 0 and less than 8</small></h5>
+				    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+				  	</div>
+				  	<div class="form-group">
+				    	<h5>Password <small>Must be great than 0 and less than 8</small></h5>
+				    	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+				  	</div>
+				  	<div class="form-group">
+				    	<h5>Resume Upload <small>File size limited to 3M</small></h5>
+				    	<input type="file" id="exampleInputFile">
+				    	<p class="help-block">Example block-level help text here.</p>
+				  	</div>
+				  
+					<h5>Username <small>Choose display name</small></h5>
+					<input type="text" class="form-control" placeholder="Text input">
 
-				<h5>Graduation Year <small>Select your graduation year</small></h5>
-				<select class="form-control">
-				  <option>2014</option>
-				  <option>2015</option>
-				  <option>2016</option>
-				  <option>2017</option>
-				  <option>2018</option>
-				</select>
-				
-				<h5>Major <small>Select your major</small></h5>
-				<select class="form-control">
-				  <option>Computer Science</option>
-				  <option>EECS</option>
-				  <option>Art</option>
-				  <option>Business</option>
-				  <option>Chemistry</option>
-				</select>
+					<h5>Graduation Year <small>Select your graduation year</small></h5>
+					<select class="form-control">
+					  <option>2014</option>
+					  <option>2015</option>
+					  <option>2016</option>
+					  <option>2017</option>
+					  <option>2018</option>
+					</select>
+					
+					<h5>Major <small>Select your major</small></h5>
+					<select class="form-control">
+					  <option>Computer Science</option>
+					  <option>EECS</option>
+					  <option>Art</option>
+					  <option>Business</option>
+					  <option>Chemistry</option>
+					</select>
 
-				<h5>Language Profiency <small>Secondary text</small></h5>
-				<label class="radio-inline">
-  					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-				</label>
-				<label class="radio-inline">
-  					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-				</label>
-				<label class="radio-inline">
-  					<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-				</label>
+					<h5>Language Profiency <small>Secondary text</small></h5>
+					<label class="radio-inline">
+	  					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+					</label>
+					<label class="radio-inline">
+	  					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+					</label>
+					<label class="radio-inline">
+	  					<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+					</label>
 
-				<h5>Relevant Experience <small>Write down your experiences</small></h5>
-				<textarea class="form-control" rows="3"></textarea>
+					<h5>Relevant Experience <small>Write down your experiences</small></h5>
+					<textarea class="form-control" rows="3"></textarea>
+					<div class="checkbox">
+				    	<label>
+				      	<input type="checkbox"> Check me out
+				    	</label>
+				  	</div>
+				  <button type="submit" class="btn btn-default">Submit</button>
+				</form>
       		</div>
 		</div>
 	</div>
