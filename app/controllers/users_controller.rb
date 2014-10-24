@@ -13,4 +13,7 @@ class UsersController < ApplicationController
 
   def jobs
   end
+
+  def post
+  end
 end
