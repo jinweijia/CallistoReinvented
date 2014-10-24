@@ -10,8 +10,6 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  # bootstraping precompiling initializer
-  config.assets.initialize_on_precompile = false
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -29,6 +27,8 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
+  # bootstraping precompiling initializer
+  config.assets.initialize_on_precompile = false
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
 

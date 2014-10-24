@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<br></br>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-3">
 				<h1 class="page-header">Experiences</h1>
@@ -47,17 +47,68 @@
 			</div>
 			<div class="col-xs-6">
 				<div class="row">
-					<div class="col-md-9">
-						<h1 class="page-header">Personal informaion</h1>
-						<button type="button" class="btn btn-default">Edit</button>
+					<div class="row">
+						<h1 class="page-header"></h1>
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">Personal Information</a>
+						</div>
+						<ul class="nav navbar-nav">
+							<li><%= link_to "Calendar", calendar_path %></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><%= link_to "Edit" %></li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-xs-3">
+						    <a href="#" class="thumbnail">
+						      <img data-src="holder.js/100%x180" alt="picture for yourself goes here">
+						    </a>
+						</div>
+						<div class="col-xs-9">
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-9">
-						<h1 class="page-header">Recommendations</h1>
-						<button type="button" class="btn btn-default">Edit</button>
+					<div class="row">
+						<h1 class="page-header"></h1>
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">Job Recommendations</a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li><%= link_to "Edit" %></li>
+						</ul>
+					</div>
+					<div class="row">
+						<table class="table table-striped">
+	        				<!-- On rows -->
+	        				<thread>
+	        				<tr>
+	        					<th>Job Title<th>
+	        					<th>Job Type<th>
+	        					<th>Employer<th>
+	        					<th>Skill Required<th>
+	        					<th>Deadline<th>
+	        				</tr>
+	        				</thread>	
+							<!-- On cells (`td` or `th`) -->
+							<tbody>
+							<tr>
+								<td>
+									<ul class="nav nav-pills">
+  										<li class="enabled"><%= link_to "Software Engineering",post_path %></li>
+										</ul>
+								</td>
+								<td>Internship</td>
+								<td>Google</td>
+								<td>Oct 6, 20:00</td>
+							</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
+
 			</div>
 			<div class="col-xs-3">
 				<h1 class="page-header">Skills</h1>
