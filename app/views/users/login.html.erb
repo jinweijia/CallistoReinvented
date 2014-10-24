@@ -4,18 +4,46 @@
 		<li><%= link_to "DashBoard", dashboard_path %></li>
 		<li><%= link_to "Calendar", calendar_path %></li>
 		<li><%= link_to "Jobs", jobs_path %></li>
+	  	<li class="dropdown">
+	    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	      	Dropdown <span class="caret"></span>
+	    	</a>
+	    	<ul class="dropdown-menu" role="menu">
+	      		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+	    	</ul>
+	  	</li>
+
+		<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Grace Kim </a></p>
 	</ul>
 </head>
 <body>
 	<div class="container-fluid">
-		<form class="form-signin" role="form">
-			<h1>Callisto ReInvented <small>Login Page</small></h1>
-			<input type="email" class="form-control" placeholder="Email address" required autofocus>
-			<input type="password" class="form-control" placeholder="Password" required>
-			<div class="register-buttons">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+		<div class="row">
+			<div class="jumbotron">
+			 	<h1>Callisto ReInvented</h1>
+			 	<p>...</p>
 			</div>
-		</form>
+		</div>
 	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<ol class="breadcrumb">
+				  <li><%= link_to "Register (Student)", register_path %></li>
+				  <li><%= link_to "Register (Employer)", com_register_path %></li>
+				</ol>
+				<form class="form-signin" role="form">
+					<input type="email" class="form-control" placeholder="Email address" required autofocus>
+					<input type="password" class="form-control" placeholder="Password" required>
+					<div class="register-buttons">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+ 		<div class="navbar navbar-inner  navbar-fixed-bottom">
+   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+ 	</div>
 </body>

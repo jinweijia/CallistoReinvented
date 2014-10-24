@@ -1,0 +1,55 @@
+<head>
+	<ul class="nav nav-tabs">
+		<li><%= link_to "Profile", profile_path %></li>
+		<li><%= link_to "DashBoard", dashboard_path %></li>
+		<li><%= link_to "Calendar", calendar_path %></li>
+		<li><%= link_to "Jobs", jobs_path %></li>
+	</ul>
+</head>
+<body>
+	<div class="container">
+		<h1 class="page-header">Student Registration</h1>
+		<div class="row">
+			<div class="col-xs-12">
+				<h5>Username <small>Choose display name</small></h5>
+				<input type="text" class="form-control" placeholder="Text input">
+
+				<h5>Graduation Year <small>Select your graduation year</small></h5>
+				<select class="form-control">
+				  <option>2014</option>
+				  <option>2015</option>
+				  <option>2016</option>
+				  <option>2017</option>
+				  <option>2018</option>
+				</select>
+				
+				<h5>Major <small>Select your major</small></h5>
+				<select class="form-control">
+				  <option>Computer Science</option>
+				  <option>EECS</option>
+				  <option>Art</option>
+				  <option>Business</option>
+				  <option>Chemistry</option>
+				</select>
+
+				<h5>Language Profiency <small>Secondary text</small></h5>
+				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+				</label>
+				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+				</label>
+				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+				</label>
+
+				<h5>Relevant Experience <small>Write down your experiences</small></h5>
+				<textarea class="form-control" rows="3"></textarea>
+      		</div>
+		</div>
+	</div>
+	<div id="footer">
+ 		<div class="navbar navbar-inner  navbar-fixed-bottom">
+   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+ 	</div>
+</body>

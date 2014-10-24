@@ -1,0 +1,45 @@
+<head>
+	<ul class="nav nav-tabs">
+		<li><%= link_to "Profile", profile_path %></li>
+		<li><%= link_to "DashBoard", dashboard_path %></li>
+		<li><%= link_to "Calendar", calendar_path %></li>
+		<li><%= link_to "Jobs", jobs_path %></li>
+	</ul>
+</head>
+<body>
+	<div class="container">
+		<h1 class="page-header">Company Registration</h1>
+		<div class="row">
+			<div class="col-xs-12">
+				<h5>Company ID <small>Write down company ID</small></h5>
+				<input type="text" class="form-control" placeholder="Text input">
+
+				<h5>Company Location <small>Select location</small></h5>
+				<select class="form-control">
+				  <option>San Francisco</option>
+				  <option>Seattle</option>
+				  <option>New York City</option>
+				  <option>Texas</option>
+				</select>
+
+				<h5>Recruiting <small>Secondary text</small></h5>
+				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Full Time
+				</label>
+				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Part Time
+				</label>
+				<label class="radio-inline">
+  					<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Internship
+				</label>
+
+				<h5>Company Description <small>Write down description of the company</small></h5>
+				<textarea class="form-control" rows="3"></textarea>
+      		</div>
+		</div>
+	</div>
+	<div id="footer">
+ 		<div class="navbar navbar-inner  navbar-fixed-bottom">
+   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+ 	</div>
+</body>

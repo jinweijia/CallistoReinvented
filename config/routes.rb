@@ -2,12 +2,18 @@ Rails.application.routes.draw do
   get 'company/login'
 
   get 'users/login'
+  get 'users/register' => 'users#register', :as => :register
   get 'users/profile' => 'users#profile', :as => :profile
   get 'users/dashboard' => 'users#dashboard', :as => :dashboard
   get 'users/calendar'  => 'users#calendar', :as => :calendar
   get 'users/jobs' => 'users#jobs', :as => :jobs
-
   get 'users/post' => 'users#post', :as => :post
+  
+  get 'company/profile' => 'company#profile', :as => :com_profile
+  get 'company/jobs' => 'company#jobs', :as => :com_jobs
+  get 'company/register' => 'company#register', :as => :com_register
+
+
   resources :users
 
   # devise_for :users
