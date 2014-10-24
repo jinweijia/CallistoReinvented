@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'company/login'
 
   get 'users/login'
@@ -10,11 +11,21 @@ Rails.application.routes.draw do
   get 'users/post' => 'users#post', :as => :post
   resources :users
 
+=======
+  devise_for :users
+  resources :profile
+
+  root to: "home#index"
+>>>>>>> a82aaa1014d7ac52070014bbd5c2fd5c8abb7b2f
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+<<<<<<< HEAD
   root 'users#login'
+=======
+  # root 'welcome#index'
+>>>>>>> a82aaa1014d7ac52070014bbd5c2fd5c8abb7b2f
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
