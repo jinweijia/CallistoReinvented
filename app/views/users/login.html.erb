@@ -1,17 +1,17 @@
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
+
 <head>
 	<ul class="nav nav-tabs">
 		<li><%= link_to "Profile", profile_path %></li>
 		<li><%= link_to "DashBoard", dashboard_path %></li>
 		<li><%= link_to "Calendar", calendar_path %></li>
 		<li><%= link_to "Jobs", jobs_path %></li>
-	  	<li class="dropdown">
-	    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	      	Dropdown <span class="caret"></span>
-	    	</a>
-	    	<ul class="dropdown-menu" role="menu">
-	      		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-	    	</ul>
-	  	</li>
+		<li class="pull-right"><%= link_to "Log Out" %></li>
 	</ul>
 </head>
 <body>
@@ -19,7 +19,6 @@
 		<div class="row">
 			<div class="jumbotron">
 			 	<h1>Callisto ReInvented</h1>
-
 			 	<p class="lead">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
 			</div>
 		</div>
