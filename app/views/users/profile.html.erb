@@ -1,6 +1,5 @@
 <head>
 	<ul class="nav nav-tabs">
-		<li><%= link_to "Login" %></li>
 		<li><%= link_to "Profile", profile_path %></li>
 		<li><%= link_to "DashBoard", dashboard_path %></li>
 		<li><%= link_to "Calendar", calendar_path %></li>
@@ -9,6 +8,27 @@
 </head>
 <body>
 	<div class="container">
-
+		<div class="row">
+			<div class="col-xs-3">
+				<ul class="nav nav-sidebar">
+					<li class="active">
+						<h1>Skills</h1>
+						<button type="button" class="btn btn-default">Edit</button>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-9">
+				<div class="row">
+					<div class="col-xs-6">
+						<h1 class="page-header">Personal informaion</h1>
+						<button type="button" class="btn btn-default">Edit</button>
+					<div>
+					<div class="col-xs-6">
+						<h1 class="page-header">Job Recommendations</h1>
+						<button type="button" class="btn btn-default">Edit</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
