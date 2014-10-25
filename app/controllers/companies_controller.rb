@@ -1,6 +1,41 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
+  skip_before_filter :verify_authenticity_token
+  protect_from_forgery :except => :add
+
+  def add
+    
+    name = params[:company_name]
+    info = params[:company_info]
+    err = Company.add(name, info)
+    if err == Company::SUCCESS
+      render json: { errCode: err }
+    else
+      render json: { errCode: err }
+    end
+
+  end
+
+  def show
+
+    id = params[:id]
+    err, name, info = Company.get(id)
+    if err == Company::SUCCESS
+      render json: { company_id: id, company_name: name, company_info: info }
+    else
+      render json: { errCode: err }
+    end
+
+  end
+
+  def resetFixture
+
+    result = Company.resetFixture
+    render json: { errCode: result }
+
+  end
+
   # GET /companies
   # GET /companies.json
   def index
@@ -9,8 +44,6 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   # GET /companies/1.json
-  def show
-  end
 
   # GET /companies/new
   def new
@@ -23,19 +56,19 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   # POST /companies.json
-  def create
-    @company = Company.new(company_params)
+  # def create
+  #   @company = Company.new(company_params)
 
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
-        format.json { render :show, status: :created, location: @company }
-      else
-        format.html { render :new }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @company.save
+  #       format.html { redirect_to @company, notice: 'Company was successfully created.' }
+  #       format.json { render :show, status: :created, location: @company }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @company.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
