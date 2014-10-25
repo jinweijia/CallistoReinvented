@@ -1,9 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
-  skip_before_filter :verify_authenticity_token
-  protect_from_forgery :except => :add
-
   def add
     
     name = params[:company_name]
@@ -56,19 +53,19 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   # POST /companies.json
-  # def create
-  #   @company = Company.new(company_params)
+  def create
+    @company = Company.new(company_params)
 
-  #   respond_to do |format|
-  #     if @company.save
-  #       format.html { redirect_to @company, notice: 'Company was successfully created.' }
-  #       format.json { render :show, status: :created, location: @company }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @company.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    respond_to do |format|
+      if @company.save
+        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.json { render :show, status: :created, location: @company }
+      else
+        format.html { render :new }
+        format.json { render json: @company.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json

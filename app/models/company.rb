@@ -7,8 +7,12 @@ class Company < ActiveRecord::Base
 
 	validates :company_name, uniqueness: true, presence: true
 
-	
-
+	##
+	# Company.add method adds a company to the database. Has to check that company name does not
+	# already exists and company name is not blank. It assigns an unique ID to each new company 
+	# entry by incrementing the last added ID by 1.
+	# Input: name and info
+	# Output: error code
 	def self.add(name, info)
 
 		@last_company = Company.last()
@@ -33,6 +37,11 @@ class Company < ActiveRecord::Base
 
 	end
 
+	##
+	# Company.get method retrives a company from the database based on its ID. Has to check that
+	# a company with the ID exists.
+	# Input: id
+	# Output: error code, name, info
 	def self.get(id)
 
 		if Company.exists?(company_id: id)
