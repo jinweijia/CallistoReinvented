@@ -5,6 +5,7 @@ ERR_BAD_POSTING_ID =  -1
 ERR_TITLE          =  -2
 ERR_BAD_COMPANY_ID =  -3
 ERR_BAD_TYPE       =  -4
+ERR_INFO_LENGTH    =  -5
 MAX_TITLE_LENGTH   = 128
 MAX_INFO_LENGTH    = 128*128
 ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
@@ -12,18 +13,18 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   def self.add(company_id, title, job_type, info="")
     # verify title:
     if title == "" or title.length > MAX_TITLE_LENGTH
-      return {errcode: ERR_TITLE}
+      return {errCode: ERR_TITLE}
     end
     # verify company_name, company_id:
     company = Company.find_by(company_id: company_id)
     if company.blank?
-      return {errcode: ERR_BAD_COMPANY_ID}
+      return {errCode: ERR_BAD_COMPANY_ID}
     else
       company_name = company.company_name
     end
     # verify job_type:
     if not ALLOWED_TYPES.include?(job_type)
-      return {errcode: ERR_BAD_TYPE}
+      return {errCode: ERR_BAD_TYPE}
     end
     # verify info:
     if info.length > MAX_INFO_LENGTH
