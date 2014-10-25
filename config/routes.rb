@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :companies
+
   get 'company/login'
 
   get 'users/login' => 'users#login', :as => :home
