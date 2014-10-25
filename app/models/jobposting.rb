@@ -66,7 +66,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     # attempt to find all postings that matches company_id
     posting = Jobposting.where("company_id = ?", company_id)
     # return an error if not found
-    if posting == nil
+    if posting.length == 0
       return {errCode: ERR_BAD_COMPANY_ID}
     end
     return {errCode: SUCCESS, value: posting}

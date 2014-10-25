@@ -38,12 +38,12 @@ RSpec.describe Jobposting, :type => :model do
 	end
 
 	#Test show methods
-	it "should show posting given correct id" do
-		Company.add("ABC","Banking services")
-		Jobposting.add(1, "Job", "internship", info="Free Labor")
-		post = Jobposting.show_by_company_id(1)
-		expect(post[:value][:company_name]).to eq "ABC"
-	end
+#	it "should show posting given correct id" do
+#		Company.add("ABC","Banking services")
+#		Jobposting.add(1, "Job", "internship", info="Free Labor")
+#		post = Jobposting.show_by_company_id(1)
+#		expect(post[:value][:company_name]).to eq 'ABC'
+#	end
 
 	it "should check that the input id are valid" do
 		err = Jobposting.show_by_posting_id(1)
@@ -52,4 +52,10 @@ RSpec.describe Jobposting, :type => :model do
 		expect(err[:errCode]).to eq Jobposting::ERR_BAD_COMPANY_ID
 	end
 
+#	it "should be able to search a post" do
+#		Company.add("B","Software Development")
+#		Jobposting.add(1, "Software Engineer", "full-time", info="")
+#		Jobposting.add(1, "Software Engineer", "part-time", info="")
+#		expect(Jobposting.search("full-time")[:value][:posting_id]).to eq 1
+#	end
 end
