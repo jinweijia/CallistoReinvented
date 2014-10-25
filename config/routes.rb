@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  devise_for :users, :path_names => { :sign_up => "register" }
+
+  resources :profile
+  root :to => 'home#index'
+
   resources :companies
 
   get '/' => 'users#login'
@@ -27,8 +33,7 @@ Rails.application.routes.draw do
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
   delete '/posting/:id' => 'jobposting#delete'
-
-  # The priority is based upon order of creation: first created -> highest priority.
+    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
