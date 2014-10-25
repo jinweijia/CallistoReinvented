@@ -46,10 +46,18 @@ RSpec.describe Jobposting, :type => :model do
 	end
 
 	it "should check that the input id are valid" do
-		err = Jobposting.show_by_posting_id(1)
+		err = Jobposting.show_by_posting_id(10)
 		expect(err[:errCode]).to eq Jobposting::ERR_BAD_POSTING_ID
-		err = Jobposting.show_by_company_id(1)
+		err = Jobposting.show_by_company_id(10)
 		expect(err[:errCode]).to eq Jobposting::ERR_BAD_COMPANY_ID
+	end
+
+	#Test delete
+	it "should delete posting if posting id exists" do
+		Company.add("ABC","Banking services")
+		Jobposting.add(1, "Job", "internship", info="Free Labor")
+		err = Jobposting.remove(1,1)
+		expect(err[:errCode]).to eq Jobposting::SUCCESS
 	end
 
 end
