@@ -1,28 +1,44 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Xu Chen, Grace Kim, Alex Jin, Alex Neilson, Weijia Jin
 
-Things you may want to cover:
+This is a public repository for Callisto ReInvented.
 
-* Ruby version
+= Version Details
+---
 
-* System dependencies
+*Ruby* *version*
 
-* Configuration
+ruby 2.1.3p242 (2014-09-19 revision 47630) [x86_64-darwin13.0]
 
-* Database creation
+*Rails* *version*
 
-* Database initialization
+Rails 4.1.6
 
-* How to run the test suite
+*Postgresql* *version*
 
-* Services (job queues, cache servers, search engines, etc.)
+psql (PostgreSQL) 9.3.5
 
-* Deployment instructions
+*Bootstrap* *version*
 
-* ...
+Bootstrap 3.2.0
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+= Deployment Details
+---
+=======
+
+*Heroku* *App*
+
+We are using Heorku to host our Ruby on Rails application. Please go to following url to fun the application
+
+http://callistoreinvented.herokuapp.com
+
+
+= Testing Details
+---
+=======
+
+*Front End UI Testing
+
+*<tt>rspec</tt>.
