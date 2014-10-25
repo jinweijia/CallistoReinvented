@@ -15,7 +15,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     if title == "" or title.length > MAX_TITLE_LENGTH
       return {errCode: ERR_TITLE}
     end
-    # verify company_name, company_id:
+    # verify company_id:
     company = Company.find_by(company_id: company_id)
     if company.blank?
       return {errCode: ERR_BAD_COMPANY_ID}
@@ -31,6 +31,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       return {errCode: ERR_INFO_LENGTH}
     end
 
+    # use id = 1 for the first time, then increment for each new posting
     last_posting = Jobposting.last()
     if last_posting.blank?
         posting_id = 1
@@ -46,12 +47,15 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   end
 
   def self.show_all()
+    # return all postings
     posting = Jobposting.all
     return {errCode: SUCCESS, value: posting}
   end
 
   def self.show_by_posting_id(posting_id)
+    # attempt to find a posting that matches posting_id
     posting = Jobposting.find_by(posting_id: posting_id)
+    # return an error if not found
     if posting == nil
       return {errCode: ERR_BAD_POSTING_ID}
     end
@@ -59,7 +63,9 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   end
 
   def self.show_by_company_id(company_id)
+    # attempt to find all postings that matches company_id
     posting = Jobposting.where("company_id = ?", company_id)
+    # return an error if not found
     if posting == nil
       return {errCode: ERR_BAD_COMPANY_ID}
     end
@@ -67,12 +73,14 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   end
 
   def self.search(query)
+    # do a fuzzy over all fields that are string types and see if any match occurs
     q = "%"+query+"%"
     posting = Jobposting.where("title like ? OR company_name like ? OR job_type like ? OR info like ?", q, q, q, q)
     return {errCode: SUCCESS, value: posting}
   end
 
   def self.remove(posting_id, company_id)
+    # find a posting that matches both posting_id and company_id, if so, delete, else error
     if Jobposting.findby(posting_id: posting_id, company_id: company_id) == nil
         return {errCode: ERR_BAD_POSTING_ID}
     end
