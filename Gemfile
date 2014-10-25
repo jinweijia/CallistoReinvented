@@ -9,7 +9,7 @@ group :production do
   gem 'pg'
 end
 # gem 'protected_attributes'
-gem 'devise', '3.4.0'
+gem 'devise', '~> 3.4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

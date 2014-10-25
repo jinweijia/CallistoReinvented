@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_id, :skill)
   end
-end
 
   def log_out
   end
