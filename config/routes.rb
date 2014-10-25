@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
   resources :companies
 
+  get 'company/login'
+
+  get 'users/login' => 'users#login', :as => :home
+  get 'users/register' => 'users#register', :as => :register
+  get 'users/profile' => 'users#profile', :as => :student_profile
+  get 'users/dashboard' => 'users#dashboard', :as => :dashboard
+  get 'users/calendar'  => 'users#calendar', :as => :calendar
+  get 'users/jobs' => 'users#jobs', :as => :jobs
+  get 'users/post' => 'users#post', :as => :post
+  get 'users/new' => 'users#new', :as => :new_user
+  
+  get 'company/profile' => 'company#profile', :as => :com_profile
+  get 'company/jobs' => 'company#jobs', :as => :com_jobs
+  get 'company/register' => 'company#register', :as => :com_register
 
   get '/company/:id'            => 'companies#show'
   get '/posting/all'            => 'jobposting#show_all'
