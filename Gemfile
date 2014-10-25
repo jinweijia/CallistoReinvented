@@ -34,6 +34,8 @@ gem 'spring',        group: :development
 #Rspec
 gem 'rspec-rails'
 
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
