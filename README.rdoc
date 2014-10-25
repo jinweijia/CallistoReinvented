@@ -26,9 +26,9 @@ psql (PostgreSQL) 9.3.5
 
 *Heroku* *App*
 
-http://callistoreinvented.herokuapp.com/
+We are using Heorku to host our Ruby on Rails application. Please go to following url to fun the application
 
-go to following url to fun the application.
+http://callistoreinvented.herokuapp.com
 
 
 = Testing Details
