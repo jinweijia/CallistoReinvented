@@ -1,6 +1,9 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
+  skip_before_filter :verify_authenticity_token
+  protect_from_forgery :except => :add
+
   def add
     
     name = params[:company_name]
