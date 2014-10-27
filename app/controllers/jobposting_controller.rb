@@ -22,7 +22,8 @@ class JobpostingController < ApplicationController
     posting_id = params[:id]
     puts posting_id
     ret = Jobposting.show_by_posting_id(posting_id)
-    render json: ret
+    render template: "users/post"
+    #render json: ret
   end
 
   def show_by_company_id

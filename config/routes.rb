@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get '/posting/all'            => 'jobposting#show_all'
   get '/posting/posting_id/:id' => 'jobposting#show_by_posting_id'
   get '/posting/company_id/:id' => 'jobposting#show_by_company_id'
-  get '/posting/search'         => 'jobposting#search'
+  get '/posting/search'         => 'jobposting#search', :as => :search
 
   post '/posting/add'           => 'jobposting#add'
   post '/company/add'           => 'companies#add'

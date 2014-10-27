@@ -40,9 +40,10 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     end
 
     # create a job posting:
-    Jobposting.create(posting_id: posting_id, title: title,
+    @jobposting = Jobposting.new(posting_id: posting_id, title: title,
                       company_name: company_name, company_id: company_id,
                       job_type: job_type, info: info)
+    @jobposting.save
     return {errCode: SUCCESS}
   end
 

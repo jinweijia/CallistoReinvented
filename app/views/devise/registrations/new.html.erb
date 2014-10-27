@@ -1,29 +1,79 @@
-<h2>Sign up</h2>
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-	<button type="button">Students</button> 
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-  
-  <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.label :type %><br />
-    <%= f.text_field :type, autocomplete: "off" %></div>
-
-  <div><%= f.label :company_id %><br />
-    <%= f.text_field :company_id, autocomplete: "off" %></div>
-
-  <div><%= f.label :skill %><br />
-    <%= f.text_field :skill, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<head>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="#">CR</a>
+        </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Profile", student_profile_path %></li>
+        <li><%= link_to "DashBoard", dashboard_path %></li>
+        <li><%= link_to "Calendar", calendar_path %></li>
+        <li><%= link_to "Jobs", jobs_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown pull-right">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Help <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Home", home_path%></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </li>
+      </ul>
+    </div>
+  </div>
+  <br></br> 
+  <div class="container" style="width:500px;margin: 0 auto;">
+    <h1 class="page-header">Registration</h1>
+    <div class="row">
+      <div class="col-xs-12">
+        <form role="form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %> 
+                <div class="form-group">  
+                  <h5><%= f.label :email %> <small>Must be great than 0 and less than 8</small></h5>
+                    <%= f.email_field :email, autofocus: true %>
+                </div>
+                <div class="form-group">
+                  <h5><%= f.label :password %> <small><% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %></small></h5>
+                    <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+                <div class="form-group">
+                  <h5><%= f.label :password_confirmation %></h5>
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                </div>
+                <div class="form-group">
+                  <h5><%= f.label :type %> <small>Student or Employer</small></h5>
+                    <%= f.text_field :type, autocomplete: "off" %>
+                <div class="form-group">
+                  <h5><%= f.label :company_id %> <small>Company's id</small></h5>
+                    <%= f.text_field :company_id, autocomplete: "off" %>
+                </div>
+                <div class="form-group">
+                  <h5><%= f.label :skill %> <small>List of Skills</small></h5>
+                    <%= f.text_field :skill, autocomplete: "off" %>
+                </div>
+                <button type="submit" class="btn btn-default">
+                  <div><%= f.submit "Submit" %>
+                </button>
+              <% end %>
+            </div>
+          <br></br>
+          <br></br>
+        </form>
+      </div>
+    </div>
+  </div>
+    <div id="footer">
+    <div class="navbar navbar-inner  navbar-fixed-bottom">
+      <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+  </div>
+</body>

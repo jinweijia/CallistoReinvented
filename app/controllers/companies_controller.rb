@@ -4,6 +4,9 @@ class CompaniesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   protect_from_forgery :except => :add
 
+  def profile
+  end
+
   def add
     
     name = params[:company_name]
@@ -18,11 +21,11 @@ class CompaniesController < ApplicationController
   end
 
   def show
-
     id = params[:id]
     err, name, info = Company.get(id)
     if err == Company::SUCCESS
-      render json: { company_id: id, company_name: name, company_info: info }
+      render template: "company/profile"
+      #render json: { company_id: id, company_name: name, company_info: info }
     else
       render json: { errCode: err }
     end
