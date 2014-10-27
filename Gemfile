@@ -8,6 +8,7 @@ end
 group :production do
   gem 'pg'
 end
+gem 'simplecov', '~> 0.9.1'
 # gem 'protected_attributes'
 gem 'devise', '~> 3.4.0'
 # Use SCSS for stylesheets
