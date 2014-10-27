@@ -32,8 +32,11 @@ Rails.application.routes.draw do
   post '/company/add'           => 'companies#add'
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
+  # debugging routes
+  get '/profile/profile' => 'profile#index'
+
   delete '/posting/:id' => 'jobposting#delete'
-    # The priority is based upon order of creation: first created -> highest priority.
+  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
