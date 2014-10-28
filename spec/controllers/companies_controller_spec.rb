@@ -24,7 +24,7 @@ RSpec.describe CompaniesController, :type => :controller do
   # Company. As you add validations to Company, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {company_name: "A", company_info: ""}
+    {company_name: "Test", company_info: ""}
   }
 
   let(:invalid_attributes) {
@@ -44,6 +44,7 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
+  #Test show method
   describe "GET show" do
     it "assigns the requested company as @company" do
       company = Company.create! valid_attributes
@@ -67,7 +68,7 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
-  describe "POST create" do
+  describe "POST add" do
     describe "with valid params" do
       it "creates a new Company" do
         expect {

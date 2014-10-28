@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/posting/search'         => 'jobposting#search', :as => :search
 
   post '/posting/add'           => 'jobposting#add'
-  post '/company/add'           => 'companies#add'
+  post '/company/add'           => 'companies#add', :as => :add
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
   # debugging routes

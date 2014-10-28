@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/controllers/companies_controller_spec.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/controllers/companies_controller_spec.rb": [
         1,
         null,
         null,
@@ -48,6 +48,7 @@
         null,
         null,
         null,
+        null,
         1,
         1,
         1,
@@ -162,7 +163,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/rails_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -214,14 +215,14 @@
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/environment.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/application.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/application.rb": [
         1,
         null,
         1,
@@ -246,13 +247,13 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/boot.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/environments/test.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/environments/test.rb": [
         1,
         null,
         null,
@@ -293,7 +294,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/assets.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -303,7 +304,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/backtrace_silencers.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -312,12 +313,12 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/cookies_serializer.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/devise.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -578,13 +579,13 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/filter_parameter_logging.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/inflections.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -602,17 +603,17 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/mime_types.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/session_store.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/session_store.rb": [
         null,
         1
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/wrap_parameters.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -628,7 +629,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/config/routes.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/config/routes.rb": [
         1,
         null,
         1,
@@ -661,6 +662,9 @@
         null,
         1,
         1,
+        1,
+        null,
+        null,
         1,
         null,
         1,
@@ -720,7 +724,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/user.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/models/user.rb": [
         1,
         null,
         null,
@@ -738,36 +742,39 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/application_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/companies_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/helpers/companies_helper.rb": [
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/company_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/helpers/company_helper.rb": [
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/dashboard_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/helpers/dashboard_helper.rb": [
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/home_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/helpers/home_helper.rb": [
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/users_helper.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/controllers/companies_controller.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/controllers/companies_controller.rb": [
         1,
         1,
         null,
         1,
         1,
+        null,
+        1,
+        null,
         null,
         1,
         null,
@@ -776,18 +783,18 @@
         0,
         0,
         0,
+        0,
         null,
         0,
         null,
         null,
         null,
-        null,
         1,
-        null,
         1,
         1,
         1,
         0,
+        null,
         null,
         1,
         null,
@@ -837,6 +844,10 @@
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
         1,
         0,
         0,
@@ -871,7 +882,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/controllers/application_controller.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -895,7 +906,18 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/helpers/companies_helper_spec.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/controllers/jobpostings_controller_spec.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/helpers/companies_helper_spec.rb": [
         1,
         null,
         null,
@@ -912,7 +934,7 @@
         1,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/models/company_spec.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/models/company_spec.rb": [
         1,
         null,
         1,
@@ -954,7 +976,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/company.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/models/company.rb": [
         1,
         null,
         1,
@@ -1023,7 +1045,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/models/jobposting_spec.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/models/jobposting_spec.rb": [
         1,
         null,
         1,
@@ -1095,7 +1117,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/jobposting.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/app/models/jobposting.rb": [
         1,
         null,
         1,
@@ -1142,6 +1164,7 @@
         null,
         null,
         3,
+        3,
         null,
         null,
         1,
@@ -1192,7 +1215,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/requests/companies_spec.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/requests/companies_spec.rb": [
         1,
         null,
         1,
@@ -1204,7 +1227,7 @@
         null,
         null
       ],
-      "/Users/alex_jin/Callisto/CallistoReinvented/spec/routing/companies_routing_spec.rb": [
+      "C:/Users/WJ/Desktop/CallistoReinvented/spec/routing/companies_routing_spec.rb": [
         1,
         null,
         1,
@@ -1242,6 +1265,6 @@
         null
       ]
     },
-    "timestamp": 1414389561
+    "timestamp": 1414461748
   }
 }

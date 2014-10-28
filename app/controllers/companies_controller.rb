@@ -13,11 +13,11 @@ class CompaniesController < ApplicationController
     info = params[:company_info]
     err = Company.add(name, info)
     if err == Company::SUCCESS
-      render json: { errCode: err }
+      @company = Company.last()
+      render json: { errCode: err, company: @company }      
     else
       render json: { errCode: err }
     end
-
   end
 
   def show
@@ -71,6 +71,10 @@ class CompaniesController < ApplicationController
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
+    # result = self.add()
+    # # @company = result[:company]
+    # format.html { redirect_to result[:company], notice: 'Company was successfully created.' }
+    # format.json { render :show, status: :created, location: result[:company] }
   end
 
   # PATCH/PUT /companies/1
