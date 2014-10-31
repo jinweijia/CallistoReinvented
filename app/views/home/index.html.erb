@@ -1,1 +1,43 @@
-<h1>Welcome to Callisto</h1>
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
+
+<head>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+		      <a class="navbar-brand" href="#">CR</a>
+		    </div>
+			<ul class="nav navbar-nav navbar-right">
+				<form class="navbar-form pull-right" role="search">
+					<div class="form-group">
+		    		<button class="btn btn-lg btn-primary btn-block" type="submit"><%= link_to "Sign in",  new_user_session_path %></button>
+		    		</div>
+				</form>
+			</ul>
+		</div>
+	</div>
+	<br></br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="jumbotron">
+				<div ="container" style="width:800px;margin: 0 auto;">
+				 	<h1>Callisto ReInvented</h1>
+				 	<p class="lead">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+				 	<button class="btn btn-lg btn-primary btn-block" type="submit"><%= link_to "Sign Up",  new_user_registration_path %></button>
+				 	<br></br>
+			 	</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+ 		<div class="navbar navbar-inner  navbar-fixed-bottom">
+   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+ 		</div>
+ 	</div>
+</body>

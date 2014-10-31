@@ -7,10 +7,10 @@
 		      <a class="navbar-brand" href="#">CR</a>
 		    </div>
 			<ul class="nav navbar-nav">
-				<li><%= link_to "Profile", student_profile_path %></li>
-				<li><%= link_to "DashBoard", dashboard_path %></li>
-				<li><%= link_to "Calendar", calendar_path %></li>
-				<li><%= link_to "Jobs", jobs_path %></li>
+				<li><%= link_to "Profile", profile_index_path %></li>
+				<li><%= link_to "DashBoard", '/users/dashboard' %></li>
+				<li><%= link_to "Calendar", '/users/calendar' %></li>
+				<li><%= link_to "Jobs", '/users/jobs' %></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<form class="navbar-form pull-right" role="search">
@@ -19,7 +19,7 @@
 		    		</div>
 		    		<button type="submit" class="btn btn-default">Search</span></button>
 				</form>
-				<li><%= link_to "Log Out", home_path %></li>
+				<li><%= link_to "Log Out", '/' %></li>
 			</ul>
 		</div>
 	</div>
@@ -27,38 +27,16 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-3">
-				<h1 class="page-header"><%= current_user.email %>, Welcome</h1>
+				<h1 class="page-header">Skills</h1>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Experience 1</h3>
+						<h3 class="panel-title"><%= current_user.skill %></h3>
 					</div>
 					<div class="panel-body">
-						<% if current_user %>
-								<li>Type: <%= current_user.type %></li>
-
-								<li>Company ID: <%= current_user.company_id %></li>
-
-								<li>Skill: <%= current_user.skill %></li>
-								
-								<% if current_user.type == "employee" %>
-									<li>URL: <%= link_to "Company Profile", ('/company/'+current_user.company_id) %> </li>
-								<% end %>
-
-						    <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
-						    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-						<% else %>
-						    <li><%= link_to 'Login', new_user_session_path %></li>
-						<% end %>
+						<p>Skill description</p>
 					</div>
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Experience 2</h3>
-					</div>
-					<div class="panel-body">
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-					</div>
-				</div>
+				
 			</div>
 			<div class="col-xs-6">
 				<div class="row">
@@ -71,7 +49,7 @@
 							<li><%= link_to "Calendar", calendar_path %></li>
 						</ul>
 						<ul class="nav navbar-nav">
-							<li><%= link_to "Edit" %></li>
+							<li><%= link_to "Edit",edit_user_registration_path %></li>
 						</ul>
 					</div>
 					<div class="row">
@@ -124,17 +102,7 @@
 				</div>
 
 			</div>
-			<div class="col-xs-3">
-				<h1 class="page-header">Skills</h1>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Skill 1</h3>
-					</div>
-					<div class="panel-body">
-						Panel content
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<div id="footer">

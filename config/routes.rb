@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :path_names => { :sign_up => "register" }
+  devise_for :users, :path_names => 
+  { :sign_up => "register" }
 
   resources :profile
-  #root :to => 'home#index'
+  root :to => 'home#index'
 
   resources :companies
 
-  get '/' => 'users#login'
+  # get '/' => 'users#login'
 
-  get 'users/login' => 'users#login', :as => :home
-  get 'users/register' => 'users#register', :as => :register
-  get 'users/profile' => 'users#profile', :as => :student_profile
+  # get 'users/login' => 'users#login', :as => :home
+  # get 'users/register' => 'users#register', :as => :register
+  # get 'users/profile' => 'users#profile', :as => :student_profile
   get 'users/dashboard' => 'users#dashboard', :as => :dashboard
   get 'users/calendar'  => 'users#calendar', :as => :calendar
   get 'users/jobs' => 'users#jobs', :as => :jobs
