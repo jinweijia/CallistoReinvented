@@ -27,10 +27,7 @@
 <div class="form-group">
     <%= f.label :type, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-        <select class="form-control">
-        <option>Student</option>
-        <option>Employer</option>
-        </select>
+        <%= f.select :type, User::TYPES %>
     </div>
 </div>
 
