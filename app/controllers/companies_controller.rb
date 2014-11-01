@@ -4,19 +4,24 @@ class CompaniesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   protect_from_forgery :except => :add
 
+  ERR_BAD_PERMISSIONS = -4
+
   def profile
   end
 
   def add
-    
-    name = params[:company_name]
-    info = params[:company_info]
-    err = Company.add(name, info)
-    if err == Company::SUCCESS
-      @company = Company.last()
-      render json: { errCode: err, company: @company }      
+    if current_user.type != "Employer"
+      render json: { errcode: ERR_BAD_PERMISSIONS }
     else
-      render json: { errCode: err }
+      name = params[:company_name]
+      info = params[:company_info]
+      err = Company.add(name, info)
+      if err == Company::SUCCESS
+        @company = Company.last()
+        render json: { errCode: err, company: @company }      
+      else
+        render json: { errCode: err }
+      end
     end
   end
 
