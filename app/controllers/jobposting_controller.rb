@@ -5,11 +5,19 @@ class JobpostingController < ApplicationController
   protect_from_forgery :except => :add
 
   def add
-    company_id = params[:company_id]
-    title      = params[:title]
-    job_type   = params[:job_type]
-    info       = params[:info]
-    ret        = Jobposting.add(company_id, title, job_type, info)
+    company_name = current_user.company_name
+    company      = Company.find_by(company_name: company_name)
+    if company == nil
+        ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
+    else
+        company_id = params[:company_id]
+        title      = params[:title]
+        job_type   = params[:job_type]
+        info       = params[:info]
+        if company.company_id != company_id
+            ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
+        else
+            ret        = Jobposting.add(company_id, title, job_type, info)
     render json: ret
   end
 
