@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   end
 
   def add
+    #Validates if the current user has permissions to add company
     if current_user.type != "Employer"
       render json: { errcode: ERR_BAD_PERMISSIONS }
     else
