@@ -72,7 +72,7 @@ RSpec.describe CompaniesController, :type => :controller do
     describe "with valid params" do
       it "creates a new Company" do
         expect {
-          post :create, {:company => valid_attributes}, valid_session
+          post :add, {:company => valid_attributes}, valid_session
         }.to change(Company, :count).by(1)
       end
 
