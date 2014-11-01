@@ -21,12 +21,12 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :type, :company_id, :skill)}
-      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :type, :skill, :company_id) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :type, :company_name, :skill)}
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :type, :skill, :company_name) }
     end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_id, :skill)
+    params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_name, :skill)
   end
 
   def log_out
