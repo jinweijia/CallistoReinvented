@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # get '/' => 'users#login'
 
-  # get 'users/login' => 'users#login', :as => :home
+  get 'users/login' => 'users#login', :as => :home
   # get 'users/register' => 'users#register', :as => :register
   # get 'users/profile' => 'users#profile', :as => :student_profile
   get 'users/dashboard' => 'users#dashboard', :as => :dashboard
