@@ -6,14 +6,27 @@ class ApplicationController < ActionController::Base
  	before_filter :configure_permitted_parameters, if: :devise_controller?
 
   # protected
+  helper_method :resource, :resource_name, :devise_mapping
+
+    def resource_name
+      :user
+    end
+
+    def resource
+      @resource ||= User.new
+    end
+
+    def devise_mapping
+      @devise_mapping ||= Devise.mappings[:user]
+    end
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :type, :company_id, :skill)}
-      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :type, :skill, :company_id) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :type, :company_name, :skill)}
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :type, :skill, :company_name) }
     end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_id, :skill)
+    params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_name, :skill)
   end
 
   def log_out

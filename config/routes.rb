@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :path_names => { :sign_up => "register" }
+  devise_for :users, :path_names => 
+  { :sign_up => "register" }
 
   resources :profile
-  #root :to => 'home#index'
+  root :to => 'home#index'
 
   resources :companies
 
-  get '/' => 'users#login'
+  # get '/' => 'users#login'
 
-  get 'users/login' => 'users#login', :as => :home
-  get 'users/register' => 'users#register', :as => :register
-  get 'users/profile' => 'users#profile', :as => :student_profile
+  # get 'users/login' => 'users#login', :as => :home
+  # get 'users/register' => 'users#register', :as => :register
+  # get 'users/profile' => 'users#profile', :as => :student_profile
   get 'users/dashboard' => 'users#dashboard', :as => :dashboard
   get 'users/calendar'  => 'users#calendar', :as => :calendar
   get 'users/jobs' => 'users#jobs', :as => :jobs
@@ -29,8 +30,13 @@ Rails.application.routes.draw do
   get '/posting/search'         => 'jobposting#search', :as => :search
 
   post '/posting/add'           => 'jobposting#add'
-  post '/company/add'           => 'companies#add'
+  post '/company/add'           => 'companies#add', :as => :add
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
+
+  post '/events/createEvent' => 'events#create_event'
+  get '/events/:id' => 'events#get_event'
+  post '/events/editEvent/:id' => 'events#edit_event'
+  delete '/events/:id' => 'events#delete_event'
 
   # debugging routes
   get '/profile/profile' => 'profile#index'
