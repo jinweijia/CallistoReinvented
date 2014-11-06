@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :events
+
   devise_for :users, :path_names => 
   { :sign_up => "register" }
 
