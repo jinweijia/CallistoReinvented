@@ -33,10 +33,10 @@ Rails.application.routes.draw do
   post '/company/add'           => 'companies#add', :as => :add
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
-  post '/events/createEvent' => 'events#create_event'
-  get '/events/:id' => 'events#get_event'
-  post '/events/editEvent/:id' => 'events#edit_event'
-  delete '/events/:id' => 'events#delete_event'
+  #post '/events/createEvent' => 'events#create_event'
+  #get '/events/:id' => 'events#get_event'
+  #post '/events/editEvent/:id' => 'events#edit_event'
+  #delete '/events/:id' => 'events#delete_event'
 
   # debugging routes
   get '/profile/profile' => 'profile#index'
