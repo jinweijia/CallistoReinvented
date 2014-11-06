@@ -8,22 +8,32 @@ class ApplicationController < ActionController::Base
   # protected
   helper_method :resource, :resource_name, :devise_mapping
 
-    def resource_name
-      :user
+  def after_sign_in_path_for(resource)
+    if current_user.type == 'Student'
+      profile_index_path
+    elsif current_user.company_name == ''
+      new_company_path
+    else
+      company_path+"/"+current_user.company_name
     end
+  end
 
-    def resource
-      @resource ||= User.new
-    end
+  def resource_name
+    :user
+  end
 
-    def devise_mapping
-      @devise_mapping ||= Devise.mappings[:user]
-    end
+  def resource
+    @resource ||= User.new
+  end
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :type, :company_name, :skill)}
-      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :type, :skill, :company_name) }
-    end
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :type, :company_name, :skill)}
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :current_password, :type, :skill, :company_name) }
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_name, :skill)
