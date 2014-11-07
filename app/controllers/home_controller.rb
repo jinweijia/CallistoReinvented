@@ -1,8 +1,11 @@
 class HomeController < ApplicationController
 	def index
 		if user_signed_in?
-			redirect_to :controller=>"profile", :action => 'index'
+			if current_user.type == 'Student'
+				redirect_to :controller=>"profile", :action => 'index'
+			else #employer
+				redirect_to :controller=>"companies", :action => 'index'
+			end
 		end
 	end
 end
- 
