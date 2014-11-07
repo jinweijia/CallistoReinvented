@@ -105,6 +105,10 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       query.each do |keyword|
         if skills.include?(keyword) or tags.include?(keyword)
           # todo: score increment can vary according to user preference
+          # requires: current_user.saved_tags // should be a hash mapping tags to frequency
+
+          # condition 1: keyword appears in user's saved tags
+          
           score += 1
         end
       end
