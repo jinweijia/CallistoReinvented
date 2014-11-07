@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-
+	
 SUCCESS = 1
 ERR_NO_SUCH_EVENT = -1
 ERR_BAD_PERMISSIONS = -2
@@ -96,4 +96,4 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 		event = Event.find_by(event_id: event_id)
 		return {errCode: SUCCESS, value: event}
 	end
-
+end
