@@ -44,6 +44,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 	def edit_event(event_id, field, value)
 		if not Event.exists?(event_id: event_id)
 			return {errCode: ERR_NO_SUCH_EVENT}
+		end
 
 		event = Event.find_by(event_id: event_id)
 
@@ -52,7 +53,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 		end
 
 		if field == 'title'
-			if value = "" or value.length > MAX_TITLE_LENGTH
+			if value == "" or value.length > MAX_TITLE_LENGTH
 				return {errCode: ERR_BAD_TITLE}
 			else
 				event.update(title: value)
