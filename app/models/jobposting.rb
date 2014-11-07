@@ -10,7 +10,7 @@ MAX_TITLE_LENGTH   = 128
 MAX_INFO_LENGTH    = 128*128
 ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
-  def self.add(company_id, title, job_type, info="")
+  def self.add(company_id, title, job_type, info="", skills="", tags="")
     # verify title:
     if title == "" or title.length > MAX_TITLE_LENGTH
       return {errCode: ERR_TITLE}
@@ -39,10 +39,14 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
         posting_id = last_posting.posting_id + 1
     end
 
+    # skills and tags stored as a string for easier searching
+    # pskills = skills.split(", ")
+    # ptags = tags.split(", ")
+
     # create a job posting:
     @jobposting = Jobposting.new(posting_id: posting_id, title: title,
                       company_name: company_name, company_id: company_id,
-                      job_type: job_type, info: info)
+                      job_type: job_type, info: info, skills:pskills, tags:ptags)
     @jobposting.save
     return {errCode: SUCCESS}
   end
@@ -73,11 +77,42 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     return {errCode: SUCCESS, value: posting}
   end
 
-  def self.search(query)
+  def self.simple_search(query)
     # do a fuzzy over all fields that are string types and see if any match occurs
     q = "%"+query+"%"
     posting = Jobposting.where("title like ? OR company_name like ? OR job_type like ? OR info like ?", q, q, q, q)
     return {errCode: SUCCESS, value: posting}
+  end
+
+  def self.ranked_search(query)
+    
+    # First narrow down the list of matching postings // use Jobposting.find_each for large database (supports batch retrieval)
+    # q = "%"+query+"%"
+    # posting = Jobposting.where("title like :keyword OR company_name like :keyword OR job_type like :keyword OR info like :keyword OR skills like :keyword OR tags like :keyword", {keyword: q})
+
+    query = query.split(", ")
+
+    # Rank postings
+    rankings = Hash.new
+    Jobposting.find_each do |post|
+      # Score is used to determine ranking
+      score = 0
+      skills = post.skills.split(", ")
+      tags = post.tags.split(", ")
+      # todo: implement more sophisticated weights
+      query.each do |keyword|
+        if skills.include?(keyword) or tags.include?(keyword)
+          # todo: score increment can vary according to user preference
+          score += 1
+        end
+      end
+      rankings[post] = score          
+    end
+    # This line returns a nested array of [post, score] pairs
+    result = rankings.sort_by { |post, score| score }.reverse!
+
+    return result
+
   end
 
   def self.remove(posting_id, company_id)
@@ -93,4 +128,16 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     Jobposting.delete_all()
     return {errCode: SUCCESS}
   end
+
+  # Code for using hash to sort postings
+  def ==(other)
+    self.class === other and other.posting_id == @posting_id
+  end
+
+  alias eql? ==
+
+  def hash
+    @posting_id.hash
+  end
+
 end

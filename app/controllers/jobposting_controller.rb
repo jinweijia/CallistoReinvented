@@ -14,10 +14,12 @@ class JobpostingController < ApplicationController
         title      = params[:title]
         job_type   = params[:job_type]
         info       = params[:info]
+        skills       = params[:skills]
+        tags       = params[:tags]
         if company.company_id != company_id
             ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
         else
-            ret        = Jobposting.add(company_id, title, job_type, info)
+            ret        = Jobposting.add(company_id, title, job_type, info, skills, tags)
     render json: ret
   end
 
@@ -42,11 +44,18 @@ class JobpostingController < ApplicationController
 
   def search
     query = params[:q]
-    ret = Jobposting.search(query)
+    ret = Jobposting.simple_search(query)
+    render json: ret
+  end
+
+  def advanced_search
+    query = params[:q]
+    ret = Jobposting.ranked_search(query)
     render json: ret
   end
 
   def delete
+    # !Need to validate user permissions here
     company_id = params[:company_id]
     posting_id = params[:posting_id]
     ret = Jobposting.remove(posting_id, company_id)
