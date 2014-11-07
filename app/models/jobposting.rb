@@ -10,7 +10,8 @@ MAX_TITLE_LENGTH   = 128
 MAX_INFO_LENGTH    = 128*128
 ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
-  serialize :skills :tags, Hash
+  # serialize :skills, Hash
+  # serialize :tags, Hash
 
   def self.add(company_id, title, job_type, info="", skills="", tags="")
     # verify title:
@@ -41,14 +42,14 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
         posting_id = last_posting.posting_id + 1
     end
 
-    # skills and tags stored as an array
-    pskills = skills.split(", ")
-    ptags = tags.split(", ")
+    # skills and tags stored as a string for easier simple search
+    # pskills = skills.split(", ")
+    # ptags = tags.split(", ")
 
     # create a job posting:
     @jobposting = Jobposting.new(posting_id: posting_id, title: title,
                       company_name: company_name, company_id: company_id,
-                      job_type: job_type, info: info, skills:pskills, tags:ptags)
+                      job_type: job_type, info: info, skills:skills, tags:tags)
     @jobposting.save
     return {errCode: SUCCESS}
   end
@@ -98,36 +99,54 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     rankings = Hash.new
     Jobposting.find_each do |post|
       # Score is used to determine ranking
-      score = 0
-      skills = post.skills
-      tags = post.tags
-      # todo: implement more sophisticated weights
-      query.each do |keyword|
-        if skills.include?(keyword) or tags.include?(keyword)
-          # todo: score increment can vary according to user preference
-          # requires: current_user.saved_tags // should be a hash mapping tags to frequency
+      score = -1
+      tag_matches = 0
+      skills = post.skills.split(", ")
+      tags = post.tags.split(", ")
+      search_scope_simple = [post.title, post.company_name, post.job_type, post.info, post.skills, post.tags]
 
-          # condition 1: keyword appears in user's saved tags
-          
-          score += 1
+      query.each do |keyword|        
+        # First determine if this post is relevant, if not already done
+        if score < 0        
+          search_scope_simple.each do |s|
+            if s.include?(keyword)
+              # This posting is relevant, break out of for loop
+              score = 0
+              break
+            end
+          end
         end
+        # Check if keyword matches any tags
+        if skills.include?(keyword) or tags.include?(keyword)           
+          tag_matches += 1
+        end        
       end
-      rankings[post] = score          
+      # If posting is relevant, run algorithm to compute weight
+      if score == 0
+        score = tag_matches
+        # todo: score increment can vary according to user preference
+        # requires: current_user.saved_tags // should be a hash mapping tags to frequency
+        # condition 1: keyword appears in user's saved tags
+
+        rankings[post] = score
+      end                
     end
     # This line returns a nested array of [post, score] pairs
     result = rankings.sort_by { |post, score| score }.reverse!
 
-    return result
+    return { errCode: SUCCESS, value: result }
 
   end
 
-  def self.remove(posting_id, company_id)
+  def self.remove(posting_id)
     # find a posting that matches both posting_id and company_id, if so, delete, else error
-    if Jobposting.find_by(posting_id: posting_id, company_id: company_id) == nil
-        return {errCode: ERR_BAD_POSTING_ID}
-    end
-    Jobposting.delete(posting_id: posting_id, company_id: company_id)
-    return {errCode: SUCCESS}
+    posting = Jobposting.find_by(posting_id: posting_id)
+    if posting.blank?
+      return { errCode: ERR_BAD_POSTING_ID }
+    else
+      posting.destroy
+      return {errCode: SUCCESS}
+    end    
   end
 
   def self.TESTAPI_resetFixture()

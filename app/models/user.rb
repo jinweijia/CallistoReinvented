@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   TYPES = ['Student', 'Employer']
+  serialize :saved_tags, Hash
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation
 	self.inheritance_column = nil
