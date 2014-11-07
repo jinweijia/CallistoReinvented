@@ -134,7 +134,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     # This line returns a nested array of [post, score] pairs
     result = rankings.sort_by { |post, score| score }.reverse!
 
-    return result
+    return { errCode: SUCCESS, value: result }
 
   end
 

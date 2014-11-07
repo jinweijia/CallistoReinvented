@@ -61,6 +61,21 @@ RSpec.describe Jobposting, :type => :model do
 		expect(Jobposting.simple_search("full-time")[:value][0][:job_type]).to eq "full-time"
 	end
 
+	# Test advanced search
+	it "should return search results in correct order" do
+		Company.add("B","Software Development")
+		Jobposting.add(1, "Software Engineer", "part-time", info="machine learning")
+		Jobposting.add(1, "Data Scientist", "full-time", info="requires machine learning skills", skills="python")
+		Jobposting.add(1, "", "part-time", info="machine learning")
+		best = Jobposting.ranked_search("machine learning, python")[:value]
+		# Should match both postings
+		expect(best.length).to eq 2
+		# Second posting should rank higher due to skills tag
+		print best
+		expect(best[0][1]).to eq 1
+		expect(best[0][0][:title]).to eq "Data Scientist"
+	end
+
 	# Test delete
 	it "should check that posting to be removed exists" do
 		err = Jobposting.remove(1)
