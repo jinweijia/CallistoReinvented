@@ -85,9 +85,8 @@ class JobpostingController < ApplicationController
     ret = validate_user_company(company)
 
     if ret[:errCode] == 1
-      company_id = params[:company_id]
       posting_id = params[:posting_id]
-      ret = Jobposting.remove(posting_id, company_id)
+      ret = Jobposting.remove(posting_id)
     end
     render json: ret
   end

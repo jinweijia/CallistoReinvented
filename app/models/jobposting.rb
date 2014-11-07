@@ -138,13 +138,15 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
   end
 
-  def self.remove(posting_id, company_id)
+  def self.remove(posting_id)
     # find a posting that matches both posting_id and company_id, if so, delete, else error
-    if Jobposting.find_by(posting_id: posting_id, company_id: company_id) == nil
-        return {errCode: ERR_BAD_POSTING_ID}
-    end
-    Jobposting.delete(posting_id: posting_id, company_id: company_id)
-    return {errCode: SUCCESS}
+    posting = Jobposting.find_by(posting_id: posting_id)
+    if posting.blank?
+      return { errCode: ERR_BAD_POSTING_ID }
+    else
+      posting.destroy
+      return {errCode: SUCCESS}
+    end    
   end
 
   def self.TESTAPI_resetFixture()
