@@ -24,18 +24,19 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 		if title == "" or title.length > MAX_TITLE_LENGTH
 			return {errCode: ERR_BAD_TITLE}
 		#verify type
-		if not ALLOWED_TYPES.include?(type)
+		elsif not ALLOWED_TYPES.include?(type)
 			return {errCode: ERR_BAD_TYPE}
 		#verify info
-		if info.length > MAX_INFO_LENGTH
+		elsif info.length > MAX_INFO_LENGTH
 			return {errCode: ERR_BAD_INFO}
 		#verify date
-		if current_date > date
+		elsif current_date > date
 			return {errCode: ERR_BAD_DATE}
-
-		event = Event.new(event_id: 0, company_id: company_id, title: tile, type: type, info: info, date: date)
-		event.save
-		return {errCode: SUCCESS}
+		else
+			event = Event.new(event_id: 0, company_id: company_id, title: tile, type: type, info: info, date: date)
+			event.save
+			return {errCode: SUCCESS}
+		end
 	end
 
 	#TODO: ownership
@@ -48,6 +49,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 
 		if not ALLOWED_FIELDS.include?(field)
 			return {errCode: ERR_BAD_FIELD}
+		end
 
 		if field == 'title'
 			if value = "" or value.length > MAX_TITLE_LENGTH
@@ -55,34 +57,43 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 			else
 				event.update(title: value)
 				return {errCode: SUCCESS}
+			end
+		end
 
-		elsif field == 'type'
+		if field == 'type'
 			if not ALLOWED_TYPES.include?(value)
 				return {errCode: ERR_BAD_TYPE}
 			else
 				event.update(type: value)
 				return {errCode: SUCCESS}
+			end
+		end
 
-		elsif field == 'info'
+		if field == 'info'
 			if info.length > MAX_INFO_LENGTH
 				return {errCode: ERR_BAD_INFO}
 			else
 				event.update(info: value)
 				return {errCode: SUCCESS}
+			end
+		end
 
-		elsif field == 'date'
+		if field == 'date'
 			current_date = Time.now
 			if current_date > value
 				return {errCode: ERR_BAD_DATE}
 			else
 				event.update(date: value)
 				return {errCode: SUCCESS}
+			end
+		end
 	end
 
 	#TODO: ownership
 	def delete_event(event_id)
 		if not Event.exists?(event_id: event_id)
 			return {errCode: ERR_NO_SUCH_EVENT}
+		end
 
 		event = Event.find_by(event_id: event_id)
 		event.destroy
@@ -92,6 +103,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 	def get_event(event_id)
 		if not Event.exists?(event_id: event_id)
 			return {errCode: ERR_NO_SUCH_EVENT}
+		end
 
 		event = Event.find_by(event_id: event_id)
 		return {errCode: SUCCESS, value: event}
