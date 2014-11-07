@@ -10,6 +10,8 @@ MAX_TITLE_LENGTH   = 128
 MAX_INFO_LENGTH    = 128*128
 ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
+  serialize :skills :tags, Hash
+
   def self.add(company_id, title, job_type, info="", skills="", tags="")
     # verify title:
     if title == "" or title.length > MAX_TITLE_LENGTH
@@ -39,9 +41,9 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
         posting_id = last_posting.posting_id + 1
     end
 
-    # skills and tags stored as a string for easier searching
-    # pskills = skills.split(", ")
-    # ptags = tags.split(", ")
+    # skills and tags stored as an array
+    pskills = skills.split(", ")
+    ptags = tags.split(", ")
 
     # create a job posting:
     @jobposting = Jobposting.new(posting_id: posting_id, title: title,
@@ -97,8 +99,8 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     Jobposting.find_each do |post|
       # Score is used to determine ranking
       score = 0
-      skills = post.skills.split(", ")
-      tags = post.tags.split(", ")
+      skills = post.skills
+      tags = post.tags
       # todo: implement more sophisticated weights
       query.each do |keyword|
         if skills.include?(keyword) or tags.include?(keyword)
@@ -117,7 +119,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
   def self.remove(posting_id, company_id)
     # find a posting that matches both posting_id and company_id, if so, delete, else error
-    if Jobposting.findby(posting_id: posting_id, company_id: company_id) == nil
+    if Jobposting.find_by(posting_id: posting_id, company_id: company_id) == nil
         return {errCode: ERR_BAD_POSTING_ID}
     end
     Jobposting.delete(posting_id: posting_id, company_id: company_id)

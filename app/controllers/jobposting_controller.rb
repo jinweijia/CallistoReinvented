@@ -4,23 +4,43 @@ class JobpostingController < ApplicationController
   skip_before_filter :verify_authenticity_token
   protect_from_forgery :except => :add
 
-  def add
-    company_name = current_user.company_name
-    company      = Company.find_by(company_name: company_name)
+  ERR_BAD_PERMISSIONS = -6
+
+  # For internal use only
+  def validate_user_company(company)    
+    
+    # Validates that company exists
     if company == nil
-        ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
+      ret = { errCode: Jobposting.ERR_BAD_COMPANY_ID }
+    # Validates that user has permission to add posting to the company
+    elsif current_user.type != "Employer" || current_user.company_name != company.company_name
+      ret = { errcode: ERR_BAD_PERMISSIONS }
     else
-        company_id = params[:company_id]
-        title      = params[:title]
-        job_type   = params[:job_type]
-        info       = params[:info]
-        skills       = params[:skills]
-        tags       = params[:tags]
-        if company.company_id != company_id
-            ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
-        else
-            ret        = Jobposting.add(company_id, title, job_type, info, skills, tags)
+      ret = { errCode: 1 }
+    end
+  end
+
+  def add
+
+    company_id = params[:company_id]
+    title      = params[:title]
+    job_type   = params[:job_type]
+    info       = params[:info]
+    skills     = params[:skills]
+    tags       = params[:tags]
+
+    company    = Company.find_by(company_name: current_user.company_name)
+    ret = validate_user_company(company)
+
+    if ret[:errCode] == 1          
+      if company.company_id != company_id
+        ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
+      else
+        ret = Jobposting.add(company_id, title, job_type, info, skills, tags)
+      end
+    end
     render json: ret
+
   end
 
   def show_all
@@ -54,11 +74,21 @@ class JobpostingController < ApplicationController
     render json: ret
   end
 
+  ##
+  # delete method validates whether current user has permissions to delete company before calling
+  # Jobposting.remove().
+  # Arguments: company_id, posting_id
+  # Output: error code in json
   def delete
-    # !Need to validate user permissions here
-    company_id = params[:company_id]
-    posting_id = params[:posting_id]
-    ret = Jobposting.remove(posting_id, company_id)
+    
+    company = Company.find_by(company_name: current_user.company_name)
+    ret = validate_user_company(company)
+
+    if ret[:errCode] == 1
+      company_id = params[:company_id]
+      posting_id = params[:posting_id]
+      ret = Jobposting.remove(posting_id, company_id)
+    end
     render json: ret
   end
 

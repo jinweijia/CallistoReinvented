@@ -29,7 +29,7 @@ class Company < ActiveRecord::Base
 		else
 			if Company.exists?(company_name: name)
 				err = ERR_COMPANY_EXISTS
-			else name.blank?
+			elsif name.blank?
 				err = ERR_COMPANY_NAME
 			end
 		end
