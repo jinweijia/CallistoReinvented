@@ -1,40 +1,87 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="#">CR</a>
+        </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Profile", profile_index_path %></li>
+        <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+        <li><%= link_to "Calendar", '/users/calendar' %></li>
+        <li><%= link_to "Jobs", '/users/jobs' %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form pull-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Search</span></button>
+        </form>
+        <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+      </ul>
+    </div>
+  </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <h2>   Edit Account for <%= current_user.email %></h2>
+  <br></br>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= devise_error_messages! %>
+                <div class="form-group">
+                  <div><%= f.label :email, class: "col-sm-2 control-label"%>
+                  <%= f.email_field :email, autofocus: true %></div>
+                </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                <div class="form-group">
+                  <div><%= f.label :password, class: "col-sm-2 control-label"%>
+                  <%= f.password_field :password, autocomplete: "off" %></div>
+                </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+                <div class="form-group">
+                  <div><%= f.label :password_confirmation, class: "col-sm-2 control-label"%>
+                  <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+                </div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+                <div class="form-group">
+                  <div><%= f.label :current_password, class: "col-sm-2 control-label"%>
+                  <%= f.password_field :current_password, autocomplete: "off" %></div>
+                </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
 
-<!--  -->
 
-  <div><%= f.label :type %><br />
-    <%= f.text_field :type, autocomplete: "off" %></div>
+                <% if current_user.type == "Employer" %>
+                  <div class="form-group">
+                    <div><%= f.label :company_name, class: "col-sm-2 control-label"%>
+                    <%= f.text_field :company_name, autocomplete: "off" %></div>
+                  </div>
+                <% elsif current_user.type == "Student" %>
+                  <div class="form-group">
+                    <div><%= f.label :skill, class: "col-sm-2 control-label"%>
+                    <%= f.text_field :skill, autocomplete: "off" %></div>
+                  </div>
+                <% else %>
+                  <div><%= f.label :type %><br />
+                    <%= f.select :type, User::TYPES %></div>
+                <% end %>
 
-  <div><%= f.label :company_id %><br />
-    <%= f.text_field :company_id, autocomplete: "off" %></div>
+                <div class="form-group col-lg-1">
+                  <%= f.submit "Update", class: "btn btn-primary"  %>
+                </div>
+                <div class="form-group col-lg-1"><a href="/profile"><button class="btn btn-primary">Cancel</button></a>
+                </div>
+              <% end %>
 
-  <div><%= f.label :skill %><br />
-    <%= f.text_field :skill, autocomplete: "off" %></div>
+                
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+             
+  <div id="footer">
+    <div class="navbar navbar-inner  navbar-fixed-bottom">
+      <div class="form-group">Unhappy? <%= link_to "Click here", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> to cancel your account
+      </div>
+  </div>  
+</body>

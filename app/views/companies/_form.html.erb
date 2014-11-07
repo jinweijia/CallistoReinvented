@@ -11,19 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.number_field :company_id %>
-  </div>
-  <div class="field">
+  <div style="margin-left:20px" class="form-group">
     <%= f.label :company_name %><br>
     <%= f.text_field :company_name %>
   </div>
-  <div class="field">
+  <div style="margin-left:20px" class="form-group">
     <%= f.label :company_info %><br>
-    <%= f.text_field :company_info %>
+    <%= f.text_field :company_info, style: "width:500px; height:70px;" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div style="margin-left:20px" >
+    <%= f.submit "Create company", class: "btn btn-primary" %>
   </div>
 <% end %>
