@@ -1,6 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+  SUCCESS = 1
+  ERR_BAD_PERMISSIONS = -1
+
+  #def validate_user_company(company)
+  #  if current_user.type != "Employer" || current_user.company_name != company.company_name
+  #    toreturn = { errCode: ERR_BAD_PERMISSIONS }
+  #  else
+  #    toreturn = { errCode: SUCCESS }
+  #  end
+  #end
   
   #TODO: render json
   def create_event
@@ -8,8 +18,13 @@ class EventsController < ApplicationController
     title = params[:title]
     type = params[:type]
     info = params[:info]
+    #this method expects a string in yyyy:mm:dd:hh:MM format, as one string with no spaces, where the hour is in range {00..23}
+    #Example: "201401032307" would be January 3rd, 2014, at 23:07
     date = params[:date]
-    result = Event.create_event(company_id, title, type, info, date)
+    datetime = DateTime.strptime(date, "%y%m%d%H%M")
+
+    result = Event.create_event(company_id, title, type, info, datetime)
+    render json: result
   end
 
   #TODO: render json
@@ -17,20 +32,31 @@ class EventsController < ApplicationController
     event_id = params[:event_id]
     field = params[:field]
     value = params[:value]
+
+    if field == "date"
+      value = DateTime.strptime(value, "%y%m%d%H%M")
+    end
+
     result = Event.edit_event(event_id, field, value)
+    render json: result
   end
 
   #TODO: render json
   def delete_event
     event_id = params[:event_id]
     result = Event.delete_event(event_id)
+    render json: result
   end
 
   #TODO: render json
   def get_event
     event_id = params[:event_id]
     result = Event.get_event[event_id]
+    render json: result
   end
+
+
+
 
   def index
     @events = Event.all
