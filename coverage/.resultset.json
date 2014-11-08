@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/controllers/companies_controller_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/controllers/companies_controller_spec.rb": [
         1,
         null,
         null,
@@ -163,7 +163,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/rails_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -215,14 +215,14 @@
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/environment.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/application.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/application.rb": [
         1,
         null,
         1,
@@ -247,13 +247,13 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/boot.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/environments/test.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/environments/test.rb": [
         1,
         null,
         null,
@@ -294,7 +294,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/assets.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -304,7 +304,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/backtrace_silencers.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -313,12 +313,12 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/cookies_serializer.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/devise.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -579,13 +579,13 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/filter_parameter_logging.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/inflections.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -603,17 +603,17 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/mime_types.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/session_store.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/session_store.rb": [
         null,
         1
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/initializers/wrap_parameters.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -629,7 +629,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/config/routes.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/config/routes.rb": [
         1,
         null,
         1,
@@ -666,6 +666,8 @@
         null,
         1,
         1,
+        1,
+        null,
         1,
         null,
         1,
@@ -733,7 +735,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/models/user.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/user.rb": [
         1,
         null,
         null,
@@ -753,35 +755,35 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/application_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/companies_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/companies_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/company_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/company_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/dashboard_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/dashboard_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/events_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/events_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/home_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/home_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/helpers/users_helper.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/controllers/companies_controller.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/controllers/companies_controller.rb": [
         1,
         1,
         null,
@@ -903,7 +905,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/controllers/application_controller.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -950,7 +952,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/controllers/events_controller_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/controllers/events_controller_spec.rb": [
         1,
         null,
         null,
@@ -1111,7 +1113,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/controllers/events_controller.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/controllers/events_controller.rb": [
         1,
         1,
         null,
@@ -1189,7 +1191,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/controllers/jobpostings_controller_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/controllers/jobpostings_controller_spec.rb": [
         null,
         null,
         null,
@@ -1200,24 +1202,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/helpers/companies_helper_spec.rb": [
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        null
-      ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/helpers/events_helper_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/helpers/companies_helper_spec.rb": [
         1,
         null,
         null,
@@ -1234,7 +1219,24 @@
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/models/company_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/helpers/events_helper_spec.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/models/company_spec.rb": [
         1,
         null,
         1,
@@ -1276,7 +1278,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/models/company.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/company.rb": [
         1,
         null,
         1,
@@ -1294,17 +1296,17 @@
         null,
         1,
         null,
-        16,
-        16,
-        12,
+        18,
+        18,
+        14,
         null,
         4,
         null,
         null,
+        18,
+        18,
         16,
         16,
-        14,
-        14,
         null,
         2,
         1,
@@ -1312,7 +1314,7 @@
         1,
         null,
         null,
-        16,
+        18,
         null,
         null,
         null,
@@ -1345,14 +1347,14 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/models/event_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/models/event_spec.rb": [
         1,
         null,
         1,
         1,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/models/event.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/event.rb": [
         1,
         null,
         1,
@@ -1466,7 +1468,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/models/jobposting_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/models/jobposting_spec.rb": [
         1,
         null,
         1,
@@ -1500,6 +1502,21 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
         1,
         1,
         1,
@@ -1560,7 +1577,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/app/models/jobposting.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/app/models/jobposting.rb": [
         1,
         null,
         1,
@@ -1578,29 +1595,29 @@
         null,
         1,
         null,
-        15,
+        17,
         3,
         null,
         null,
-        12,
+        14,
+        14,
+        1,
+        null,
+        13,
+        null,
+        null,
+        13,
+        1,
+        null,
+        null,
         12,
         1,
+        null,
+        null,
         null,
         11,
-        null,
-        null,
         11,
-        1,
-        null,
-        null,
-        10,
-        1,
-        null,
-        null,
-        null,
-        9,
-        9,
-        5,
+        7,
         null,
         4,
         null,
@@ -1610,11 +1627,39 @@
         null,
         null,
         null,
-        9,
+        11,
         null,
         null,
-        9,
-        9,
+        11,
+        11,
+        null,
+        null,
+        1,
+        null,
+        2,
+        0,
+        null,
+        null,
+        2,
+        0,
+        null,
+        null,
+        2,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2,
+        2,
+        1,
+        null,
+        1,
+        1,
+        1,
         null,
         null,
         1,
@@ -1719,7 +1764,7 @@
         null,
         null,
         1,
-        2,
+        3,
         null,
         null,
         1,
@@ -1730,7 +1775,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/requests/companies_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/requests/companies_spec.rb": [
         1,
         null,
         1,
@@ -1742,7 +1787,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/requests/events_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/requests/events_spec.rb": [
         1,
         null,
         1,
@@ -1754,7 +1799,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/routing/companies_routing_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/routing/companies_routing_spec.rb": [
         1,
         null,
         1,
@@ -1791,7 +1836,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/routing/events_routing_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/routing/events_routing_spec.rb": [
         1,
         null,
         1,
@@ -1828,7 +1873,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/views/events/edit.html.erb_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/views/events/edit.html.erb_spec.rb": [
         1,
         null,
         1,
@@ -1863,7 +1908,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/views/events/index.html.erb_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/views/events/index.html.erb_spec.rb": [
         1,
         null,
         1,
@@ -1899,7 +1944,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/views/events/new.html.erb_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/views/events/new.html.erb_spec.rb": [
         1,
         null,
         1,
@@ -1934,7 +1979,7 @@
         null,
         null
       ],
-      "C:/Users/Jin-Laptop/Desktop/CallistoReinvented/spec/views/events/show.html.erb_spec.rb": [
+      "/Users/alex_jin/Callisto/CallistoReinvented/spec/views/events/show.html.erb_spec.rb": [
         1,
         null,
         1,
@@ -1961,6 +2006,6 @@
         null
       ]
     },
-    "timestamp": 1415403670
+    "timestamp": 1415407232
   }
 }
