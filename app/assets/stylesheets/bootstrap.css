@@ -10,6 +10,11 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+input {
+   padding-top: 0;
+   padding-left: 0;
+   line-height: 1em;
+}
 body {
   margin: 0;
 }

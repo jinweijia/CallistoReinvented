@@ -9,19 +9,27 @@ class CompaniesController < ApplicationController
   def profile
   end
 
+  def company_params
+    params.require(:company).permit(:company_name, :company_info, :compnay_id)
+  end
+
   def add
     #Validates if the current user has permissions to add company
-    if current_user.type != "Employer"
-      render json: { errcode: ERR_BAD_PERMISSIONS }
-    else
-      name = params[:company_name]
-      info = params[:company_info]
-      err = Company.add(name, info)
-      if err == Company::SUCCESS
-        @company = Company.last()
-        render json: { errCode: err, company: @company }      
+    # @companies = Companies.new(params[:company_name, :company_info])
+    @company = Company.new(company_params)
+    if @company.save
+      if current_user.type != "Employer"
+        render json: { errcode: ERR_BAD_PERMISSIONS }
       else
-        render json: { errCode: err }
+        name = company_params[:company_name]
+        info = company_params[:company_info]
+        err = Company.add(name, info)
+        if err == Company::SUCCESS
+          @company = Company.last()
+          render json: { errCode: err, company: @company }      
+        else
+          render json: { errCode: err }
+        end
       end
     end
   end

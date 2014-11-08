@@ -1,3 +1,29 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#createButton').click(function(e){
+        $('#message').hide();
+        e.preventDefault();
+        var company_name = $('#company_name').val()
+        var company_info = $('#company_info').val()
+        //console.log(username);
+        $.ajax({
+            type:        'POST',
+            url:         '/company/add',
+            data:        JSON.stringify({company_name: company_name, company_info: company_info}),
+            contentType: 'application/json',
+            dataType:    'json',
+            success:     function(data) {
+                            //console.log(data['count']);
+                            if (data['errCode'] == SUCCESS) {
+                            }
+                         }
+        });
+    });
+
+});
+</script>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -23,7 +49,17 @@
 	</div>
 	<h1>New company</h1>
 
-	<%= render 'form' %>
-
-	<%= link_to 'Back', companies_path %>
+    <form>
+        <h4 style="margin-left:20px">Company Name</h4>
+        <input style="margin-left:20px" type="text"  id="company_name">
+        <h4 style="margin-left:20px">Company Info</h4>
+        <textarea style="margin-left:20px; width:500px"></textarea> 
+        <div class="btn btn-primary" > <%= button_to "Create company", company_path, style="margin-left:20px"%>
+        </div>
+    </form>
+    <div id="footer">
+        <div class="navbar navbar-inner  navbar-fixed-bottom">
+	       <center><%= link_to 'List of companies', companies_path %></center>
+        </div>
+    </div>
 </body>

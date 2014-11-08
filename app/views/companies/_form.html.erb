@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <%= form_for @company, :url => { :action => 'add' } do |f| %>
+=======
+<%= form_for @company , :url => { :action => "add" } do |f| %>
+>>>>>>> 22b99c94ec54b30d2667e4042533e3b8fbcaadc8
   <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>

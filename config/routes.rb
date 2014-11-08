@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   post '/posting/add'           => 'jobposting#add'
   post '/company/add'           => 'companies#add', :as => :add
+  post '/company/create'           => 'companies#add'
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
   put '/jobposting/posting_id/:id' => 'jobposting#update'
