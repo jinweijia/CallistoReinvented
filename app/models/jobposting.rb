@@ -54,6 +54,34 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     return {errCode: SUCCESS}
   end
 
+  def self.update(posting_id, title, job_type, info="", skills="", tags="")
+    # verify title:
+    if title == "" or title.length > MAX_TITLE_LENGTH
+      return {errCode: ERR_TITLE}
+    end
+    # verify job_type:
+    if not ALLOWED_TYPES.include?(job_type)
+      return {errCode: ERR_BAD_TYPE}
+    end
+    # verify info:
+    if info.length > MAX_INFO_LENGTH
+      return {errCode: ERR_INFO_LENGTH}
+    end
+
+    # skills and tags stored as a string for easier simple search
+    # pskills = skills.split(", ")
+    # ptags = tags.split(", ")
+
+    # create a job posting:
+    @jobposting = Jobposting.find_by(posting_id: posting_id)
+    if @jobposting == nil
+      return {errCode: ERR_BAD_POSTING_ID}
+    end
+    @jobposting.update(title: title, job_type: job_type, info: info, skills:skills, tags:tags)
+    @jobposting.save
+    return {errCode: SUCCESS}
+  end
+
   def self.show_all()
     # return all postings
     posting = Jobposting.all

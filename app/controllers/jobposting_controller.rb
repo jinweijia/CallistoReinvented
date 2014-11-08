@@ -43,6 +43,20 @@ class JobpostingController < ApplicationController
 
   end
 
+  def update
+
+    posting_id = params[:id]
+    title      = params[:title]
+    job_type   = params[:job_type]
+    info       = params[:info]
+    skills     = params[:skills]
+    tags       = params[:tags]
+
+    ret = Jobposting.update(posting_id, title, job_type, info, skills, tags)
+    render json: ret
+
+  end
+
   def show_all
     ret = Jobposting.show_all()
     render json: ret

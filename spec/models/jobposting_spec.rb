@@ -37,6 +37,21 @@ RSpec.describe Jobposting, :type => :model do
 		expect(err[:errCode]).to eq Jobposting::ERR_INFO_LENGTH
 	end
 
+	#Test update method
+	it "should update job posting when given valid input" do
+		Company.add("B","Software Development")
+		Jobposting.add(1, "Software Engineer", "full-time", info="")
+		Jobposting.update(1, "Software Engineer", "part-time", info="")
+		expect(Jobposting.count).to eq 1
+	end
+
+	it "should not update job posting when given invalid input" do
+		Company.add("B","Software Development")
+		Jobposting.add(1, "Software Engineer", "full-time", info="")
+		err = Jobposting.update(2, "Software Engineer", "part-time", info="")
+		expect(err[:errCode]).to eq Jobposting::ERR_BAD_POSTING_ID
+	end
+
 	# Test show methods
 	it "should show posting given correct id" do
 		Company.add("ABC","Banking services")
