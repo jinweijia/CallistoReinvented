@@ -18,7 +18,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 	#TODO: ownership
 	#TODO: event ID generation
 	#TODO: proper date validation?
-	def create_event(company_id, title, type, info, date)
+	def self.create_event(company_id, title, type, info, date)
 		current_date = Time.now
 		#verify title
 		if title == "" or title.length > MAX_TITLE_LENGTH
@@ -40,7 +40,8 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 				event_id = last_event.event_id + 1
 			end
 
-			event = Event.new(event_id: event_id, company_id: company_id, title: title, type: type, info: info, date: date)
+			#event = Event.new(event_id: event_id, company_id: company, title: title, type: type, info: info, date: date)
+			event = Event.new(event_id: event_id, event_ownership: "", event_company: company_id, event_title: title, event_type: type, event_info: info, event_date: date)
 			event.save
 			return {errCode: SUCCESS}
 		end
@@ -48,7 +49,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 
 	#TODO: ownership
 	#TODO: proper date validation?
-	def edit_event(event_id, field, value)
+	def self.edit_event(event_id, field, value)
 		if not Event.exists?(event_id: event_id)
 			return {errCode: ERR_NO_SUCH_EVENT}
 		end
@@ -63,7 +64,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 			if value == "" or value.length > MAX_TITLE_LENGTH
 				return {errCode: ERR_BAD_TITLE}
 			else
-				event.update(title: value)
+				event.update(event_title: value)
 				return {errCode: SUCCESS}
 			end
 		end
@@ -72,7 +73,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 			if not ALLOWED_TYPES.include?(value)
 				return {errCode: ERR_BAD_TYPE}
 			else
-				event.update(type: value)
+				event.update(event_type: value)
 				return {errCode: SUCCESS}
 			end
 		end
@@ -81,7 +82,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 			if info.length > MAX_INFO_LENGTH
 				return {errCode: ERR_BAD_INFO}
 			else
-				event.update(info: value)
+				event.update(event_info: value)
 				return {errCode: SUCCESS}
 			end
 		end
@@ -91,14 +92,14 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 			if current_date > value
 				return {errCode: ERR_BAD_DATE}
 			else
-				event.update(date: value)
+				event.update(event_date: value)
 				return {errCode: SUCCESS}
 			end
 		end
 	end
 
 	#TODO: ownership
-	def delete_event(event_id)
+	def self.delete_event(event_id)
 		if not Event.exists?(event_id: event_id)
 			return {errCode: ERR_NO_SUCH_EVENT}
 		end
@@ -108,7 +109,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 		return {errCode: SUCCESS}
 	end
 
-	def get_event(event_id)
+	def self.get_event(event_id)
 		if not Event.exists?(event_id: event_id)
 			return {errCode: ERR_NO_SUCH_EVENT, value: nil}
 		end
