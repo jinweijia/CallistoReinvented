@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   root :to => 'home#index'  
 
   # get '/' => 'users#login'
+  resources :companies
+
 
   get 'users/login' => 'users#login', :as => :home
   # get 'users/register' => 'users#register', :as => :register
@@ -47,7 +49,6 @@ Rails.application.routes.draw do
 
   delete '/posting/:id' => 'jobposting#delete'
 
-  resources :companies
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

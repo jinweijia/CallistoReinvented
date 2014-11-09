@@ -36,6 +36,16 @@ RSpec.describe CompaniesController, :type => :controller do
   # CompaniesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  def sign_in(user = double('user'))
+    if user.nil?
+      allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, {:scope => :user})
+      allow(controller).to receive(:current_user).and_return(nil)
+    else
+      allow(request.env['warden']).to receive(:authenticate!).and_return(user)
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+  end
+
   describe "GET index" do
     it "assigns all companies as @companies" do
       company = Company.create! valid_attributes
@@ -71,6 +81,11 @@ RSpec.describe CompaniesController, :type => :controller do
   describe "POST add" do
     describe "with valid params" do
       it "creates a new Company" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]
+        user = FactoryGirl.create(:user)
+        # user = {}
+        # user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
+        sign_in user
         expect {
           post :add, {:company => valid_attributes}, valid_session
         }.to change(Company, :count).by(1)
