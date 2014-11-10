@@ -1,3 +1,33 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#createButton').click(function(e){
+        $('#message').hide();
+        e.preventDefault();
+        var title       = $(      '#title').val()
+        var skills      = $(     '#skills').val()
+        var tags        = $(       '#tags').val()
+        var description = $('#description').val()
+        var url         = $(        '#url').val()
+        //console.log(username);
+        $.ajax({
+            type:        'POST',
+            url:         '/posting/add',
+            data:        JSON.stringify({title: title, skills: skills, tags: tags, description: description, url: url}),
+            contentType: 'application/json',
+            dataType:    'json',
+            success:     function(data) {
+                            //console.log(data['count']);
+                            if (data['errCode'] == SUCCESS) {
+                            }
+                         }
+        });
+    });
+
+});
+</script>
+
 <head>
 </head>
 <body>
@@ -26,18 +56,19 @@
 		<div class="container" style="width:500px;margin: 0 auto;">
 				<h1 class="page-header">Create A Post</h1>
 				<h5>Job Title <small>Insert the job title here. </small></h5>
-				<input type="text" class="form-control" placeholder="Posting Title">
+				<input type="text" class="form-control" placeholder="Posting Title" id="title">
 				<h5>Skills <small>Insert skills required for the job. </small></h5>
-				<input type="text" class="form-control" placeholder="Skills">
+				<input type="text" class="form-control" placeholder="Skills" id="skills">
 				<h5>Tags <small>Insert keywords that describe the job. </small></h5>
-				<input type="text" class="form-control" placeholder="Tags">
+				<input type="text" class="form-control" placeholder="Tags" id="tags">
 				<h5>Job Description <small>Insert a pharagraph of job description. </small></h5>
-				<textarea class="form-control" rows="3"></textarea>
+				<textarea class="form-control" rows="3" id="description"></textarea>
 				<h5>Job Application URL <small>Insert URL to job application. </small></h5>
-				<input type="text" class="form-control" placeholder="Job Application URL">
+				<input type="text" class="form-control" placeholder="Job Application URL" id="url">
 				<br></br>
-				<div type="button" class="btn btn-primary">Create</div>
+				<div type="submit" class="btn btn-primary" id="createButton">Create</div>
 		</div>
+        <br></br>
 	<div id="footer">
  		<div class="navbar navbar-inner  navbar-fixed-bottom">
    		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
