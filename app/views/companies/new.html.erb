@@ -53,8 +53,8 @@ $(document).ready(function(){
         <h4 style="margin-left:20px">Company Name</h4>
         <input style="margin-left:20px" type="text"  id="company_name">
         <h4 style="margin-left:20px">Company Info</h4>
-        <textarea style="margin-left:20px; width:500px"></textarea> 
-        <div class="btn btn-primary" > <%= button_to "Create company", company_path, style="margin-left:20px"%>
+        <textarea style="margin-left:20px; width:500px" id="company_info"></textarea> 
+        <div class="btn btn-primary", style="margin-left:20px", id="createButton"> <%= button_to "Create company", companies_path %>
         </div>
     </form>
     <div id="footer">

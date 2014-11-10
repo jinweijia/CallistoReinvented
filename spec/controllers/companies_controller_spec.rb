@@ -82,10 +82,10 @@ RSpec.describe CompaniesController, :type => :controller do
     describe "with valid params" do
       it "creates a new Company" do
         @request.env["devise.mapping"] = Devise.mappings[:user]
-        user = FactoryGirl.create(:user)
-        # user = {}
+        # user = FactoryGirl.create(:user)
+        @user = User.create(email: "testabc@mail.com", password: 12345678, type: "Employer")
         # user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-        sign_in user
+        sign_in @user
         expect {
           post :add, {:company => valid_attributes}, valid_session
         }.to change(Company, :count).by(1)

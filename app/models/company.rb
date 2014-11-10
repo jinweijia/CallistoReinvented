@@ -19,7 +19,11 @@ class Company < ActiveRecord::Base
 		if @last_company.blank?
 			current_id = 1
 		else
-			current_id = @last_company.company_id + 1
+			if @last_company.company_id.blank?
+				current_id = 1
+			else
+				current_id = @last_company.company_id + 1
+			end
 		end
 
 		@company = Company.new(company_id: current_id, company_name: name, company_info: info)
