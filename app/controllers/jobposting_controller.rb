@@ -32,9 +32,13 @@ class JobpostingController < ApplicationController
     company    = Company.find_by(company_name: current_user.company_name)
     ret = validate_user_company(company)
 
+    print "validation returns:"
+    print ret
+
     if ret[:errCode] == 1          
       ret = Jobposting.add(company.company_id, title, job_type, info, skills, tags)
     end
+    print ret
     render json: ret
 
   end
