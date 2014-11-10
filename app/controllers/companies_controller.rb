@@ -14,11 +14,14 @@ class CompaniesController < ApplicationController
     if current_user.type != "Employer"
       render json: { errcode: ERR_BAD_PERMISSIONS }
     else
+      # print "add company in progress"
       name = params[:company_name]
       info = params[:company_info]
       err = Company.add(name, info)
+      print err
       if err == Company::SUCCESS
         @company = Company.last()
+        current_user.update(company_name: @company.company_name)
         render json: { errCode: err, company: @company }
       else
         render json: { errCode: err }
