@@ -36,6 +36,7 @@ RSpec.describe CompaniesController, :type => :controller do
   # CompaniesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  # Code to make devise user authentication work  
   def sign_in(user = double('user'))
     if user.nil?
       allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, {:scope => :user})
@@ -43,8 +44,13 @@ RSpec.describe CompaniesController, :type => :controller do
     else
       allow(request.env['warden']).to receive(:authenticate!).and_return(user)
       allow(controller).to receive(:current_user).and_return(user)
+      # allow(controller).to receive(:user_signed_in).and_return(user_signed_in)
     end
   end
+
+  # def valid_session
+    
+  # end
 
   describe "GET index" do
     it "assigns all companies as @companies" do
@@ -81,14 +87,16 @@ RSpec.describe CompaniesController, :type => :controller do
   describe "POST add" do
     describe "with valid params" do
       it "creates a new Company" do
-        @request.env["devise.mapping"] = Devise.mappings[:user]
-        # user = FactoryGirl.create(:user)
-        @user = User.create(email: "testabc@mail.com", password: 12345678, type: "Employer")
-        # user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
-        sign_in @user
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+        sign_in user
+        # print user_signed_in?
+
         expect {
           post :add, {:company => valid_attributes}, valid_session
         }.to change(Company, :count).by(1)
+
+        sign_out user
       end
 
       it "assigns a newly created company as @company" do
@@ -116,6 +124,8 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
+
+  after{ Warden.test_reset! }
   # describe "PUT update" do
   #   describe "with valid params" do
   #     let(:new_attributes) {
