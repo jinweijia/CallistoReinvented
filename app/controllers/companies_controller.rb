@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
       print err
       if err == Company::SUCCESS
         @company = Company.last()
-        current_user.company_name = @company.company_name
+        current_user.update(company_name: @company.company_name)
         render json: { errCode: err, company: @company }
       else
         render json: { errCode: err }
