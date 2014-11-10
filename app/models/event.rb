@@ -19,7 +19,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 	#TODO: event ID generation
 	#TODO: proper date validation?
 	def self.create_event(company_id, title, type, info, date)
-		current_date = Time.now
+		current_date = DateTime.now
 		#verify title
 		if title == "" or title.length > MAX_TITLE_LENGTH
 			return {errCode: ERR_BAD_TITLE}
@@ -88,7 +88,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 		end
 
 		if field == 'date'
-			current_date = Time.now
+			current_date = DateTime.now
 			if current_date > value
 				return {errCode: ERR_BAD_DATE}
 			else

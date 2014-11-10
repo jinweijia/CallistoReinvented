@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   
 
   resources :profile
-  root :to => 'home#index'
-
-  resources :companies
+  root :to => 'home#index'  
 
   # get '/' => 'users#login'
+  resources :companies
+
 
   get 'users/login' => 'users#login', :as => :home
   # get 'users/register' => 'users#register', :as => :register
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   post '/posting/add'           => 'jobposting#add'
   post '/company/add'           => 'companies#add', :as => :add
+  post '/company/create'           => 'companies#add'
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
   put '/jobposting/posting_id/:id' => 'jobposting#update'
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
   get '/profile/profile' => 'profile#index'
 
   delete '/posting/:id' => 'jobposting#delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
