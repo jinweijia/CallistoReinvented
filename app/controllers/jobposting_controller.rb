@@ -11,18 +11,18 @@ class JobpostingController < ApplicationController
     
     # Validates that company exists
     if company == nil
-      ret = { errCode: Jobposting.ERR_BAD_COMPANY_ID }
+      ret = { errCode: Jobposting::ERR_BAD_COMPANY_ID }
     # Validates that user has permission to add posting to the company
     elsif current_user.type != "Employer" || current_user.company_name != company.company_name
       ret = { errcode: ERR_BAD_PERMISSIONS }
     else
-      ret = { errCode: 1 }
+      ret = { errCode: Jobposting::SUCCESS }
     end
+    return ret
   end
 
   def add
 
-    company_id = params[:company_id]
     title      = params[:title]
     job_type   = params[:job_type]
     info       = params[:info]
@@ -33,11 +33,7 @@ class JobpostingController < ApplicationController
     ret = validate_user_company(company)
 
     if ret[:errCode] == 1          
-      if company.company_id != company_id
-        ret = {errCode: Jobposting.ERR_BAD_COMPANY_ID}
-      else
-        ret = Jobposting.add(company_id, title, job_type, info, skills, tags)
-      end
+      ret = Jobposting.add(company.company_id, title, job_type, info, skills, tags)
     end
     render json: ret
 
