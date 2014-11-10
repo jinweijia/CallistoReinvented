@@ -23,27 +23,11 @@ class CompaniesController < ApplicationController
         @company = Company.last()
         current_user.update(company_name: @company.company_name)
         render json: { errCode: err, company: @company }
+        # redirect_to '/companies'
       else
         render json: { errCode: err }
       end
-    end
-
-    # @companies = Companies.new(params[:company_name, :company_info])
-    # @company = Company.new(company_params)
-    # if @company.save
-    #   if current_user.type != "Employer"
-    #     render json: { errcode: ERR_BAD_PERMISSIONS }
-    #   else
-    #     name = company_params[:company_name]
-    #     info = company_params[:company_info]
-    #     err = Company.add(name, info)
-    #     if err == Company::SUCCESS
-    #       @company = Company.last()
-    #       render json: { errCode: err, company: @company }      
-    #     else
-    #       render json: { errCode: err }
-    #     end
-    #   end
+    end    
   end
 
   def show

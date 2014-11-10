@@ -90,12 +90,9 @@ RSpec.describe CompaniesController, :type => :controller do
         @request.env["devise.mapping"] = Devise.mappings[:user]    
         user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
         sign_in user
-        # print user_signed_in?
-
         expect {
-          post :add, {:company => valid_attributes}, valid_session
+          post :add, {company_name: "Test", company_info: ""}, valid_session
         }.to change(Company, :count).by(1)
-
         sign_out user
       end
 
