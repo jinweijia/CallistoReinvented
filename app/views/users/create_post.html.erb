@@ -6,6 +6,7 @@ $(document).ready(function(){
         $('#message').hide();
         e.preventDefault();
         var title       = $(      '#title').val()
+        var job_type    = $(   '#job_type').val()
         var skills      = $(     '#skills').val()
         var tags        = $(       '#tags').val()
         var description = $('#description').val()
@@ -14,7 +15,7 @@ $(document).ready(function(){
         $.ajax({
             type:        'POST',
             url:         '/posting/add',
-            data:        JSON.stringify({title: title, skills: skills, tags: tags, description: description, url: url}),
+            data:        JSON.stringify({title: title, job_type: job_type, skills: skills, tags: tags, info: description, url: url}),
             contentType: 'application/json',
             dataType:    'json',
             success:     function(data) {
@@ -57,6 +58,8 @@ $(document).ready(function(){
 				<h1 class="page-header">Create A Post</h1>
 				<h5>Job Title <small>Insert the job title here. </small></h5>
 				<input type="text" class="form-control" placeholder="Posting Title" id="title">
+				<h5>Job Type <small>Insert the job type here. </small></h5>
+				<input type="text" class="form-control" placeholder="Job Type" id="job_type">
 				<h5>Skills <small>Insert skills required for the job. </small></h5>
 				<input type="text" class="form-control" placeholder="Skills" id="skills">
 				<h5>Tags <small>Insert keywords that describe the job. </small></h5>
