@@ -16,4 +16,7 @@ class UsersController < ApplicationController
 
   def post
   end
+
+  def create_post
+  end
 end

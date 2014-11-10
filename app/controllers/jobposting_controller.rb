@@ -43,6 +43,9 @@ class JobpostingController < ApplicationController
 
   end
 
+  def create
+  end
+
   def update
 
     posting_id = params[:id]
