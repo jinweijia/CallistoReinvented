@@ -79,7 +79,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 		end
 
 		if field == 'info'
-			if info.length > MAX_INFO_LENGTH
+			if value.length > MAX_INFO_LENGTH
 				return {errCode: ERR_BAD_INFO}
 			else
 				event.update(event_info: value)
