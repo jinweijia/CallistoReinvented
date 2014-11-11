@@ -36,6 +36,12 @@ RSpec.describe CompaniesController, :type => :controller do
   # CompaniesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  SUCCESS = 1
+  ERR_COMPANY_EXISTS = -1
+  ERR_COMPANY_NAME = -2
+  ERR_UNKNOWN_ID = -3
+  ERR_BAD_PERMISSIONS = -4
+
   # Code to make devise user authentication work  
   def sign_in(user = double('user'))
     if user.nil?
@@ -60,7 +66,7 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
-  #Test show method
+  # Test show method
   describe "GET show" do
     it "assigns the requested company as @company" do
       company = Company.create! valid_attributes
@@ -84,7 +90,21 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
+
+
+  # Test Companies#add method
   describe "POST add" do
+    # # Signs in with "Employer" before each test
+    # before(:all) do
+    #   @request.env["devise.mapping"] = Devise.mappings[:user]    
+    #   user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+    #   sign_in user
+    # end
+
+    # after(:all) do 
+    #   sign_out user
+    # end
+
     describe "with valid params" do
       it "creates a new Company" do
         @request.env["devise.mapping"] = Devise.mappings[:user]    
@@ -97,86 +117,129 @@ RSpec.describe CompaniesController, :type => :controller do
       end
 
       it "assigns a newly created company as @company" do
-        post :create, {:company => valid_attributes}, valid_session
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+        sign_in user
+        post :add, {company_name: "Test", company_info: ""}, valid_session
         expect(assigns(:company)).to be_a(Company)
         expect(assigns(:company)).to be_persisted
+        sign_out user
       end
 
-      it "redirects to the created company" do
-        post :create, {:company => valid_attributes}, valid_session
-        expect(response).to redirect_to(Company.last)
-      end
+      # it "redirects to the created company" do
+      #   @request.env["devise.mapping"] = Devise.mappings[:user]    
+      #   user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+      #   sign_in user
+      #   post :add, {company_name: "Test", company_info: ""}, valid_session
+      #   expect(response).to redirect_to(Company.last)
+      #   sign_out user
+      # end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved company as @company" do
-        post :create, {:company => invalid_attributes}, valid_session
-        expect(assigns(:company)).to be_a_new(Company)
+      it "gives correct error code with blank company name" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+        sign_in user
+        post :add, {company_name: "", company_info: ""}, valid_session
+        # print "**** " + JSON(response.body) + " ****"
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq Company::ERR_COMPANY_NAME
+        sign_out user
       end
 
-      it "re-renders the 'new' template" do
-        post :create, {:company => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+      it "gives correct error code with duplicate company" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+        sign_in user
+        post :add, {company_name: "Test", company_info: "v1"}, valid_session
+        post :add, {company_name: "Test", company_info: "v2"}, valid_session
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq Company::ERR_COMPANY_EXISTS
+        sign_out user
       end
+
+      it "gives correct error code with student user" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        post :add, {company_name: "Test", company_info: "v1"}, valid_session        
+        result = JSON.parse(response.body)
+        # print "**** " + response.body + " ****"
+        expect(result["errCode"]).to eq ERR_BAD_PERMISSIONS
+        sign_out user
+      end
+
+      # it "re-renders the 'new' template" do
+      #   @request.env["devise.mapping"] = Devise.mappings[:user]    
+      #   user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+      #   sign_in user
+      #   post :create, {:company => invalid_attributes}, valid_session
+      #   expect(response).to render_template("new")
+      #   sign_out user
+      # end
     end
   end
 
 
+  describe "PUT update" do
+    describe "with valid params" do
+      let(:new_attributes) {
+        # skip("Add a hash of attributes valid for your model")
+        {company_name: "NEW_Test", company_info: "new_info"}
+      }
+
+      it "updates the requested company" do
+        company = Company.create! valid_attributes
+        put :update, {:id => company.to_param, :company => new_attributes}, valid_session
+        company.reload
+        # skip("Add assertions for updated state")
+        expect(assigns(:company)).to eq(company)
+      end
+
+      it "assigns the requested company as @company" do
+        company = Company.create! valid_attributes
+        put :update, {:id => company.to_param, :company => valid_attributes}, valid_session
+        expect(assigns(:company)).to eq(company)
+      end
+
+      it "redirects to the company" do
+        company = Company.create! valid_attributes
+        put :update, {:id => company.to_param, :company => valid_attributes}, valid_session
+        expect(response).to redirect_to(company)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns the company as @company" do
+        company = Company.create! valid_attributes
+        put :update, {:id => company.to_param, :company => invalid_attributes}, valid_session
+        expect(assigns(:company)).to eq(company)
+      end
+
+      it "re-renders the 'edit' template" do
+        company = Company.create! valid_attributes
+        put :update, {:id => company.to_param, :company => invalid_attributes}, valid_session
+        expect(response).to render_template("edit")
+      end
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "destroys the requested company" do
+      company = Company.create! valid_attributes
+      expect {
+        delete :destroy, {:id => company.to_param}, valid_session
+      }.to change(Company, :count).by(-1)
+    end
+
+    it "redirects to the companies list" do
+      company = Company.create! valid_attributes
+      delete :destroy, {:id => company.to_param}, valid_session
+      expect(response).to redirect_to(companies_url)
+    end
+  end
+
   after{ Warden.test_reset! }
-  # describe "PUT update" do
-  #   describe "with valid params" do
-  #     let(:new_attributes) {
-  #       skip("Add a hash of attributes valid for your model")
-  #     }
-
-  #     it "updates the requested company" do
-  #       company = Company.create! valid_attributes
-  #       put :update, {:id => company.to_param, :company => new_attributes}, valid_session
-  #       company.reload
-  #       skip("Add assertions for updated state")
-  #     end
-
-  #     it "assigns the requested company as @company" do
-  #       company = Company.create! valid_attributes
-  #       put :update, {:id => company.to_param, :company => valid_attributes}, valid_session
-  #       expect(assigns(:company)).to eq(company)
-  #     end
-
-  #     it "redirects to the company" do
-  #       company = Company.create! valid_attributes
-  #       put :update, {:id => company.to_param, :company => valid_attributes}, valid_session
-  #       expect(response).to redirect_to(company)
-  #     end
-  #   end
-
-  #   describe "with invalid params" do
-  #     it "assigns the company as @company" do
-  #       company = Company.create! valid_attributes
-  #       put :update, {:id => company.to_param, :company => invalid_attributes}, valid_session
-  #       expect(assigns(:company)).to eq(company)
-  #     end
-
-  #     it "re-renders the 'edit' template" do
-  #       company = Company.create! valid_attributes
-  #       put :update, {:id => company.to_param, :company => invalid_attributes}, valid_session
-  #       expect(response).to render_template("edit")
-  #     end
-  #   end
-  # end
-
-  # describe "DELETE destroy" do
-  #   it "destroys the requested company" do
-  #     company = Company.create! valid_attributes
-  #     expect {
-  #       delete :destroy, {:id => company.to_param}, valid_session
-  #     }.to change(Company, :count).by(-1)
-  #   end
-
-  #   it "redirects to the companies list" do
-  #     company = Company.create! valid_attributes
-  #     delete :destroy, {:id => company.to_param}, valid_session
-  #     expect(response).to redirect_to(companies_url)
-  #   end
-  # end
 
 end

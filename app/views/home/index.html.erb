@@ -8,7 +8,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<form class="navbar-form pull-right" role="search">
 					<div class="form-group">
-		    			<ul><button class="btn btn-primary"><%= link_to "Sign in",  new_user_session_path %></button></ul>
+		    			<ul>
+		    			<%= link_to "Sign in",  new_user_session_path, class: "btn btn-primary" %>
+		    			</ul>
 		    		</div>
 				</form>
 			</ul>
@@ -22,7 +24,7 @@
 				 	<h1>Callisto ReInvented</h1>
 				 	<p class="lead">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
 				 	<br></br>
-				 	<button class="btn btn-lg btn-primary" type="submit"><%= link_to "Sign Up",  new_user_registration_path %></button>
+				 	<%= link_to "Sign up",  new_user_registration_path, class: "btn btn-lg btn-primary" %>
 				 	<br></br>
 			 	</div>
 			</div>
