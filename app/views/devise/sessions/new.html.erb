@@ -4,11 +4,7 @@
 			<div class="navbar-header">
 		      <a class="navbar-brand" href="/">CR</a>
 		    </div>
-			<ul class="nav navbar-nav">
-				<li><%= link_to "DashBoard", dashboard_path %></li>
-				<li><%= link_to "Event", calendar_path %></li>
-				<li><%= link_to "Jobs", jobs_path %></li>
-			</ul>
+			
 			<ul class="nav navbar-nav navbar-right">
 				<form class="navbar-form pull-right" role="search">
 		    		<div class="form-group">
@@ -39,14 +35,13 @@
 	  			<% end %>
 			</div>
 		<div class="form-group">
-	    	<%= f.submit "Sign in", class: "btn btn-primary" %>
+	    	<%= f.submit "Sign in", id: 'Sign in', class: "btn btn-primary" %>
 		</div>
 		<% end %>
 	</div>
 
-	<div id="footer">
-	    <div class="navbar navbar-inner  navbar-fixed-bottom">
-	    <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-	</div>
+	<footer class="footer">
+        <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+    </footer>
 </div>
 </body>

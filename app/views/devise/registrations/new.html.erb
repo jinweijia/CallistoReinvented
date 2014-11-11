@@ -30,7 +30,7 @@
     </div>
 
     <div class="form-group">
-        <h5><%= f.label :email %><small> Must be great than 0 and less than 8</small></h5>
+        <h5><%= f.label :email %></h5>
         <%= f.text_field :email, class: "form-control",autofocus: true %>
     </div>
 
@@ -45,12 +45,12 @@
     </div>
 
     <div class="form-group">
-        <h5><%= f.label :skill %><small> Separated by commas</small></h5>
+        <h5><%= f.label :skill %><small> If you are a Student | Separated by commas</small></h5>
         <%= f.text_area :skill, autocomplete: "off", class: "form-control" %>
     </div>
 
-    <div class="form-group">
-        <h5><%= f.label :company_name %></h5>
+   <div class="form-group">
+        <h5><%= f.label :company_name %><small> If you are an Employer</small></h5>
         <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %>
     </div>
 
@@ -60,9 +60,7 @@
 
     <% end %>
 
-    <div id="footer">
-        <div class="navbar navbar-inner  navbar-fixed-bottom">
+    <footer class="footer">
         <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-    </div>
-</div>
+    </footer>
 </body>
