@@ -18,7 +18,6 @@ class CompaniesController < ApplicationController
       name = params[:company_name]
       info = params[:company_info]
       err = Company.add(name, info)
-      print err
       if err == Company::SUCCESS
         @company = Company.last()
         current_user.update(company_name: @company.company_name)
