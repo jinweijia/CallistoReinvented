@@ -31,13 +31,21 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    err, name, info = Company.get(id)
-    if err == Company::SUCCESS
-      render template: "company/profile"
-      #render json: { company_id: id, company_name: name, company_info: info }
-    else
-      render json: { errCode: err }
+    # id = params[:id]
+    # err, name, info = Company.get(id)
+    # if err == Company::SUCCESS
+    #   render template: "company/profile"
+    #   #render json: { company_id: id, company_name: name, company_info: info }
+    # else
+    #   render json: { errCode: err }
+    # end
+
+    @company = Company.find(params[:id])
+
+    respond_to do |format|
+      format.html { render template: "company/profile" } # show.html.erb
+      # render template: "company/profile"
+      format.json  { render :json => @company }
     end
 
   end
