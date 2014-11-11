@@ -4,6 +4,11 @@
       <div class="navbar-header">
           <a class="navbar-brand" href="#">CR</a>
         </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+        <li><%= link_to "Event", '/users/calendar' %></li>
+        <li><%= link_to "Jobs", '/users/jobs' %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form pull-right" role="search">
             <ul><button class="btn btn-primary"><%= link_to "Sign in",  new_user_session_path %></button></ul>
@@ -13,57 +18,44 @@
     </div>
   </div>
 
-    <h2>Sign up</h2>
+<div class="container" style="width:500px;margin: 0 auto;">      
+    <h1>Sign up</h1>
+  
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
     <%= devise_error_messages! %>
 
     <div class="form-group">
-        <%= f.label :email, class: "col-sm-2 control-label" %>
-        <div class="col-sm-6" id="user_email">
-            <%= f.text_field :email, class: "form-control",autofocus: true %>
-        </div>
+        <h5><%= f.label :type %><small> Choose a user type</small></h5>
+        <%= f.select :type, User::TYPES %>
     </div>
 
     <div class="form-group">
-        <%= f.label :password, class: "col-sm-2 control-label" %>
-        <div class="col-sm-6">
-            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        </div>
+        <h5><%= f.label :email %><small> Must be great than 0 and less than 8</small></h5>
+        <%= f.text_field :email, class: "form-control",autofocus: true %>
     </div>
 
     <div class="form-group">
-        <%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
-        <div class="col-sm-6">
-            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <%= f.label :type, class: "col-sm-2 control-label" %>
-        <div class="col-sm-6">
-            <%= f.select :type, User::TYPES %>
-        </div>
+        <h5><%= f.label :password %><small> Must be great than 0 and less than 8</small></h5>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
     </div>
 
     <div class="form-group">
-        <%= f.label :skill, class: "col-sm-2 control-label" %><i>Separated by commas</i>
-        <div class="col-sm-6">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <h5><%= f.label :skill %><small> Separated by commas</small></h5>
         <%= f.text_area :skill, autocomplete: "off", class: "form-control" %>
-        </div>
     </div>
 
     <div class="form-group">
-        <%= f.label :company_name, class: "col-sm-2 control-label" %>
-        <div class="col-sm-6">
-            <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %>
-        </div>
+        <h5><%= f.label :company_name %></h5>
+        <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %>
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-6">
             <%= f.submit "Sign up", class: "btn btn-primary" %>
-        </div>
     </div>
 
     <% end %>
@@ -72,5 +64,5 @@
         <div class="navbar navbar-inner  navbar-fixed-bottom">
         <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
     </div>
-
+</div>
 </body>

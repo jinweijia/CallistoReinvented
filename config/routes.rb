@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'users/jobs' => 'users#jobs', :as => :jobs
   get 'users/post' => 'users#post', :as => :post
   get 'users/new' => 'users#new', :as => :new_user
+  get 'users/create_post'    => 'users#create_post', :as => :create_post
   
   get 'company/profile' => 'company#profile', :as => :com_profile
   get 'company/jobs' => 'company#jobs', :as => :com_jobs

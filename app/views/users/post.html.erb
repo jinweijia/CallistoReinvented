@@ -8,7 +8,7 @@
 		    </div>
 			<ul class="nav navbar-nav">
 				<li><%= link_to "DashBoard", dashboard_path %></li>
-				<li><%= link_to "Calendar", calendar_path %></li>
+				<li><%= link_to "Event", calendar_path %></li>
 				<li><%= link_to "Jobs", jobs_path %></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -25,20 +25,36 @@
 	<br></br>
 	<div class="container">
 		<div class="row">
-
 			<div class="col-md-9">
-				<h1 class="page-header">Posting Title</h1>
-				<div class="panel panel-default">
-				 	<div class="panel-body">
-				    	Job Type
-				 	</div>
-				</div>
-				<div class="panel panel-default">
-				 	<div class="panel-body">
-				    	Info
-				 	</div>
+				<div class="row">
+					<h1 class="page-header">Posting Title</h1>
+					<div class="col-md-3">
+						<div class="panel panel-default">
+						 	<div class="panel-body">
+						    	Job Type
+						 	</div>
+						</div>
+						<div class="panel panel-default">
+						 	<div class="panel-body">
+						    	Tags
+						 	</div>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="panel panel-default">
+						 	<div class="panel-body">
+						    	Description
+						 	</div>
+						</div>
+						<div class="panel panel-default">
+						 	<div class="panel-body">
+						    	Skills
+						 	</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
 			<div class="col-xs-3">
 				<br></br>
 				<div class="list-group">
@@ -47,8 +63,11 @@
 				    <p class="list-group-item-text">Apply through company's website</p>
 				  </a>
 				</div>
+				<div class="btn-group">
+						  	<button type="button" class="btn btn-default">Delete</button>
+						  	<button type="button" class="btn btn-default">Edit</button>
+				</div>
 			</div>
-			
 		</div>
 	</div>
 	<div id="footer">

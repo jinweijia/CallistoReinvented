@@ -6,7 +6,7 @@
 		    </div>
 			<ul class="nav navbar-nav">
 				<li><%= link_to "DashBoard", dashboard_path %></li>
-				<li><%= link_to "Calendar", calendar_path %></li>
+				<li><%= link_to "Event", calendar_path %></li>
 				<li><%= link_to "Jobs", jobs_path %></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -18,46 +18,35 @@
 			</ul>
 		</div>
 	</div>
-	<h2>Sign in</h2>
-    <br></br>
-	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-	<%= devise_error_messages! %>
-	<div style="margin-left:20px" class="form-group">
-        <%= f.label :email, class: "col-sm-1 control-label" %>
-        <div class="col-sm-6">
-            <%= f.text_field :email, class: "form-control",autofocus: true %>
-        </div>
-    </div>
-    <br></br>
-    <br></br>
-	<div style="margin-left:20px" class="form-group">
-        <%= f.label :password, class: "col-sm-1 control-label" %>
-        <div class="col-sm-6">
-            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        </div>
-    </div>
-    <br></br>
-	<div class="form-group">
-		<div style="margin-left:140px">
-  		<% if devise_mapping.rememberable? -%>
-    		<div>
-    			<%= f.check_box :remember_me %> <%= f.label :remember_me %>
-    		</div>
-    		<div>
-    		<%= render "devise/shared/links" %>
+	<div class="container" style="width:500px;margin: 0 auto;">
+		<h1>Sign in</h1>
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		<%= devise_error_messages! %>
+	    	<h5><%= f.label :email %></h5>
+	     	<%= f.text_field :email, class: "form-control",autofocus: true %>
+
+	    	<h5><%= f.label :password %></h5>
+	        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+
+			<div class="form-group">
+	  			<% if devise_mapping.rememberable? -%>
+	    		<div>
+	    			<%= f.check_box :remember_me %> <%= f.label :remember_me %>
+	    		</div>
+	    		<div>
+	    			<%= render "devise/shared/links" %>
+				</div>
+	  			<% end %>
 			</div>
-  		<% end %>
-  		</div>
-	</div>
-	<div class="form-group" style="margin-left:115px">
-		<div style="margin-left:20px">
-    		<%= f.submit "Sign in", class: "btn btn-primary" %>
+		<div class="form-group">
+	    	<%= f.submit "Sign in", class: "btn btn-primary" %>
 		</div>
+		<% end %>
 	</div>
-	<% end %>
+
 	<div id="footer">
-        <div class="navbar navbar-inner  navbar-fixed-bottom">
-        <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-    </div>
+	    <div class="navbar navbar-inner  navbar-fixed-bottom">
+	    <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+	</div>
 </div>
 </body>
