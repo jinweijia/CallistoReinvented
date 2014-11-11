@@ -5,6 +5,22 @@
  */
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+ul.footer{
+  margin-top:10px;
+  text-align:center;
+}
+ul.footer li{
+  color:#333;
+  display:inline-block;
+}
+footer{
+  bottom: -50px;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
