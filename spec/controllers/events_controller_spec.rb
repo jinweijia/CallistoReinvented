@@ -52,12 +52,12 @@ RSpec.describe EventsController, :type => :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new event as @event" do
-      get :new, {}, valid_session
-      expect(assigns(:event)).to be_a_new(Event)
-    end
-  end
+  # describe "GET new" do
+  #   it "assigns a new event as @event" do
+  #     get :new, {}, valid_session
+  #     expect(assigns(:event)).to be_a_new(Event)
+  #   end
+  # end
 
   describe "GET edit" do
     it "assigns the requested event as @event" do
