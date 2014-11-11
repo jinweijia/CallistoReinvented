@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
 
   SUCCESS = 1
   ERR_BAD_PERMISSIONS = -1
@@ -18,8 +19,8 @@ class EventsController < ApplicationController
     title = params[:title]
     type = params[:type]
     info = params[:info]
-    #this method expects a string in yyyy:mm:dd:hh:MM format, as one string with no spaces, where the hour is in range {00..23}
-    #Example: "201401032307" would be January 3rd, 2014, at 23:07
+    #this method expects a string in yy:mm:dd:hh:MM format, as one string with no spaces, where the hour is in range {00..23}
+    #Example: "1401032307" would be January 3rd, 2014, at 23:07
     date = params[:date]
     datetime = DateTime.strptime(date, "%y%m%d%H%M")
 
