@@ -19,7 +19,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       return {errCode: ERR_TITLE}
     end
     # verify company_id:
-    company = Company.find_by(company_id: company_id)
+    company = Company.find_by_id(company_id)
     if company.blank?
       return {errCode: ERR_BAD_COMPANY_ID}
     else

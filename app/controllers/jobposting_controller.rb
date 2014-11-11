@@ -36,7 +36,7 @@ class JobpostingController < ApplicationController
     print ret
 
     if ret[:errCode] == 1          
-      ret = Jobposting.add(company.company_id, title, job_type, info, skills, tags)
+      ret = Jobposting.add(company.id, title, job_type, info, skills, tags)
     end
     print ret
     render json: ret
