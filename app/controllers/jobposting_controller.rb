@@ -69,6 +69,7 @@ class JobpostingController < ApplicationController
     posting_id = params[:id]
     puts posting_id
     ret = Jobposting.show_by_posting_id(posting_id)
+    @jobposting = ret[:value]
     render template: "users/post"
     #render json: ret
   end
