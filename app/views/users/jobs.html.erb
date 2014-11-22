@@ -18,7 +18,7 @@
 		    		</div>
 		    		<button type="submit" class="btn btn-default">Search</span></button>
 				</form>
-				<li><%= link_to "Log Out", destroy_user_session_path %></li>
+				<li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
 			</ul>
 		</div>
 	</div>
@@ -50,9 +50,11 @@
 					    </div>
 				  </div>
 				</div>	
+				<% if current_user.type == "Employer" -%>
 				<div type="button" class="btn btn-primary">
 					<%= link_to "Create", create_post_path %>
 				</div>
+				<% end %>
     		</div>
     		<div class="col-xs-9">
       			<div class="row">
@@ -63,25 +65,19 @@
 	        					<!-- On rows -->
 	        					<thread>
 	        					<tr>
-	        						<th>Job Title<th>
-	        						<th>Job Type<th>
-	        						<th>Employer<th>
-	        						<th>Deadline<th>
+	        						<th>Title</th>
+	        						<th>Company</th>
+	        						<th>Type</th>
+	        						<th>Info</th>
+	        						<th>Skill</th>
 	        					</tr>
 	        					</thread>	
-								<!-- On cells (`td` or `th`) -->
 								<tbody>
-								<tr>
 									<td>
-										<ul class="nav nav-pills">
-  											<li class="enabled"><%= link_to "Software Engineering", post_path %></li>
-										</ul>
+										<%= @jobposting.title %>
 									</td>
-									<td>Internship</td>
-									<td>Google</td>
-									<td>Oct 6, 20:00</td>
-								</tr>
-								</tbody>
+							        
+							    </tbody>
 							</table>
 
 							<ul class="pagination">
