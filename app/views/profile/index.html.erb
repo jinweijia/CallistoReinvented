@@ -1,3 +1,8 @@
+<style type="text/css">
+.jumbotron {
+	margin-top: -10px;
+}
+</style>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -84,30 +89,21 @@
 						</div>
 					</div>
 					<div class="row">
-						<table class="table table-striped">
-	        				<!-- On rows -->
-	        				<thread>
-	        				<tr>
-	        					<th>Job Title<th>
-	        					<th>Job Type<th>
-	        					<th>Skill Required<th>
-	        					<th>Deadline<th>
-	        				</tr>
-	        				</thread>	
-							<!-- On cells (`td` or `th`) -->
-							<tbody>
-							<tr>
-								<td>
-									<ul class="nav nav-pills">
-  										<li class="enabled"><%= link_to "Software Engineering",post_path %></li>
-										</ul>
-								</td>
-								<td>Internship</td>
-								<td>Google</td>
-								<td>Oct 6, 20:00</td>
-							</tr>
-							</tbody>
-						</table>
+					<!-- Table -->
+					<table class="table table-hover" style="width:100%">
+						<tr>
+							<th>Job Title</th>
+							<th>Job Type</th> 
+							<th>Employer</th>
+							<th>Deadline<th>
+						</tr>
+						<tr>
+							<td><%= link_to "Software Engineering", post_path %></td>
+							<td>Internship</td> 
+							<td>Google</td>
+							<td>Oct 6, 20:00</td>
+						</tr>
+					</table>
 					</div>
 				</div>
 
