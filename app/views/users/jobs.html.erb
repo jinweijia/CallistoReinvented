@@ -64,10 +64,9 @@
 				  		</div>
 					</div>
     			</div>
-				</div>	
-			</div>
+			</div>	
 		</div>
-	</div> 
+	</div>
 	<div class="container">
 		<!-- Only allow an employer to create a job post -->	
 		<div id="create_post">
@@ -75,24 +74,22 @@
 				<i class="fa fa-plus-circle"></i>
 				<%= link_to "Create", create_post_path %>
 			</h3>
-		</div>	
-	    <table class="table table-hover" style="width:100%">
-	        <!-- On rows -->
-	        <tr>
-	        	<th>Job Title<th>
-	        	<th>Job Type<th>
-	        	<th>Employer<th>
-	        	<th>Deadline<th>
-	        </tr>
-			<!-- On cells (`td` or `th`) -->
+		</div>
+		<!-- Table -->
+		<table class="table table-hover" style="width:100%">
+			<tr>
+				<th>Job Title</th>
+				<th>Job Type</th> 
+				<th>Employer</th>
+				<th>Deadline<th>
+			</tr>
 			<tr>
 				<td><%= link_to "Software Engineering", post_path %></td>
-				<td>Internship</td>
+				<td>Internship</td> 
 				<td>Google</td>
 				<td>Oct 6, 20:00</td>
 			</tr>
 		</table>
-
 		<ul class="pagination">
 			<li><a href="#">&laquo;</a></li>
 			<li><a href="#">1</a></li>
