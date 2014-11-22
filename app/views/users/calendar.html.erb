@@ -4,15 +4,18 @@
 	    <div class="container">
 	      <div class="navbar-header">
 	          <a class="navbar-brand" href="/">
-	            <i class="fa fa-home"></i>
+	            <i class="fa fa-bars fa-lg"></i>
 	            Callisto ReInvented
 	          </a>
 	        </div>
-	      <ul class="nav navbar-nav">
-	        <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	        <li><%= link_to "Event", '/users/calendar' %></li>
-	        <li><%= link_to "Jobs", '/users/jobs' %></li>
-	      </ul>
+	      	<ul class="nav navbar-nav">
+	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
+	        	<li><%= link_to "Event", '/users/calendar' %></li>
+	        	<li><%= link_to "Jobs", '/users/jobs' %></li>
+	      	</ul>
+	      	<ul class="nav navbar-nav navbar-right">
+			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+			</ul>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
 	            <!-- nav bar buttons go here if needed -->
@@ -39,10 +42,10 @@
 	<div class="container">
 		<div class="col-xs-3">
     		<div class="panel panel-default">
-				 <div class="panel-heading">
+				<div class="panel-heading">
 					<h2 class="panel-title">Search</h2>
-				 </div>
-				  <div class="panel-body">
+				</div>
+				<div class="panel-body">
 					<h5>Keyword <small>Search keywords</small></h5>
 				    <div class="input-group">
 					    <input type="text" class="form-control" placeholder="Search">
@@ -50,10 +53,17 @@
 					        <button class="btn btn-default" type="button">Go!</button>
 					     </span>
 					</div><!-- /input-group -->
-				  </div>
-			</div>	
-			<div type="button" class="btn btn-primary">Create</div>
-    	</div>
+				</div>
+			</div>
+			<!-- Only allow an employer to create a job post -->	
+			<div id="create_post">
+				<h3>
+					<i class="fa fa-plus-circle"></i>
+					<%= link_to "Create", create_post_path %>
+				</h3>
+			</div>
+		</div>
+
 		<div class="col-xs-9">	
 			<span class="label label-default">Today</span>
 			<span class="label label-primary">Primary</span>

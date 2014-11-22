@@ -1,6 +1,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#created').hide();
+
+
 	$('#createButton').click(function(e){
 		$('#message').hide();
 		e.preventDefault();
@@ -16,6 +19,8 @@ $(document).ready(function(){
 				success: function(data) {
 				//console.log(data['count']);
 				if (data['errCode'] == SUCCESS) {
+					$('#create').hide();
+					$('#created').show();
 					window.location.replace('/companies');
 				}
 			}
@@ -23,42 +28,51 @@ $(document).ready(function(){
 	});
 });
 </script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">CR</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li><%= link_to "Profile", profile_index_path %></li>
-				<li><%= link_to "DashBoard", '/users/dashboard' %></li>
-				<li><%= link_to "Calendar", '/users/calendar' %></li>
-				<li><%= link_to "Jobs", '/users/jobs' %></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form pull-right" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Search</span></button>
-				</form>
-				<li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-			</ul>
-			</div>
-		</div>
+    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+	    <div class="container">
+	      <div class="navbar-header">
+	          <a class="navbar-brand" href="/">
+	            <i class="fa fa-home"></i>
+	            Callisto ReInvented
+	          </a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          	<ul class="nav navbar-nav">
+	            <!-- nav bar buttons go here if needed -->
+	          	</ul>
+	          	<ul class="nav navbar-nav navbar-right">
+					<li>
+						<%= link_to "Log Out",  destroy_user_session_path, :method => :delete %>
+					</li>
+				</ul>
+	      	</div>
+	    </div>
+  	</div>
+  	<div class="container" style="width:500px;margin: 0 auto;">  
 		<h1>New company</h1>
-		<form>
-			<h4 style="margin-left:20px">Company Name</h4>
-			<input style="margin-left:20px" type="text" id="company_name">
-			<h4 style="margin-left:20px">Company Info</h4>
-			<textarea style="margin-left:20px; width:500px" id="company_info"></textarea>
-			<br></br>
-			<div style="margin-left:20px", id="createButton"> <%= button_to "Create company", companies_path, class: "btn btn-primary"%>
-			</div>
-		</form>
+		<div id="create">
+			<form>
+				<h4 style="margin-left:20px">Company Name</h4>
+				<input style="margin-left:20px" type="text" id="company_name">
+				<h4 style="margin-left:20px">Company Info</h4>
+				<textarea style="margin-left:20px; width:500px" id="company_info"></textarea>
+				<br></br>
+				<div style="margin-left:20px", id="createButton"> <%= button_to "Create company", companies_path, class: "btn btn-primary"%>
+				</div>
+			</form>
+		</div>
+
+		<!-- Success message when the company is created in the database -->
+		<div id="created">
+			Successfully created!
+		</div>
+
 		<div id="footer">
 			<div class="navbar navbar-inner navbar-fixed-bottom">
 			<center><%= link_to 'List of companies', companies_path %></center>
+			</div>
 		</div>
 	</div>
 </body>
