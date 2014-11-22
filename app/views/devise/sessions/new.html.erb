@@ -1,17 +1,21 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
+	<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+		<div class="container">
 			<div class="navbar-header">
-		      <a class="navbar-brand" href="/">CR</a>
+		      <a class="navbar-brand" href="/">
+		      	<i class="fa fa-bars fa-lg"></i>
+		      	Callisto ReInvented
+		      </a>
 		    </div>
-			
-			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form pull-right" role="search">
-		    		<div class="form-group">
-		        		<button class="btn btn-primary" type="submit"><%= link_to "Sign Up",  new_user_registration_path %></button>
-		        	</div>
-				</form>
-			</ul>
+		    <div class="navbar-collapse collapse">
+		    	<ul class="nav navbar-nav">
+		    		<!-- nav bar buttons go here if needed -->
+		    	</ul>
+				<ul class="nav navbar-nav navbar-right">
+		    		<li><%= link_to "Sign In",  new_user_session_path %></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="container" style="width:500px;margin: 0 auto;">
