@@ -24,6 +24,7 @@
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
 	            <!-- nav bar buttons go here if needed -->
+
 	          </ul>
 	      	</div>
 	    </div>
@@ -40,84 +41,64 @@
 						<i class="fa fa-bolt"></i>
 						Simple and Easy Job Search!
 					</h5>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<!-- Berkeley Icon goes here -->
+	    			<div class="panel panel-default">
+				  		<div class="panel-heading">
+							<small>Simple search keywords</small>
+					        <div class="input-group">
+						      <input type="text" class="form-control" placeholder="Simple Search">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button">Go!</button>
+						      </span>
+						    </div>
+						    <p></p>
+						    <small>Advanced search keywords</small>
+					        <div class="input-group">
+						      <input type="text" class="form-control" placeholder="Advanced Search">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button">Go!</button>
+						      </span>
+					    	</div>
+				  		</div>
+					</div>
+    			</div>
 				</div>	
 			</div>
 		</div>
 	</div> 
 	<div class="container">
-		<div class="row">
-    		<div class="col-xs-3">
-    			<br></br>
-    			<div class="panel panel-default">
-				  <div class="panel-heading">
+		<!-- Only allow an employer to create a job post -->	
+		<div id="create_post">
+			<h3>
+				<i class="fa fa-plus-circle"></i>
+				<%= link_to "Create", create_post_path %>
+			</h3>
+		</div>	
+	    <table class="table table-hover" style="width:100%">
+	        <!-- On rows -->
+	        <tr>
+	        	<th>Job Title<th>
+	        	<th>Job Type<th>
+	        	<th>Employer<th>
+	        	<th>Deadline<th>
+	        </tr>
+			<!-- On cells (`td` or `th`) -->
+			<tr>
+				<td><%= link_to "Software Engineering", post_path %></td>
+				<td>Internship</td>
+				<td>Google</td>
+				<td>Oct 6, 20:00</td>
+			</tr>
+		</table>
 
-				    <h2 class="panel-title">Search</h2>
-				  	</div>
-				  	<div class="panel-body">
-						<small>Simple search keywords</small>
-				        <div class="input-group">
-					      <input type="text" class="form-control" placeholder="Simple Search">
-					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					      </span>
-					    </div>
-					    <p></p>
-					    <small>Advanced search keywords</small>
-				        <div class="input-group">
-					      <input type="text" class="form-control" placeholder="Advanced Search">
-					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					      </span>
-					    </div>
-				  </div>
-				</div>
-				<!-- Only allow an employer to create a job post -->	
-				<div id="create_post">
-					<h3>
-						<i class="fa fa-plus-circle"></i>
-						<%= link_to "Create", create_post_path %>
-					</h3>
-				</div>	
-    		</div>
-    		<div class="col-xs-9">
-      			<div class="row">
-        			<div class="col-md-10">
-        				<h1 class="page-header">Result</h1>
-        				<div class="row">
-	        				<table class="table table-hover" style="width:100%">
-	        					<!-- On rows -->
-	        					<tr>
-	        						<th>Job Title<th>
-	        						<th>Job Type<th>
-	        						<th>Employer<th>
-	        						<th>Deadline<th>
-	        					</tr>
-								<!-- On cells (`td` or `th`) -->
-								<tr>
-									<td>
-										<ul class="nav nav-pills">
-  											<li class="enabled"><%= link_to "Software Engineering", post_path %></li>
-										</ul>
-									</td>
-									<td>Internship</td>
-									<td>Google</td>
-									<td>Oct 6, 20:00</td>
-								</tr>
-							</table>
-
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-						</div>
-        			</div>
-        		</div>
-      		</div>
+		<ul class="pagination">
+			<li><a href="#">&laquo;</a></li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
   		</div>
 	</div>
 	<div id="footer">
