@@ -1,9 +1,15 @@
+<style type="text/css">
+.jumbotron {
+	margin-top: -10px;
+}
+</style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 var SUCCESS = 1
 
 $(document).ready(function(){
+	$('#created').hide();
     $('#createButton').click(function(e){
         $('#message').hide();
         e.preventDefault();
@@ -21,10 +27,11 @@ $(document).ready(function(){
             contentType: 'application/json',
             dataType:    'json',
             success:     function(data) {
-                            //console.log(data['count']);
-                            if (data['errCode'] == SUCCESS) {
-                            }
-                         }
+                //console.log(data['count']);
+                if (data['errCode'] == SUCCESS) {
+					$('#created').show();
+                }
+            }
         });
     });
 
@@ -32,48 +39,52 @@ $(document).ready(function(){
 </script>
 
 <head>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-		      <a class="navbar-brand" href="/">CR</a>
-		    </div>
-			<ul class="nav navbar-nav">
-				<li><%= link_to "DashBoard", dashboard_path %></li>
-				<li><%= link_to "Event", calendar_path %></li>
-				<li><%= link_to "Jobs", jobs_path %></li>
+    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+	    <div class="container">
+	      <div class="navbar-header">
+	          <a class="navbar-brand" href="/">
+	            <i class="fa fa-home"></i>
+	            Callisto ReInvented
+	          </a>
+	        </div>
+	      	<ul class="nav navbar-nav">
+	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
+	        	<li><%= link_to "Event", '/users/calendar' %></li>
+	        	<li><%= link_to "Jobs", '/users/jobs' %></li>
+	      	</ul>
+	      	<ul class="nav navbar-nav navbar-right">
+			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form pull-right" role="search">
-		    		<div class="form-group">
-		        		<input type="text" class="form-control" placeholder="Search">
-		    		</div>
-		    		<button type="submit" class="btn btn-default">Search</span></button>
-				</form>
-				<li><%= link_to "Log Out", destroy_user_session_path %></li>
-			</ul>
-		</div>
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <!-- nav bar buttons go here if needed -->
+	          </ul>
+	      	</div>
+	    </div>
+  	</div>
+	<div class="container" style="width:500px;margin: 0 auto;">
+		<h1 class="page-header">Create A Post</h1>
+		<h5>Job Title <small>Insert the job title here. </small></h5>
+		<input type="text" class="form-control" placeholder="Posting Title" id="title">
+		<h5>Job Type <small>Insert the job type here. </small></h5>
+		<input type="text" class="form-control" placeholder="Job Type" id="job_type">
+		<h5>Skills <small>Insert skills required for the job. </small></h5>
+		<input type="text" class="form-control" placeholder="Skills" id="skills">
+		<h5>Tags <small>Insert keywords that describe the job. </small></h5>
+		<input type="text" class="form-control" placeholder="Tags" id="tags">
+		<h5>Job Description <small>Insert a pharagraph of job description. </small></h5>
+		<textarea class="form-control" rows="3" id="description"></textarea>
+		<h5>Job Application URL <small>Insert URL to job application. </small></h5>
+		<input type="text" class="form-control" placeholder="Job Application URL" id="url">
+		<br></br>
+		<div type="submit" class="btn btn-primary" id="createButton">Create</div>
 	</div>
-	<br></br>
-		<div class="container" style="width:500px;margin: 0 auto;">
-				<h1 class="page-header">Create A Post</h1>
-				<h5>Job Title <small>Insert the job title here. </small></h5>
-				<input type="text" class="form-control" placeholder="Posting Title" id="title">
-				<h5>Job Type <small>Insert the job type here. </small></h5>
-				<input type="text" class="form-control" placeholder="Job Type" id="job_type">
-				<h5>Skills <small>Insert skills required for the job. </small></h5>
-				<input type="text" class="form-control" placeholder="Skills" id="skills">
-				<h5>Tags <small>Insert keywords that describe the job. </small></h5>
-				<input type="text" class="form-control" placeholder="Tags" id="tags">
-				<h5>Job Description <small>Insert a pharagraph of job description. </small></h5>
-				<textarea class="form-control" rows="3" id="description"></textarea>
-				<h5>Job Application URL <small>Insert URL to job application. </small></h5>
-				<input type="text" class="form-control" placeholder="Job Application URL" id="url">
-				<br></br>
-				<div type="submit" class="btn btn-primary" id="createButton">Create</div>
-		</div>
-        <br></br>
+    <div id="created">
+    	Success
+    </div>
 	<div id="footer">
  		<div class="navbar navbar-inner  navbar-fixed-bottom">
    		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>

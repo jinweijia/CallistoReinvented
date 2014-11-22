@@ -1,47 +1,52 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-		      <a class="navbar-brand" href="/">CR</a>
-		    </div>
-			
-			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form pull-right" role="search">
-		    		<div class="form-group">
-		        		<button class="btn btn-primary" type="submit"><%= link_to "Sign Up",  new_user_registration_path %></button>
-		        	</div>
-				</form>
-			</ul>
-		</div>
-	</div>
-	<div class="container" style="width:500px;margin: 0 auto;">
-		<h1>Sign in</h1>
-		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-		<%= devise_error_messages! %>
-	    	<h5><%= f.label :email %></h5>
-	     	<%= f.text_field :email, class: "form-control",autofocus: true %>
-
-	    	<h5><%= f.label :password %></h5>
-	        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-
-			<div class="form-group">
-	  			<% if devise_mapping.rememberable? -%>
-	    		<div>
-	    			<%= f.check_box :remember_me %> <%= f.label :remember_me %>
-	    		</div>
-	    		<div>
-	    			<%= render "devise/shared/links" %>
+	<div class="wrap">
+		<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+			<div class="container">
+				<div class="navbar-header">
+			      <a class="navbar-brand" href="/">
+			      	<i class="fa fa-home"></i>
+			      	Callisto ReInvented
+			      </a>
+			    </div>
+			    <div class="navbar-collapse collapse">
+			    	<ul class="nav navbar-nav">
+			    		<!-- nav bar buttons go here if needed -->
+			    	</ul>
+					<ul class="nav navbar-nav navbar-right">
+			    		<li><%= link_to "Sign In",  new_user_session_path %></li>
+					</ul>
 				</div>
-	  			<% end %>
 			</div>
-		<div class="form-group">
-	    	<%= f.submit "Sign in", id: 'Sign in', class: "btn btn-primary" %>
 		</div>
-		<% end %>
-	</div>
+		<div class="container" style="width:500px;margin: 0 auto;">
+			<h1>Sign in</h1>
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<%= devise_error_messages! %>
+		    	<h5><%= f.label :email %></h5>
+		     	<%= f.text_field :email, class: "form-control",autofocus: true %>
 
-	<footer class="footer">
-        <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-    </footer>
-</div>
+		    	<h5><%= f.label :password %></h5>
+		        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+
+				<div class="form-group">
+		  			<% if devise_mapping.rememberable? -%>
+		    		<div>
+		    			<%= f.check_box :remember_me %> <%= f.label :remember_me %>
+		    		</div>
+		    		<div>
+		    			<%= render "devise/shared/links" %>
+					</div>
+		  			<% end %>
+				</div>
+			<div class="form-group">
+		    	<%= f.submit "Sign in", id: 'Sign in', class: "btn btn-primary" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+  	<div id="footer">
+ 		<div class="navbar navbar-inner  navbar-fixed-bottom">
+   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+ 	</div>
 </body>

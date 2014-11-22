@@ -1,37 +1,117 @@
-<h1>Listing events</h1>
+<style type="text/css">
+.jumbotron {
+  margin-top: -10px;
+}
+</style>
 
-<table>
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Event ownership</th>
-      <th>Event company</th>
-      <th>Event title</th>
-      <th>Event type</th>
-      <th>Event info</th>
-      <th>Event date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+      <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+              <i class="fa fa-home"></i>
+              Callisto ReInvented
+            </a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+            <li><%= link_to "Event", '/users/calendar' %></li>
+            <li><%= link_to "Jobs", '/users/jobs' %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+      </ul>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <!-- nav bar buttons go here if needed -->
+            </ul>
+          </div>
+      </div>
+    </div>
+  <div class="jumbotron jumbotron-carousel hidden-print">
+    <div ="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-8 text-center">
+          <h1>
+            <i class="fa fa-calendar-o"></i>
+              Events
+          </h1>
+          <h5>
+            <i class="fa fa-bell-o"></i>
+              Keep Tracking on Deadlines and Upcoming Events
+          </h5>
+        </div>  
+      </div>
+    </div>
+  </div> 
+  <div class="container">
+    <div class="col-xs-3">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Search</h2>
+        </div>
+        <div class="panel-body">
+          <h5>Keyword <small>Search keywords</small></h5>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+               </span>
+          </div><!-- /input-group -->
+        </div>
+      </div>
+      <!-- Only allow an employer to create a job post -->  
+      <div id="create_post">
+        <h3>
+          <i class="fa fa-plus-circle"></i>
+          <%= link_to "Create", events_createEvent_path %>
+        </h3>
+      </div>
+    </div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.event_id %></td>
-        <td><%= event.event_ownership %></td>
-        <td><%= event.event_company %></td>
-        <td><%= event.event_title %></td>
-        <td><%= event.event_type %></td>
-        <td><%= event.event_info %></td>
-        <td><%= event.event_date %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+    <div class="col-xs-9">  
+      <span class="label label-default">Today</span>
+      <span class="label label-primary">Primary</span>
+      <span class="label label-success">RSVP'ed</span>
+      <span class="label label-info">Info</span>
+      <span class="label label-warning">Deadline</span>
+      <span class="label label-danger">Overdue</span>
+      <h3>
+          <i class="fa fa-volume-up"></i>
+          Event List
+      </h3> <small> Upcoming events hosted by all companies. </small>
+      <div class="panel-body">
+        <!-- Table -->
+        <table class="table table-hover" style="width:100%">
+          <thread><tr>
+              <th>Title</th>
+              <th>Company</th> 
+              <th>Type</th>
+              <th>Info</th>
+              <th>Date</th>
+          </tr></thread>
+          <tbody>
+              <% @events.each do |event| %>
+                <tr>
+                  <td><%= event.event_title %></td>
+                  <td><%= event.event_company %></td>
+                  <td><%= event.event_type %></td>
+                  <td><%= event.event_info %></td>
+                  <td><%= event.event_date %></td>
+                  <% if current_user.type == "Employer" %>
+                    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                    <td><%= link_to 'Cancel Event', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="navbar navbar-inner  navbar-fixed-bottom">
+      <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+  </div>  
+</body>

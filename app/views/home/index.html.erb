@@ -1,47 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Twitter Bootstrap 3 Fixed Layout Example</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-		      <a class="navbar-brand" href="/">CR</a>
-		    </div>
-			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form pull-right" role="search">
-					<div class="form-group">
-		    			<ul>
-		    			<%= link_to "Sign in",  new_user_session_path, class: "btn btn-primary" %>
-		    			</ul>
-		    		</div>
-				</form>
-			</ul>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">
+#wrap {
+margin: 0 auto -251px;
+padding: 0 0 311px;
+}
+
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+}
+
+#footer {
+	background-color: #222222;
+	position: relative;
+	height: 251px;
+	border-top: 1px solid #797777;
+	color: #797777;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	padding-top: 40px;
+}
+
+.jumbotron {
+	margin-top: -10px;
+	background-color: #222222;
+}
+.jumbotron h1 {
+	font-size: 80px;
+	letter-spacing: -2px;
+	line-height: 1;
+	text-shadow: 4px 3px 0px #464444, 9px 8px 0px rgba(0, 0, 0, 0.15);
+	margin: 0 0 15px;
+}
+
+.jumbotron, .jumbotron h1 {
+	color: #ffffff;
+}
+
+.jumbotron p {
+	font-family: proxima-nova-sc-osf, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #797777;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 24px;
+	line-height: 1.3;
+	font-weight: lighter;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+</style>
+<body>	
+	<div id="wrap">
+		<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+			<div class="container">
+				<div class="navbar-header">
+			      <a class="navbar-brand" href="/">
+			      	<i class="fa fa-home"></i>
+			      	Callisto ReInvented
+			      </a>
+			    </div>
+			    <div class="navbar-collapse collapse">
+			    	<ul class="nav navbar-nav">
+			    		<!-- nav bar buttons go here if needed -->
+			    	</ul>
+					<ul class="nav navbar-nav navbar-right">
+			    		<li><%= link_to "Sign In",  new_user_session_path %></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-	<br></br>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="jumbotron">
-				<div ="container" style="width:800px;margin: 0 auto;">
-				 	<h1>Callisto ReInvented</h1>
-				 	<p class="lead">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-				 	<br></br>
-				 	<%= link_to "Sign up",  new_user_registration_path, class: "btn btn-lg btn-primary" %>
-				 	<br></br>
-			 	</div>
+		<div class="jumbotron jumbotron-carousel hidden-print">
+			<div ="container">
+				<div class="row">
+					<div class="col-md-8 col-sm-8 text-center">
+						<h1>Callisto ReInvented</h1>
+						<p class="lead">
+							<i class="fa fa-search"></i>
+							Ideal Job Searching for College Students
+						</p>
+						<div class="action">
+							<h2>
+								<i class="fa fa-sign-in"></i>
+								<%= link_to "Sign Up",  new_user_registration_path %>
+							</h2>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- Berkeley Icon goes here -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="ad">
+				<i class="fa fa-quote-left fa-3x pull-left fa-border"></i>
+				<h3>...tomorrow we will run faster, stretch out our arms farther...
+And then one fine morning— So we beat on, boats against the
+current, borne back ceaselessly into the past.</h3>
+			</div>
+			<br></br>
+			<div class="feature-list">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<h3>
+							<i class="fa fa-search"></i>
+							Easier Job Searching
+						</h3>
+						<p> Simplied functionalities </p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<h3>
+							<i class="fa fa-pencil-square-o"></i>
+							Effective Profile Editting
+						</h3>
+						<p> You can manage and edit your profile easily. </p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<h3>
+							<i class="fa fa-graduation-cap"></i>
+							Prepare your graduation
+						</h3>
+						<p> Find the perfect job before your graduation! </p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div id="footer">
- 		<div class="navbar navbar-inner  navbar-fixed-bottom">
-   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+	<div id="footer" class="hidden-print">
+ 		<div class="containter text-center">
+   			<p class="muted credit">
+   				<i class="fa fa-copyright"></i>
+   				Callisto ReInvented v 1.0
+   			</p>
+   			<p>
+   				Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+   			</p>
  		</div>
  	</div>
 </body>
