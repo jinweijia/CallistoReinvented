@@ -1,5 +1,26 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
+#wrap {
+margin: 0 auto -251px;
+padding: 0 0 311px;
+}
+
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+}
+
+#footer {
+	background-color: #222222;
+	position: relative;
+	height: 251px;
+	border-top: 1px solid #797777;
+	color: #797777;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	padding-top: 40px;
+}
+
 .jumbotron {
 	background-color: #222222;
 }
@@ -28,80 +49,88 @@
 
 </style>
 <body>	
-	<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-		<div class="container">
-			<div class="navbar-header">
-		      <a class="navbar-brand" href="/">
-		      	<i class="fa fa-bars fa-lg"></i>
-		      	Callisto ReInvented
-		      </a>
-		    </div>
-		    <div class="navbar-collapse collapse">
-		    	<ul class="nav navbar-nav">
-		    		<!-- nav bar buttons go here if needed -->
-		    	</ul>
-				<ul class="nav navbar-nav navbar-right">
-		    		<li><%= link_to "Sign In",  new_user_session_path %></li>
-				</ul>
+	<div id="wrap">
+		<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+			<div class="container">
+				<div class="navbar-header">
+			      <a class="navbar-brand" href="/">
+			      	<i class="fa fa-bars fa-lg"></i>
+			      	Callisto ReInvented
+			      </a>
+			    </div>
+			    <div class="navbar-collapse collapse">
+			    	<ul class="nav navbar-nav">
+			    		<!-- nav bar buttons go here if needed -->
+			    	</ul>
+					<ul class="nav navbar-nav navbar-right">
+			    		<li><%= link_to "Sign In",  new_user_session_path %></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="jumbotron jumbotron-carousel hidden-print">
-		<div ="container">
-			<div class="row">
-				<div class="col-md-8 col-sm-8 text-center">
-					<h1>Callisto ReInvented</h1>
-					<p class="lead">
-						<i class="fa fa-search"></i>
-						Ideal Job Searching for College Students
-					</p>
-					<div class="action">
-						<h2>
-							<i class="fa fa-sign-in"></i>
-							<%= link_to "Sign Up",  new_user_registration_path %>
-						</h2>
+		<div class="jumbotron jumbotron-carousel hidden-print">
+			<div ="container">
+				<div class="row">
+					<div class="col-md-8 col-sm-8 text-center">
+						<h1>Callisto ReInvented</h1>
+						<p class="lead">
+							<i class="fa fa-search"></i>
+							Ideal Job Searching for College Students
+						</p>
+						<div class="action">
+							<h2>
+								<i class="fa fa-sign-in"></i>
+								<%= link_to "Sign Up",  new_user_registration_path %>
+							</h2>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- Berkeley Icon goes here -->
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<section class="feature-list">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<h3>
+							<i class="fa fa-search"></i>
+							Easier Job Searching
+						</h3>
+						<p> Simplied functionalities </p>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-4">
-					<!-- Berkeley Icon goes here -->
-				</div>	
-			</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<h3>
+							<i class="fa fa-level-up"></i>
+							Effective Profile Editting
+						</h3>
+						<p> You can manage and edit your profile easily. </p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<h3>
+							<i class="fa fa-graduation-cap"></i>
+							Prepare your graduation
+						</h3>
+						<p> Find the perfect job before your graduation! </p>
+					</div>
+				</div>
+			</section>
 		</div>
 	</div>
-	<div class="container">
-		<section class="feature-list">
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<h3>
-						<i class="fa fa-search"></i>
-						Easier Job Searching
-					</h3>
-					<p> Simplied functionalities </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<h3>
-						<i class="fa fa-level-up"></i>
-						Effective Profile Editting
-					</h3>
-					<p> You can manage and edit your profile easily. </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<h3>
-						<i class="fa fa-graduation-cap"></i>
-						Prepare your graduation
-					</h3>
-					<p> Find the perfect job before your graduation! </p>
-				</div>
-			</div>
-		</section>
-	</div>
 	<div id="footer" class="hidden-print">
- 		<div class="navbar navbar-inner  navbar-fixed-bottom">
-   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+ 		<div class="containter text-center">
+   			<p class="muted credit">
+   				<i class="fa fa-copyright"></i>
+   				Callisto ReInvented v 1.0
+   			</p>
+   			<p>
+   				Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+   			</p>
  		</div>
  	</div>
 </body>
