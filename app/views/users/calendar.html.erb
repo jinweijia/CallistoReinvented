@@ -1,3 +1,9 @@
+<style type="text/css">
+.jumbotron {
+	margin-top: -10px;
+}
+</style>
+
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -71,11 +77,25 @@
 			<span class="label label-info">Info</span>
 			<span class="label label-warning">Deadline</span>
 			<span class="label label-danger">Overdue</span>
-			<ol class="breadcrumb">
-			  <li><a href="#">Event List</a></li>
-			  
-			</ol>
-
+			<h3>
+			  	<i class="fa fa-volume-up"></i>
+			  	Event List
+			</h3> <small> Upcoming events hosted by all companies. </small>
+			<div class="panel-body">
+				<!-- Table -->
+				<table class="table table-hover" style="width:100%">
+					<tr>
+					    <th>Event Name</th>
+					    <th>Company</th> 
+					    <th>Event Date</th>
+					</tr>
+					<tr>
+					    <td>Google Workshop</td>
+					    <td>Google</td> 
+					    <td>October 23 2014</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 	<div id="footer">
