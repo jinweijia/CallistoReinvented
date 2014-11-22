@@ -8,11 +8,6 @@
             Callisto ReInvented
           </a>
         </div>
-      <ul class="nav navbar-nav">
-        <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-        <li><%= link_to "Event", '/users/calendar' %></li>
-        <li><%= link_to "Jobs", '/users/jobs' %></li>
-      </ul>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <!-- nav bar buttons go here if needed -->
@@ -25,7 +20,10 @@
   </div>
 
 <div class="container" style="width:500px;margin: 0 auto;">      
-    <h1>Sign up</h1>
+    <h1>
+        <i class="fa fa-sign-in"></i>
+        Sign up
+    </h1>
   
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
     <%= devise_error_messages! %>
