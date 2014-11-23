@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
         current_user.update(company_name: @company.company_name)
         respond_to do |format|
           format.json { render json: { errCode: err, company: @company } }
-          format.html { render template: "company/profile" }
+          format.html { render template: "users/dashboard" }
         end
         # redirect_to '/companies'
       else

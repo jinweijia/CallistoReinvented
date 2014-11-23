@@ -23,10 +23,10 @@ $(document).ready(function(){
 				dataType: 'json',
 				success: function(data) {
 				//console.log(data['count']);
-				if (data['errCode'] == SUCCESS) {
+				if (data['errCode'] == 1) {
 					$('#create').hide();
 					$('#created').show();
-					window.location.replace('/companies');
+					window.location.replace('/users/dashboard');
 				}
 			}
 		});
@@ -76,7 +76,7 @@ $(document).ready(function(){
 
 		<div id="footer">
 			<div class="navbar navbar-inner navbar-fixed-bottom">
-			<center><%= link_to 'List of companies', companies_path %></center>
+			<center><%= link_to 'List of companies', dashboard_path %></center>
 			</div>
 		</div>
 	</div>

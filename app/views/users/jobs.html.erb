@@ -1,3 +1,4 @@
+
 <style type="text/css">
 .jumbotron {
 	margin-top: -10px;
@@ -16,7 +17,7 @@
 	      	<ul class="nav navbar-nav">
 	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
 	        	<li><%= link_to "Event", events_path %></li>
-	        	<li><%= link_to "Jobs", '/users/jobs' %></li>
+	        	<li><%= link_to "Jobs", '/posting/all' %></li>
 	      	</ul>
 	      	<ul class="nav navbar-nav navbar-right">
 			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
@@ -49,7 +50,9 @@
 					        <div class="input-group">
 						      <input type="text" class="form-control" placeholder="Simple Search">
 						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">Go!</button>
+						        <div type="button" class="btn btn-primary">
+									<%= link_to "Go!" %>
+								</div>
 						      </span>
 						    </div>
 						    <p></p>
@@ -114,9 +117,18 @@
 	        						<th>Info</th>
 	        						<th>Skill</th>
 	        					</tr>
-	        					</thread>	
+	        					</thread>
 								<tbody>
 									
+									<% @jobposting.each do |post| %>
+						                <tr>
+						                  	<td><%= post.title %></td>
+						                  	<td><%= post.company_name %></td>
+						                  	<td><%= post.job_type %></td>
+						                  	<td><%= post.info %></td>
+						                  	<td><%= post.skills %></td>
+						                </tr>
+                  					<% end %>
 							    </tbody>
 							</table>
 
