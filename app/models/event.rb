@@ -43,7 +43,7 @@ ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
 			#event = Event.new(event_id: event_id, company_id: company, title: title, type: type, info: info, date: date)
 			event = Event.new(event_id: event_id, event_ownership: "", event_company: company_id, event_title: title, event_type: type, event_info: info, event_date: date)
 			event.save
-			return {errCode: SUCCESS}
+			return {errCode: SUCCESS, event_id: event_id}
 		end
 	end
 
