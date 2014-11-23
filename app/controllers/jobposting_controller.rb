@@ -88,8 +88,36 @@ class JobpostingController < ApplicationController
 
   def advanced_search
     query = params[:q]
-    ret = Jobposting.ranked_search(query)
+    ret = Jobposting.ranked_search(query, current_user.saved_tags)
     render json: ret
+  end
+
+  ## PUT /jobposting/click/:id
+  # This is called whenever a student clicks on a job posting. Updates the user history with posting tags.
+  def click
+
+    if current_user.type == "Student"    
+      posting_id = params[:id]
+      post = Jobposting.find_by_posting_id(posting_id)
+      if !post.blank?
+        saved_tags = current_user.saved_tags
+        tags = post.skills.split(", ") + post.tags.split(", ")
+        tags.each do |t|
+          if saved_tags.member?(t)
+            saved_tags[t] = saved_tags[t] + 1    # Increment counter by 1
+          else
+            saved_tags[t] = 1    # Add tag into history and initialize counter
+          end
+        end
+        current_user.update(saved_tags: saved_tags)
+        render json: {errCode: 1}
+      else
+        render json: {errCode: Jobposting::ERR_BAD_POSTING_ID}
+      end
+    else
+      render json: {errCode: ERR_BAD_PERMISSIONS}
+    end
+
   end
 
   ##

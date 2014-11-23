@@ -111,11 +111,11 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   def self.simple_search(query)
     # do a fuzzy over all fields that are string types and see if any match occurs
     q = "%"+query+"%"
-    posting = Jobposting.where("title like ? OR company_name like ? OR job_type like ? OR info like ?", q, q, q, q)
+    posting = Jobposting.where("title like ? OR company_name like ? OR job_type like ? OR info like ? OR skills like ? OR tags like ?", q, q, q, q, q, q)
     return {errCode: SUCCESS, value: posting}
   end
 
-  def self.ranked_search(query)
+  def self.ranked_search(query, user_tags={})
     
     # First narrow down the list of matching postings // use Jobposting.find_each for large database (supports batch retrieval)
     # q = "%"+query+"%"
@@ -135,7 +135,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
       query.each do |keyword|        
         # First determine if this post is relevant, if not already done
-        if score < 0        
+        # if score < 0        
           search_scope_simple.each do |s|
             if s.include?(keyword)
               # This posting is relevant, break out of for loop
@@ -143,11 +143,14 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
               break
             end
           end
-        end
+        # end
         # Check if keyword matches any tags
         if skills.include?(keyword) or tags.include?(keyword)           
           tag_matches += 1
-        end        
+        end
+        if user_tags.member?(keyword)
+          tag_matches += user_tags[keyword]
+        end      
       end
       # If posting is relevant, run algorithm to compute weight
       if score == 0

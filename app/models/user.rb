@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   TYPES = ['Student', 'Employer']
   serialize :saved_tags, Hash
+  serialize :bookmarks, Array
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation
 	self.inheritance_column = nil

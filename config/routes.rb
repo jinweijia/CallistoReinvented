@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
   put '/jobposting/posting_id/:id' => 'jobposting#update'
+  put '/jobposting/click/:id' => 'jobposting#click', :as => :click
 
   post '/events/createEvent' => 'events#create_event'
   get '/events/:id' => 'events#get_event'
