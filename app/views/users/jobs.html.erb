@@ -1,8 +1,34 @@
+
 <style type="text/css">
 .jumbotron {
 	margin-top: -10px;
 }
 </style>
+<script type="text/javascript">
+var SUCCESS = 1
+// Student user clicks on a jobposting
+$(document).ready(function(){
+    $('#createButton').click(function(e){
+        $('#message').hide();
+        e.preventDefault();
+        var id = $('#id').val()
+        //console.log(username);
+        $.ajax({
+            type:        'PUT',
+            url:         '/posting/click/:id',
+            data:        JSON.stringify({title: title, job_type: job_type, skills: skills, tags: tags, info: description, url: url}),
+            contentType: 'application/json',
+            dataType:    'json',
+            success:     function(data) {
+                //console.log(data['count']);
+                if (data['errCode'] == SUCCESS) {
+					$('#created').show();
+                }
+            }
+        });
+    });
+});
+</script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -16,7 +42,7 @@
 	      	<ul class="nav navbar-nav">
 	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
 	        	<li><%= link_to "Event", events_path %></li>
-	        	<li><%= link_to "Jobs", '/users/jobs' %></li>
+	        	<li><%= link_to "Jobs", '/posting/all' %></li>
 	      	</ul>
 	      	<ul class="nav navbar-nav navbar-right">
 			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
@@ -34,117 +60,70 @@
 				<div class="col-md-8 col-sm-8 text-center">
 					<h1>
 						<i class="fa fa-search"></i>
-							Job Search
+						Job Search
 					</h1>
 					<h5>
 						<i class="fa fa-bolt"></i>
 						Simple and Easy Job Search!
 					</h5>
 				</div>
-				<div class="col-md-4 col-sm-4">
-					<!-- Berkeley Icon goes here -->
-	    			<div class="panel panel-default">
-				  		<div class="panel-heading">
-							<small>Simple search keywords</small>
-					        <div class="input-group">
-						      <input type="text" class="form-control" placeholder="Simple Search">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">Go!</button>
-						      </span>
-						    </div>
-						    <p></p>
-						    <small>Advanced search keywords</small>
-					        <div class="input-group">
-						      <input type="text" class="form-control" placeholder="Advanced Search">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">Go!</button>
-						      </span>
-					    	</div>
-				  		</div>
-					</div>
-    			</div>
 			</div>	
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-    		<div class="col-xs-3">
-    			<br></br>
-    			<div class="panel panel-default">
-				  <div class="panel-heading">
+	<% if current_user.type == "Employer" -%>
+		<h3>
+        <i class="fa fa-plus-circle"></i>
+          	<%= link_to "Create", create_post_path %>
+        </h3>
+	<% end %>
+	<!-- Berkeley Icon goes here -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<small>Simple search keywords</small>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Simple Search">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Go!</button>
+				</span>
+			</div>
+			<p></p>
+			<small>Advanced search keywords</small>
+			<h3>
+				<i class="fa fa-search"></i>
+			</h3>
+		</div>
+	</div>
+	<table class="table table-striped">
+	    <!-- On rows -->
+	    <thread>
+	        <tr>
+	        	<th>Title</th>
+	        	<th>Company</th>
+	        	<th>Type</th>
+	        	<th>Info</th>
+	        	<th>Skill</th>
+	        </tr>
+	    </thread>	
+		<tbody>
+			<% @jobposting.each do |post| %>
+			<tr>
+				<td><%= post.title %></td>
+				<td><%= post.company_name %></td>
+				<td><%= post.job_type %></td>
+				<td><%= post.info %></td>
+				<td><%= post.skills %></td>
+			</tr>
+	        <% end %>
+		</tbody>
+	</table>
 
-				    <h2 class="panel-title">Search</h2>
-				  	</div>
-				  	<div class="panel-body">
-						<small>Simple search keywords</small>
-				        <div class="input-group">
-					      <input type="text" class="form-control" placeholder="Simple Search">
-					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					      </span>
-					    </div>
-					    <p></p>
-					    <small>Advanced search keywords</small>
-				        <div class="input-group">
-					      <input type="text" class="form-control" placeholder="Advanced Search">
-					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					      </span>
-					    </div>
-				  </div>
-				</div>	
-				<% if current_user.type == "Employer" -%>
-				<div type="button" class="btn btn-primary">
-					<%= link_to "Create", create_post_path %>
-				</div>
-				<% end %>
-    		</div>
-    		<div class="col-xs-9">
-      			<div class="row">
-        			<div class="col-md-10">
-        				<h1 class="page-header">Result</h1>
-        				<div class="row">
-	        				<table class="table table-striped">
-	        					<!-- On rows -->
-	        					<thread>
-	        					<tr>
-	        						<th>Title</th>
-	        						<th>Company</th>
-	        						<th>Type</th>
-	        						<th>Info</th>
-	        						<th>Skill</th>
-	        					</tr>
-	        					</thread>	
-								<tbody>
-									<% @jobposting.each do |posting| %>
-						            <tr>
-						              <td><%= posting.title %></td>
-						              <td><%= posting.company_name %></td>
-						              <td><%= posting.type %></td>
-						              <td><%= posting.info %></td>
-						              <td><%= posting.skill %></td>
-						              <td><%= link_to 'Show', company %></td>
-						              <td><%= link_to 'Edit', edit_company_path(company) %></td>
-						              <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-						            </tr>
-						          <% end %>
-							    </tbody>
-							</table>
-
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-						</div>
-        			</div>
-        		</div>
-      		</div>
-  		</div>
+	<ul class="pagination">
+		<li><a href="#">&laquo;</a></li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">&raquo;</a></li>
+	</ul>
 	</div>
 	<div id="footer">
  		<div class="navbar navbar-inner  navbar-fixed-bottom">

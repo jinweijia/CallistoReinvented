@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   post '/posting/add'           => 'jobposting#add'
   post '/company/add'           => 'companies#add', :as => :add
-  post '/company/create'           => 'companies#add'
+  post '/company/create'        => 'companies#add'
   post '/TESTAPI/resetFixture'  => 'companies#resetFixture'
 
   put '/jobposting/posting_id/:id' => 'jobposting#update'
@@ -43,10 +43,10 @@ Rails.application.routes.draw do
   put '/jobposting/bookmark/:id' => 'jobposting#bookmark', :as => :bookmark
   get '/jobposting/bookmarks' => 'jobposting#retrieve_bookmarks', :as => :retrieve_bookmarks
 
-  post '/events/createEvent' => 'events#create_event'
-  get '/events/:id' => 'events#get_event'
-  post '/events/editEvent/:id' => 'events#edit_event'
-  delete '/events/:id' => 'events#delete_event'
+  post '/events/createEvent'       => 'events#create_event'
+  get '/events/getEvent/:id'       => 'events#get_event'
+  post '/events/editEvent/:id'     => 'events#edit_event'
+  delete '/events/deleteEvent/:id' => 'events#delete_event'
 
   # debugging routes
   get '/profile/profile' => 'profile#index'
