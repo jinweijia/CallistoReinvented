@@ -70,55 +70,24 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-    		<div class="col-xs-3">
-    			<br></br>
-    			<div class="panel panel-default">
-				  <div class="panel-heading">
-
-				    <h2 class="panel-title">Search</h2>
-				  	</div>
-				  	<div class="panel-body">
-						<small>Simple search keywords</small>
-				        <div class="input-group">
-					      <input type="text" class="form-control" placeholder="Simple Search">
-					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					      </span>
-					    </div>
-					    <p></p>
-					    <small>Advanced search keywords</small>
-				        <div class="input-group">
-					      <input type="text" class="form-control" placeholder="Advanced Search">
-					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button">Go!</button>
-					      </span>
-					    </div>
-				  </div>
-				</div>	
-				<% if current_user.type == "Employer" -%>
-				<div type="button" class="btn btn-primary">
-					<%= link_to "Create", create_post_path %>
-				</div>
-				<% end %>
-    		</div>
-    		<div class="col-xs-9">
-      			<div class="row">
-        			<div class="col-md-10">
-        				<h1 class="page-header">Result</h1>
-        				<div class="row">
-	        				<table class="table table-striped">
-	        					<!-- On rows -->
-	        					<thread>
-	        					<tr>
-	        						<th>Title</th>
-	        						<th>Company</th>
-	        						<th>Type</th>
-	        						<th>Info</th>
-	        						<th>Skill</th>
-	        					</tr>
-	        					</thread>
-								<tbody>
+	<% if current_user.type == "Employer" -%>
+		<h3>
+        <i class="fa fa-plus-circle"></i>
+          	<%= link_to "Create", create_post_path %>
+        </h3>
+	<% end %>
+	<table class="table table-striped">
+	    <!-- On rows -->
+	    <thread>
+	        <tr>
+	        	<th>Title</th>
+	        	<th>Company</th>
+	        	<th>Type</th>
+	        	<th>Info</th>
+	        	<th>Skill</th>
+	        </tr>
+	    </thread>	
+	<tbody>
 									
 									<% @jobposting.each do |post| %>
 						                <tr>
@@ -130,22 +99,14 @@
 						                </tr>
                   					<% end %>
 							    </tbody>
-							</table>
+	</table>
 
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-						</div>
-        			</div>
-        		</div>
-      		</div>
-  		</div>
+	<ul class="pagination">
+		<li><a href="#">&laquo;</a></li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">&raquo;</a></li>
+	</ul>
 	</div>
 	<div id="footer">
  		<div class="navbar navbar-inner  navbar-fixed-bottom">
