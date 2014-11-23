@@ -66,7 +66,7 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
-  # Test show method
+  # Test Companies#show method
   describe "GET show" do
     it "assigns the requested company as @company" do
       company = Company.create! valid_attributes
@@ -181,7 +181,7 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
-
+  # Test Companies#update method
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
@@ -225,6 +225,7 @@ RSpec.describe CompaniesController, :type => :controller do
     end
   end
 
+  # Test Companies#destroy method
   describe "DELETE destroy" do
     it "destroys the requested company" do
       company = Company.create! valid_attributes
