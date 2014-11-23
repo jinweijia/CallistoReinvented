@@ -69,7 +69,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    respond_with(@event)
   end
 
   def edit
