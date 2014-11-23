@@ -82,7 +82,7 @@ class JobpostingController < ApplicationController
     company_id = params[:id]
     ret = Jobposting.show_by_company_id(company_id)
     @jobposting = ret[:value]
-    render template: "users/post"
+    render template: "users/jobs"
     # render json: ret
   end
 
@@ -90,8 +90,8 @@ class JobpostingController < ApplicationController
     query = params[:q]
     ret = Jobposting.simple_search(query)
     @jobposting = ret[:value]
-    render template: "users/post"
-    # render json: ret
+    render template: "users/jobs"
+    #render json: ret
     # ret[:value]. 
   end
 
@@ -99,7 +99,7 @@ class JobpostingController < ApplicationController
     query = params[:q]
     ret = Jobposting.ranked_search(query, current_user.saved_tags)
     @jobposting = ret[:value]
-    render template: "users/post"
+    render template: "users/jobs"
     # render json: ret
   end
 
