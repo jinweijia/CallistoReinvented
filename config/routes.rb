@@ -40,7 +40,8 @@ Rails.application.routes.draw do
 
   put '/jobposting/posting_id/:id' => 'jobposting#update'
   put '/jobposting/click/:id' => 'jobposting#click', :as => :click
-  put '/jobposting/bookmark/:id' => 'jobposting#bookmark', as: => :bookmark
+  put '/jobposting/bookmark/:id' => 'jobposting#bookmark', :as => :bookmark
+  get '/jobposting/bookmarks' => 'jobposting#retrieve_bookmarks', :as => :retrieve_bookmarks
 
   post '/events/createEvent' => 'events#create_event'
   get '/events/:id' => 'events#get_event'
