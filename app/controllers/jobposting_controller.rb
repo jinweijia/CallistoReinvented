@@ -134,6 +134,7 @@ class JobpostingController < ApplicationController
   ## PUT /jobposting/bookmark/:id
   # This is called whenever a student bookmarks a job posting. Updates the user bookmarks with posting id.
   def bookmark
+
     posting_id = params[:id]
     if Jobposting.find_by_posting_id(posting_id).blank?
       err = Jobposting::ERR_BAD_POSTING_ID
@@ -142,13 +143,24 @@ class JobpostingController < ApplicationController
       current_user.update(bookmarks: bookmarks)
       err = SUCCESS
     end
-    render json: { errCode: err }
+    respond_to do |format|
+      format.json { render json: { errCode: err } }
+      format.html { render template: "users/post" }   # not sure which template to use, feel free to edit
+    end
+    
   end
 
   ## GET /jobposting/bookmarks
   # This is for retrieving the current user's bookmarks.
   # Output: Array of job postings
   def retrieve_bookmarks
+
+    postings = current_user.bookmarks
+    @jobposting = Jobposting.where("posting_id = ?", postings)   # note if no bookmarks, will return nil
+    respond_to do |format|
+      format.json { render json: { errCode: SUCCESS, value: @jobposting } }
+      format.html { render template: "users/dashboard" }   # not sure which template to use, feel free to edit
+    end
 
   end
 
