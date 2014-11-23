@@ -22,6 +22,7 @@ class JobpostingController < ApplicationController
     return ret
   end
 
+
   def add
 
     title      = params[:title]
