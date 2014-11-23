@@ -56,16 +56,18 @@ $(document).ready(function(){
 	    </div>
   	</div>
   	<div class="container" style="width:500px;margin: 0 auto;">  
-		<h1>New company</h1>
+		<h1>
+			<i class="fa fa-plus-square-o"></i>
+			New company
+		</h1>
 		<div id="create">
 			<form>
-				<h4 style="margin-left:20px">Company Name</h4>
-				<input style="margin-left:20px" type="text" id="company_name">
-				<h4 style="margin-left:20px">Company Info</h4>
-				<textarea style="margin-left:20px; width:500px" id="company_info"></textarea>
-				<br></br>
-				<div style="margin-left:20px", id="createButton"> <%= button_to "Create company", companies_path, class: "btn btn-primary"%>
-				</div>
+				<h5>Company Name <small> insert a name of a company </small></h5>
+				<input class="form-control" type="text" id="company_name">
+				<h5>Company Info <small> insert a brief description of a company </small></h5>
+				<textarea class="form-control" id="company_info"></textarea>
+				<p></p>
+				<%= button_to "Create company", companies_path, class: "btn btn-primary"%>
 			</form>
 		</div>
 

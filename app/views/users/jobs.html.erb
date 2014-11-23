@@ -3,6 +3,31 @@
 	margin-top: -10px;
 }
 </style>
+<script type="text/javascript">
+var SUCCESS = 1
+// Student user clicks on a jobposting
+$(document).ready(function(){
+    $('#createButton').click(function(e){
+        $('#message').hide();
+        e.preventDefault();
+        var id = $('#id').val()
+        //console.log(username);
+        $.ajax({
+            type:        'PUT',
+            url:         '/posting/click/:id',
+            data:        JSON.stringify({title: title, job_type: job_type, skills: skills, tags: tags, info: description, url: url}),
+            contentType: 'application/json',
+            dataType:    'json',
+            success:     function(data) {
+                //console.log(data['count']);
+                if (data['errCode'] == SUCCESS) {
+					$('#created').show();
+                }
+            }
+        });
+    });
+});
+</script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -34,35 +59,13 @@
 				<div class="col-md-8 col-sm-8 text-center">
 					<h1>
 						<i class="fa fa-search"></i>
-							Job Search
+						Job Search
 					</h1>
 					<h5>
 						<i class="fa fa-bolt"></i>
 						Simple and Easy Job Search!
 					</h5>
 				</div>
-				<div class="col-md-4 col-sm-4">
-					<!-- Berkeley Icon goes here -->
-	    			<div class="panel panel-default">
-				  		<div class="panel-heading">
-							<small>Simple search keywords</small>
-					        <div class="input-group">
-						      <input type="text" class="form-control" placeholder="Simple Search">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">Go!</button>
-						      </span>
-						    </div>
-						    <p></p>
-						    <small>Advanced search keywords</small>
-					        <div class="input-group">
-						      <input type="text" class="form-control" placeholder="Advanced Search">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">Go!</button>
-						      </span>
-					    	</div>
-				  		</div>
-					</div>
-    			</div>
 			</div>	
 		</div>
 	</div>
@@ -73,6 +76,23 @@
           	<%= link_to "Create", create_post_path %>
         </h3>
 	<% end %>
+	<!-- Berkeley Icon goes here -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<small>Simple search keywords</small>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Simple Search">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Go!</button>
+				</span>
+			</div>
+			<p></p>
+			<small>Advanced search keywords</small>
+			<h3>
+				<i class="fa fa-search"></i>
+			</h3>
+		</div>
+	</div>
 	<table class="table table-striped">
 	    <!-- On rows -->
 	    <thread>

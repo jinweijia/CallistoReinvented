@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div style="margin-left:20px" class="form-group">
-    <%= f.label :company_name %><br>
-    <%= f.text_field :company_name %>
+  <div class="form-group">
+    <h5><%= f.label :company_name %><small> insert a name of a company. </small></h5>
+    <%= f.text_field :company_name, class: "form-control",autofocus: true %>
   </div>
-  <div style="margin-left:20px" class="form-group">
-    <%= f.label :company_info %><br>
-    <%= f.text_area :company_info, style: "width:500px; height:70px;" %>
+  <div class="form-group">
+    <h5><%= f.label :company_info %><small> insert a brief description of a company. </small></h5>
+    <%= f.text_area :company_info, class: "form-control",autofocus: true %>
   </div>
   <div style="margin-left:20px" >
     <%= f.submit "Done", class: "btn btn-primary" %>
