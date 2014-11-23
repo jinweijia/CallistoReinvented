@@ -4,6 +4,7 @@ class JobpostingController < ApplicationController
   skip_before_filter :verify_authenticity_token
   protect_from_forgery :except => :add
 
+  SUCCESS = 1
   ERR_BAD_PERMISSIONS = -6
 
   # For internal use only
@@ -118,6 +119,20 @@ class JobpostingController < ApplicationController
       render json: {errCode: ERR_BAD_PERMISSIONS}
     end
 
+  end
+
+  ## PUT /jobposting/bookmark/:id
+  # This is called whenever a student bookmarks a job posting. Updates the user bookmarks with posting id.
+  def bookmark
+    posting_id = params[:id]
+    if Jobposting.find_by_posting_id(posting_id).blank?
+      err = Jobposting::ERR_BAD_POSTING_ID
+    else
+      bookmarks = current_user.bookmarks + [posting_id]
+      current_user.update(bookmarks: bookmarks)
+      err = SUCCESS
+    end
+    render json: { errCode: err }
   end
 
   ##
