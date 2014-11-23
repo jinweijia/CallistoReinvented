@@ -27,6 +27,7 @@ RSpec.describe JobpostingController, :type => :controller do
     end
   end
 
+  # Test jobposting#add
   describe "POST add" do
     describe "with valid params" do
       it "creates a new Job Posting" do
@@ -43,7 +44,7 @@ RSpec.describe JobpostingController, :type => :controller do
       end
     end
 
-    describe "with valid params" do
+    describe "with invalid params" do
       it "creates a new Job Posting" do
         @request.env["devise.mapping"] = Devise.mappings[:user]    
         user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
@@ -56,6 +57,55 @@ RSpec.describe JobpostingController, :type => :controller do
         }.not_to change(Jobposting, :count)
         sign_out user
       end
+    end
+  end
+
+  # Test jobposting#click
+  describe "PUT click" do
+    describe "with valid params" do
+
+      it "updates user's saved_tags" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        Company.add("Test", "")
+        user.update(company_name: "Test")
+        Jobposting.add(Company.last.id, "test_title", "internship", "test_info", "test_skill", "test_tag")
+
+        put :click, { id: Jobposting.last.posting_id }, valid_session
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq 1
+        expect(user.saved_tags["test_skill"]).to eq 1
+      end
+
+    end
+
+    describe "with invalid params" do
+
+      it "should output correct error when given wrong posting id" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        Company.add("Test", "")
+        user.update(company_name: "Test")
+
+        put :click, { id: 9999 }, valid_session
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq Jobposting::ERR_BAD_POSTING_ID
+      end
+
+      it "should output correct error when user is Employer" do
+        @request.env["devise.mapping"] = Devise.mappings[:user]    
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+        sign_in user
+        Company.add("Test", "")
+        user.update(company_name: "Test")
+
+        put :click, { id: 9999 }, valid_session
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq JobpostingController::ERR_BAD_PERMISSIONS
+      end
+
     end
   end
 

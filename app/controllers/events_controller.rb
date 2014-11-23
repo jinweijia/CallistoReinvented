@@ -44,15 +44,15 @@ class EventsController < ApplicationController
 
   #TODO: render json
   def delete_event
-    event_id = params[:event_id]
+    event_id = params[:id]
     result = Event.delete_event(event_id)
     render json: result
   end
 
   #TODO: render json
   def get_event
-    event_id = params[:event_id]
-    result = Event.get_event[event_id]
+    event_id = params[:id]
+    result = Event.get_event(event_id)
     render json: result
   end
 
