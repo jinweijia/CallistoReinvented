@@ -145,6 +145,13 @@ class JobpostingController < ApplicationController
     render json: { errCode: err }
   end
 
+  ## GET /jobposting/bookmarks
+  # This is for retrieving the current user's bookmarks.
+  # Output: Array of job postings
+  def retrieve_bookmarks
+
+  end
+
   ##
   # delete method validates whether current user has permissions to delete company before calling
   # Jobposting.remove().
