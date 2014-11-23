@@ -64,7 +64,9 @@ class JobpostingController < ApplicationController
 
   def show_all
     ret = Jobposting.show_all()
-    render json: ret
+    # render json: ret
+    @jobposting = ret[:value]
+    render template: "users/jobs"
   end
 
   def show_by_posting_id
@@ -79,19 +81,26 @@ class JobpostingController < ApplicationController
   def show_by_company_id
     company_id = params[:id]
     ret = Jobposting.show_by_company_id(company_id)
-    render json: ret
+    @jobposting = ret[:value]
+    render template: "users/post"
+    # render json: ret
   end
 
   def search
     query = params[:q]
     ret = Jobposting.simple_search(query)
-    render json: ret
+    @jobposting = ret[:value]
+    render template: "users/post"
+    # render json: ret
+    # ret[:value]. 
   end
 
   def advanced_search
     query = params[:q]
     ret = Jobposting.ranked_search(query, current_user.saved_tags)
-    render json: ret
+    @jobposting = ret[:value]
+    render template: "users/post"
+    # render json: ret
   end
 
   ## PUT /jobposting/click/:id
