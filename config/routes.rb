@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get '/posting/posting_id/:id' => 'jobposting#show_by_posting_id'
   get '/posting/company_id/:id' => 'jobposting#show_by_company_id'
   get '/posting/search'         => 'jobposting#search', :as => :search
+  get '/posting/advanced_search' => 'jobposting#advanced_search', :as => :advanced_search
 
   post '/posting/add'           => 'jobposting#add'
   post '/company/add'           => 'companies#add', :as => :add
