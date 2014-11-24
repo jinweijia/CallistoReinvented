@@ -34,16 +34,26 @@
 				<div class="col-md-8 col-sm-8 text-center">
 					<h1>
 						<i class="fa fa-newspaper-o"></i>
-							Dashboard
+							<% if current_user.type =="Student" -%>
+								<%= current_user.email %>
+							<% end %>
+							<% if current_user.type =="Employer" -%>
+								<%= current_user.company_name %>
+							<% end %>
 					</h1>
 					<h5>
 						<i class="fa fa-bell-o"></i>
 							Keep Tracking on Deadlines and Upcoming Events
 					</h5>
 				</div>	
+
 			</div>
 		</div>
-	</div>  	
+		<h3 class='pull-right'>
+			<i class='icon-pencil'></i><%= link_to "Edit Profile", edit_user_registration_path %>
+		</h3>	
+		<br></br>
+	</div>  
 	<div class="container">
 			<div class="panel panel-default">
 				<!-- Default panel contents -->

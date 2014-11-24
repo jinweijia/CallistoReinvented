@@ -12,8 +12,13 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.type == 'Student'
       profile_index_path
-    else #if current_user.company_name == ''
-      new_company_path
+    end
+    if current_user.type == 'Employer'
+      if current_user.company_name == ''
+        new_company_path
+      else
+        company_path
+      end
     # else
     #   company_path+"/"+current_user.company_name
     end

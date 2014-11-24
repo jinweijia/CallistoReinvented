@@ -18,7 +18,7 @@
             <!-- nav bar buttons go here if needed -->
           </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Sign In",  new_user_session_path %></li>
+            <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
         </ul>
       </div>
     </div>
