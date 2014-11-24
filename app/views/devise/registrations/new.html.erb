@@ -1,3 +1,14 @@
+<style type="text/css">
+#footer {
+    background-color: #222222;
+    position: relative;
+    height: 251px;
+    border-top: 1px solid #797777;
+    color: #797777;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    padding-top: 40px;
+}
+</style>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -19,52 +30,60 @@
     </div>
   </div>
 
-<div class="container" style="width:500px;margin: 0 auto;">      
-    <h1>
-        <i class="fa fa-sign-in"></i>
-        Sign up
-    </h1>
-  
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-    <%= devise_error_messages! %>
+    <div class="container" style="width:500px;margin: 0 auto;">      
+        <h1>
+            <i class="fa fa-sign-in"></i>
+            Sign up
+        </h1>
+      
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+        <%= devise_error_messages! %>
 
-    <div class="form-group">
-        <h5><%= f.label :type %><small> Choose a user type</small></h5>
-        <%= f.select :type, User::TYPES %>
+        <div class="form-group">
+            <h5><%= f.label :type %><small> Choose a user type</small></h5>
+            <%= f.select :type, User::TYPES %>
+        </div>
+
+        <div class="form-group">
+            <h5><%= f.label :email %></h5>
+            <%= f.text_field :email, class: "form-control",autofocus: true %>
+        </div>
+
+        <div class="form-group">
+            <h5><%= f.label :password %><small> Must be great than 0 and less than 8</small></h5>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <h5><%= f.label :skill %><small> If you are a Student | Separated by commas</small></h5>
+            <%= f.text_area :skill, autocomplete: "off", class: "form-control" %>
+        </div>
+
+       <div class="form-group">
+            <h5><%= f.label :company_name %><small> If you are an Employer</small></h5>
+            <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+                <%= f.submit "Sign up", class: "btn btn-primary" %>
+        </div>
+
+        <% end %>
     </div>
-
-    <div class="form-group">
-        <h5><%= f.label :email %></h5>
-        <%= f.text_field :email, class: "form-control",autofocus: true %>
+    <div id="footer" class="hidden-print">
+        <div class="containter text-center">
+            <p class="muted credit">
+                <i class="fa fa-copyright"></i>
+                Callisto ReInvented v 1.0
+            </p>
+            <p>
+                Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+            </p>
+        </div>
     </div>
-
-    <div class="form-group">
-        <h5><%= f.label :password %><small> Must be great than 0 and less than 8</small></h5>
-        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-        <h5><%= f.label :skill %><small> If you are a Student | Separated by commas</small></h5>
-        <%= f.text_area :skill, autocomplete: "off", class: "form-control" %>
-    </div>
-
-   <div class="form-group">
-        <h5><%= f.label :company_name %><small> If you are an Employer</small></h5>
-        <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-            <%= f.submit "Sign up", class: "btn btn-primary" %>
-    </div>
-
-    <% end %>
-
-    <footer class="footer">
-        <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-    </footer>
 </body>
