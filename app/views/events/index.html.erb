@@ -94,7 +94,6 @@
               <th>Title</th>
               <th>Company</th> 
               <th>Type</th>
-              <th>Info</th>
               <th>Date</th>
           </tr></thread>
           <tbody>
@@ -105,7 +104,6 @@
                   <!--<td><%= event.event_title %></td>-->
                   <td><%= event.event_company %></td>
                   <td><%= event.event_type %></td>
-                  <td><%= event.event_info %></td>
                   <td><%= event.event_date %></td>
                   <% if current_user.type == "Employer" %>
                     <td><%= link_to 'Edit', edit_event_path(event) %></td>
