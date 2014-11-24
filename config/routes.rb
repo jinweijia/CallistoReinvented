@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get '/events/getEvent/:id'       => 'events#get_event'
   post '/events/editEvent/:id'     => 'events#edit_event'
   delete '/events/deleteEvent/:id' => 'events#delete_event'
+  # get '/events/search'         => 'events#search', :as => :event_search
 
   # debugging routes
   get '/profile/profile' => 'profile#index'

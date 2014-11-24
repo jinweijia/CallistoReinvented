@@ -12,10 +12,11 @@
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
 	padding-top: 40px;
 }
-.search-box, .search-button {
+#search-box, #search-button {
 	float: left;
 	display: inline-block;
 }
+
 </style>
 <script type="text/javascript">
 var SUCCESS = 1
@@ -101,7 +102,9 @@ $(document).ready(function(){
 					<%= text_field_tag :q, params[:search], placeholder: "Simple Search", class: "form-control" %>
 					</div>
 					<div id="search-button">
-				  		<%= submit_tag "Go!", class:"btn btn-default" %>	
+						<span class="input-group-btn">
+				  			<%= submit_tag "Go!", class:"btn btn-default" %>	
+				  		</span>
 					</div>
 				<% end %>
 			</div>

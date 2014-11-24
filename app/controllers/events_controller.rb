@@ -56,9 +56,6 @@ class EventsController < ApplicationController
     render json: result
   end
 
-
-
-
   def index
     @events = Event.all
   end

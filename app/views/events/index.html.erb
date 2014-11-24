@@ -68,25 +68,21 @@
               <span class="input-group-btn">
                   <button class="btn btn-default" type="button">Go!</button>
                </span>
-          </div><!-- /input-group -->
+          </div>
         </div>
       </div>
       <!-- Only allow an employer to create a job post -->  
       <div id="create_post">
-        <h3>
-          <i class="fa fa-plus-circle"></i>
-          <%= link_to "Create", new_event_path %>
-        </h3>
+        <% if current_user.type == "Employer" -%>
+          <h3>
+            <i class="fa fa-plus-circle"></i>
+            <%= link_to "Create", new_event_path %>
+          </h3>
+        <% end %>
       </div>
     </div>
 
     <div class="col-xs-9">  
-      <span class="label label-default">Today</span>
-      <span class="label label-primary">Primary</span>
-      <span class="label label-success">RSVP'ed</span>
-      <span class="label label-info">Info</span>
-      <span class="label label-warning">Deadline</span>
-      <span class="label label-danger">Overdue</span>
       <h3>
           <i class="fa fa-volume-up"></i>
           Event List
