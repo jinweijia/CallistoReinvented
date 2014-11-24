@@ -53,7 +53,8 @@ class EventsController < ApplicationController
   def get_event
     event_id = params[:id]
     result = Event.get_event(event_id)
-    render json: result
+    #render json: result
+    render template: "events/post"
   end
 
   def index
@@ -61,7 +62,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    respond_with(@event)
+    #respond_with(@event)
   end
 
   def new
@@ -74,7 +75,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.save
-    respond_with(@event)
+    render template: "events/show"
   end
 
   def update

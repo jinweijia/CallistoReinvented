@@ -100,7 +100,9 @@
           <tbody>
               <% @events.each do |event| %>
                 <tr>
-                  <td><%= event.event_title %></td>
+                  <% String id = "/events/"+event.id.to_s %>
+                  <td><a href='<%=id%>'><%= event.event_title %></a></td>
+                  <!--<td><%= event.event_title %></td>-->
                   <td><%= event.event_company %></td>
                   <td><%= event.event_type %></td>
                   <td><%= event.event_info %></td>
