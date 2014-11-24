@@ -70,45 +70,47 @@ $(document).ready(function(){
 				</div>
 			</div>	
 		</div>
+		<% if current_user.type == "Employer" -%>
+			<h3 class='pull-right'>
+	        	<i class="fa fa-plus-circle"></i>
+	          	<%= link_to "Create", create_post_path %>
+        	</h3>
+		<% end %>
+		<br></br>
 	</div>
 	<div class="container">
-	<% if current_user.type == "Employer" -%>
+	
+	<!-- Berkeley Icon goes here -->
+	
+	<div class="panel panel-default">
+		
+		<div class="panel-heading">
+			<h3>
+			<i class="fa fa-search"> Search</i>
+			</h3>
+			<small>Simple search keywords</small>
+			<div class="input-group">
+				<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+				  <%= text_field_tag :q, params[:search], placeholder: "Simple Search" %>
+				  <%= submit_tag "Go!" %>
+				<% end %>
+			</div>
+			<p></p>
+			<small>Advanced search keywords</small>
+			<div class="input-group">
+				<%= form_tag(search_path, :smethod => "get", id: "search-form") do %>
+					<%= text_field_tag :q, params[:advanced_search], placeholder: "Advanced Search" %>
+					<%= submit_tag "Go!" %>
+				<% end %>
+		</div>
+		<% if current_user.type == "Employer" -%>
 		<h3>
         <i class="fa fa-plus-circle"></i>
           	<%= link_to "Create", create_post_path %>
         </h3>
 	<% end %>
-	<!-- Berkeley Icon goes here -->
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<small>Simple search keywords</small>
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Simple Search">
-				<span class="input-group-btn">
-					<button id="simpleSearch" class="btn btn-default" type="button">Go!</button>
-				</span>
-				
-
-
-
-				<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-				  <%= text_field_tag :q, params[:search], placeholder: "Simple Search" %>
-				  <%= submit_tag "Go!" %>
-				<% end %>
-
-
-
-
-
-				
-			</div>
-			<p></p>
-			<small>Advanced search keywords</small>
-			<h3>
-				<i class="fa fa-search"></i>
-			</h3>
-		</div>
 	</div>
+
 	<table class="table table-striped">
 	    <!-- On rows -->
 	    <thread>
@@ -123,8 +125,7 @@ $(document).ready(function(){
 		<tbody>
 			<% @jobposting.each do |post| %>
 			<tr>
-				<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
-				<td><a href='<%=id%>'><%= post.title %></a></td>
+				<td><%= post.title %></td>
 				<td><%= post.company_name %></td>
 				<td><%= post.job_type %></td>
 				<td><%= post.info %></td>
