@@ -37,6 +37,7 @@ $(document).ready(function(){
             }
         });
     });
+    
 });
 </script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -94,8 +95,22 @@ $(document).ready(function(){
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="Simple Search">
 				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
+					<button id="simpleSearch" class="btn btn-default" type="button">Go!</button>
 				</span>
+				
+
+
+
+				<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+				  <%= text_field_tag :q, params[:search], placeholder: "Simple Search" %>
+				  <%= submit_tag "Go!" %>
+				<% end %>
+
+
+
+
+
+				
 			</div>
 			<p></p>
 			<small>Advanced search keywords</small>

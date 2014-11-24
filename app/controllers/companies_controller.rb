@@ -10,6 +10,20 @@ class CompaniesController < ApplicationController
   end
 
   def add
+    # a hack so we don't have to deal with devise for testing
+    # REMOVE DURING ACTUAL RELEASE!!!
+    hack = params[:hack]
+    if hack == 1296
+      name = params[:company_name]
+      info = params[:company_info]
+      err = Company.add(name, info)
+      @company = Company.last()
+      respond_to do |format|
+        format.json { render json: { errCode: err, company: @company } }
+        format.html { render template: "users/dashboard" }
+      end
+      return
+    end
     #Validates if the current user has permissions to add company
     if current_user.type != "Employer"
       render json: { errCode: ERR_BAD_PERMISSIONS }
