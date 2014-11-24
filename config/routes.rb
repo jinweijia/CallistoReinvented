@@ -44,10 +44,12 @@ Rails.application.routes.draw do
   put '/jobposting/bookmark/:id' => 'jobposting#bookmark', :as => :bookmark
   get '/jobposting/bookmarks' => 'jobposting#retrieve_bookmarks', :as => :retrieve_bookmarks
 
-  post '/events/createEvent'       => 'events#create_event'
+  post '/events/createEvent'       => 'events#create_event', :as => :event_add
   get '/events/getEvent/:id'       => 'events#get_event'
   post '/events/editEvent/:id'     => 'events#edit_event'
   delete '/events/deleteEvent/:id' => 'events#delete_event'
+  get '/events/:id'            => 'events#show'
+  # get '/events/search'         => 'events#search', :as => :event_search
 
   # debugging routes
   get '/profile/profile' => 'profile#index'

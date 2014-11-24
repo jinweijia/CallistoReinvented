@@ -2,6 +2,16 @@
 .jumbotron {
 	margin-top: -10px;
 }
+
+#footer {
+	background-color: #222222;
+	position: relative;
+	height: 251px;
+	border-top: 1px solid #797777;
+	color: #797777;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	padding-top: 40px;
+}
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -55,7 +65,7 @@ $(document).ready(function(){
 	      	</div>
 	    </div>
   	</div>
-  	<div class="container" style="width:500px;margin: 0 auto;">  
+  	<div class="container" style="height:500px;width:500px;margin: 0 auto;">  
 		<h1>
 			<i class="fa fa-plus-square-o"></i>
 			New company
@@ -68,18 +78,35 @@ $(document).ready(function(){
 				<textarea class="form-control" id="company_info"></textarea>
 				<p></p>
 				<%= button_to "Create company", companies_path, class: "btn btn-primary"%>
+				
 			</form>
 		</div>
-
-		<!-- Success message when the company is created in the database -->
-		<div id="created">
-			Successfully created!
-		</div>
-
-		<div id="footer">
-			<div class="navbar navbar-inner navbar-fixed-bottom">
-			<center><%= link_to 'List of companies', dashboard_path %></center>
+		<div id="alread_created">
+			<h1>
+				<i class="fa fa-plus-square-o"></i>
+				Dashboard
+			</h1><small> Already created company? go to your Dashboard! </small>
+			<h3>
+				<i class="fa fa-share"></i>
+				<%= link_to 'Go To Dashboard', dashboard_path %>
+			</h3>
+			<br></br>
+			<!-- Success message when the company is created in the database -->
+			<div id="created">
+				Successfully created!
+				<center><%= link_to 'Go To Dashboard', dashboard_path %></center>
 			</div>
 		</div>
+	</div>
+	<div id="footer" class="hidden-print">
+	 	<div class="containter text-center">
+	   		<p class="muted credit">
+	   			<i class="fa fa-copyright"></i>
+	   			Callisto ReInvented v 1.0
+	   		</p>
+	   		<p>
+	   			Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+	   		</p>
+	 	</div>
 	</div>
 </body>

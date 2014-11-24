@@ -1,39 +1,83 @@
-<p id="notice"><%= notice %></p>
+<style type="text/css">
+#footer {
+  background-color: #222222;
+  position: relative;
+  height: 251px;
+  border-top: 1px solid #797777;
+  color: #797777;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  padding-top: 40px;
+}
+</style>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+      <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+              <i class="fa fa-bars fa-lg"></i>
+              Callisto ReInvented
+            </a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+            <li><%= link_to "Event", events_path %></li>
+            <li><%= link_to "Jobs", '/posting/all' %></li>          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+      </ul>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <!-- nav bar buttons go here if needed -->
+            </ul>
+          </div>
+      </div>
+    </div>
+  <div class="container" style="height:500px;">
+    <p id="notice"><%= notice %></p>
+      <h1 class="page-header">
+        <%= @event.event_title %>
+      </h1>
 
-<p>
-  <strong>Event:</strong>
-  <%= @event.event_id %>
-</p>
+    <p>
+      <h5>Event Company <small> Event hosting company name </small></h5>
+      <h3><%= @event.event_company %></h3>
+    </p>
 
-<p>
-  <strong>Event ownership:</strong>
-  <%= @event.event_ownership %>
-</p>
+    <p>
+      <h5>Event Id <small> For debugging purposes </small></h5>
+      <h3><%= @event.id %></h3>
+    </p>
 
-<p>
-  <strong>Event company:</strong>
-  <%= @event.event_company %>
-</p>
+    <p>
+      <h5>Event Type <small> Event type </small></h5>
+      <h3><%= @event.event_type %></h3>
+    </p>
 
-<p>
-  <strong>Event title:</strong>
-  <%= @event.event_title %>
-</p>
+    <p>
+      <h5>Event Information <small> Details of the event </small></h5>
+      <h3><%= @event.event_info %><h3>
+    </p>
 
-<p>
-  <strong>Event type:</strong>
-  <%= @event.event_type %>
-</p>
+    <p>
+      <h5>Event Date <small> When does the event happen? </small></h5>
+      <h3><%= @event.event_date %></h3>
+    </p>
+    <% if current_user.type == "Employer" -%>
+      <%= link_to 'Edit', edit_event_path(@event) %> |
+      <%= link_to 'Back', events_path %>
+    <% end %>
+  </div>
+    <div id="footer" class="hidden-print">
+    <div class="containter text-center">
+        <p class="muted credit">
+          <i class="fa fa-copyright"></i>
+          Callisto ReInvented v 1.0
+        </p>
+        <p>
+          Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+        </p>
+    </div>
+  </div>
+</body>
 
-<p>
-  <strong>Event info:</strong>
-  <%= @event.event_info %>
-</p>
-
-<p>
-  <strong>Event date:</strong>
-  <%= @event.event_date %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>

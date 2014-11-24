@@ -2,8 +2,25 @@
 .jumbotron {
 	margin-top: -10px;
 }
+
+#footer {
+	background-color: #222222;
+	position: relative;
+	height: 251px;
+	border-top: 1px solid #797777;
+	color: #797777;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	padding-top: 40px;
+}
 </style>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+    current_user.type = "Student"
+});
+</script>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
 	    <div class="container">
@@ -17,8 +34,10 @@
 	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
 	        	<li><%= link_to "Event", events_path %></li>
 	        	<li><%= link_to "Jobs", '/posting/all' %></li>
+
 	      	</ul>
 	      	<ul class="nav navbar-nav navbar-right">
+	      		<li><%= link_to "You are signed in as "+current_user.type.to_s%></li>
 			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
 			</ul>
 	        <div class="navbar-collapse collapse">
@@ -111,8 +130,15 @@
 			
 		</div>
 	</div>
-	<div id="footer">
- 		<div class="navbar navbar-inner  navbar-fixed-bottom">
-   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
- 	</div>
+	<div id="footer" class="hidden-print">
+	 	<div class="containter text-center">
+	   		<p class="muted credit">
+	   			<i class="fa fa-copyright"></i>
+	   			Callisto ReInvented v 1.0
+	   		</p>
+	   		<p>
+	   			Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+	   		</p>
+	 	</div>
+	</div>
 </body>

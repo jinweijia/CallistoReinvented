@@ -2,6 +2,16 @@
 .jumbotron {
   margin-top: -10px;
 }
+
+#footer {
+  background-color: #222222;
+  position: relative;
+  height: 251px;
+  border-top: 1px solid #797777;
+  color: #797777;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  padding-top: 40px;
+}
 </style>
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -58,25 +68,21 @@
               <span class="input-group-btn">
                   <button class="btn btn-default" type="button">Go!</button>
                </span>
-          </div><!-- /input-group -->
+          </div>
         </div>
       </div>
       <!-- Only allow an employer to create a job post -->  
       <div id="create_post">
-        <h3>
-          <i class="fa fa-plus-circle"></i>
-          <%= link_to "Create", new_event_path %>
-        </h3>
+        <% if current_user.type == "Employer" -%>
+          <h3>
+            <i class="fa fa-plus-circle"></i>
+            <%= link_to "Create", new_event_path %>
+          </h3>
+        <% end %>
       </div>
     </div>
 
     <div class="col-xs-9">  
-      <span class="label label-default">Today</span>
-      <span class="label label-primary">Primary</span>
-      <span class="label label-success">RSVP'ed</span>
-      <span class="label label-info">Info</span>
-      <span class="label label-warning">Deadline</span>
-      <span class="label label-danger">Overdue</span>
       <h3>
           <i class="fa fa-volume-up"></i>
           Event List
@@ -94,7 +100,9 @@
           <tbody>
               <% @events.each do |event| %>
                 <tr>
-                  <td><%= event.event_title %></td>
+                  <% String id = "/events/"+event.id.to_s %>
+                  <td><a href='<%=id%>'><%= event.event_title %></a></td>
+                  <!--<td><%= event.event_title %></td>-->
                   <td><%= event.event_company %></td>
                   <td><%= event.event_type %></td>
                   <td><%= event.event_info %></td>
@@ -110,8 +118,15 @@
       </div>
     </div>
   </div>
-  <div id="footer">
-    <div class="navbar navbar-inner  navbar-fixed-bottom">
-      <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+  <div id="footer" class="hidden-print">
+    <div class="containter text-center">
+        <p class="muted credit">
+          <i class="fa fa-copyright"></i>
+          Callisto ReInvented v 1.0
+        </p>
+        <p>
+          Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+        </p>
+    </div>
   </div>  
 </body>

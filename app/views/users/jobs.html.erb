@@ -1,8 +1,22 @@
-
 <style type="text/css">
 .jumbotron {
 	margin-top: -10px;
 }
+
+#footer {
+	background-color: #222222;
+	position: relative;
+	height: 251px;
+	border-top: 1px solid #797777;
+	color: #797777;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	padding-top: 40px;
+}
+#search-box, #search-button {
+	float: left;
+	display: inline-block;
+}
+
 </style>
 <script type="text/javascript">
 var SUCCESS = 1
@@ -81,9 +95,8 @@ $(document).ready(function(){
 	<div class="container">
 	
 	<!-- Berkeley Icon goes here -->
-	
-	<div class="panel panel-default">
-		
+
+	<div id="search" class="panel panel-default">
 		<div class="panel-heading">
 			<h3>
 			<i class="fa fa-search"> Search</i>
@@ -102,6 +115,7 @@ $(document).ready(function(){
 					<%= text_field_tag :q, params[:advanced_search], placeholder: "Advance Search", :class => 'form-control'%>
 					<%= submit_tag "Go!", :class => 'btn btn-default' %>
 				<% end %>
+
 		</div>
 		<% if current_user.type == "Employer" -%>
 		<h3>
@@ -148,8 +162,15 @@ $(document).ready(function(){
 		<li><a href="#">&raquo;</a></li>
 	</ul>
 	</div>
-	<div id="footer">
- 		<div class="navbar navbar-inner  navbar-fixed-bottom">
-   		<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
+	<div id="footer" class="hidden-print">
+ 		<div class="containter text-center">
+   			<p class="muted credit">
+   				<i class="fa fa-copyright"></i>
+   				Callisto ReInvented v 1.0
+   			</p>
+   			<p>
+   				Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+   			</p>
+ 		</div>
  	</div>
 </body>

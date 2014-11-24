@@ -38,17 +38,17 @@
 			<div class="col-md-9">
 				<div class="row">
 					<h1 class="page-header">
-                        <%= @jobposting.title %>
+                        <%= @event.event_title %>
                     </h1>
 					<div class="col-md-3">
 						<div class="panel panel-default">
 						 	<div class="panel-body">
-                                <%= @jobposting.job_type %>
+                                <%= @event.type %>
 						 	</div>
 						</div>
 						<div class="panel panel-default">
 						 	<div class="panel-body">
-                                <%= @jobposting.tags %>
+                                <%= @event.date %>
 						 	</div>
 						</div>
 					</div>
@@ -56,11 +56,6 @@
 						<div class="panel panel-default">
 						 	<div class="panel-body">
                                 <%= @jobposting.info %>
-						 	</div>
-						</div>
-						<div class="panel panel-default">
-						 	<div class="panel-body">
-                                <%= @jobposting.skills %>
 						 	</div>
 						</div>
 					</div>
