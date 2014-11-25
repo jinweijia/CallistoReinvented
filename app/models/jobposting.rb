@@ -149,7 +149,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
           tag_matches += 1
         end
         if user_tags.member?(keyword)
-          tag_matches += user_tags[keyword]
+          tag_matches += user_tags[keyword][:count]
         end      
       end
       # If posting is relevant, run algorithm to compute weight

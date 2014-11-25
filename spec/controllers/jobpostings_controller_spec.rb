@@ -27,6 +27,12 @@ RSpec.describe JobpostingController, :type => :controller do
     end
   end
 
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]    
+    Company.add("Test", "")
+    request.accept = "application/json"
+  end
+
   # Test jobposting#add
   describe "POST add" do
     describe "with valid params" do
@@ -75,7 +81,7 @@ RSpec.describe JobpostingController, :type => :controller do
         put :click, { id: Jobposting.last.posting_id }, valid_session
         result = JSON.parse(response.body)
         expect(result["errCode"]).to eq 1
-        expect(user.saved_tags["test_skill"]).to eq 1
+        expect(user.saved_tags["test_skill"][:count]).to eq 1
       end
 
     end
@@ -106,6 +112,74 @@ RSpec.describe JobpostingController, :type => :controller do
         expect(result["errCode"]).to eq JobpostingController::ERR_BAD_PERMISSIONS
       end
 
+    end
+  end
+
+  # Test Jobposting#bookmark
+  describe "PUT bookmark" do
+    describe "with valid params" do
+      before do
+        Jobposting.add(Company.last.id, "test_title", "internship", "test_info", "test_skill", "test_tag")        
+      end
+
+      it "should bookmark selected posting" do
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        user.update(company_name: "Test")
+        
+        put :bookmark, { id: Jobposting.last.posting_id }
+        # print "**** "
+        # print response.body
+        # print " ****"
+        result = JSON.parse(response.body)
+        # print result
+        expect(result["errCode"]).to eq 1
+        expect(user.bookmarks[0].to_i).to eq Jobposting.last.posting_id
+      end
+
+      it "should remove bookmark when clicked twice" do
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        user.update(company_name: "Test")
+        put :bookmark, { id: Jobposting.last.posting_id }
+        put :bookmark, { id: Jobposting.last.posting_id }
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq JobpostingController::ERR_DUPE_BOOKMARKS
+        expect(user.bookmarks.length).to eq 0
+      end
+    end
+
+    describe "with invalid params" do
+      it "should return error with unknown id" do
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        user.update(company_name: "Test")
+        put :bookmark, { id: 9999 }
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq Jobposting::ERR_BAD_POSTING_ID
+      end
+    end
+  end
+
+  # Test Jobposting#retrieve_bookmarks
+  describe "GET retrieve_bookmarks" do
+    describe "with valid params" do
+      before do
+        Jobposting.add(Company.last.id, "test_title", "internship", "test_info", "test_skill", "test_tag")        
+      end
+
+      it "retrieve bookmarks" do
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        user.update(company_name: "Test")
+        put :bookmark, { id: Jobposting.last.posting_id }
+
+        get :retrieve_bookmarks
+        result = JSON.parse(response.body)
+        expect(result["errCode"]).to eq JobpostingController::SUCCESS
+        # print result["value"]
+        expect(result["value"][0]["title"]).to eq "test_title"
+      end
     end
   end
 
