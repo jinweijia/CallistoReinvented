@@ -130,7 +130,8 @@ $(document).ready(function(){
 		<tbody>
 			<% @jobposting.each do |post| %>
 				<tr>
-					<td><%= post.title %></td>
+					<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
+					<td><a href='<%=id%>'><%= post.title %></a></td>
 					<td><%= post.company_name %></td>
 					<td><%= post.job_type %></td>
 					<td><%= post.info %></td>
