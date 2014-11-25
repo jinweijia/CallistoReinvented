@@ -30,6 +30,7 @@ RSpec.describe JobpostingController, :type => :controller do
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]    
     Company.add("Test", "")
+    Jobposting.add(Company.last.id, "test_title", "internship", "test_info", "test_skill", "test_tag")
     request.accept = "application/json"
   end
 
@@ -65,6 +66,22 @@ RSpec.describe JobpostingController, :type => :controller do
       end
     end
   end
+
+  # Test jobposting#update
+  # describe "PUT update" do
+  #   describe "with valid params" do 
+  #     it "should update posting info" do
+  #       user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Employer")
+  #       sign_in user
+  #       user.update(company_name: "Test")
+
+  #       put :posting_update, {id: Jobposting.last.posting_id, title: "updated", job_type: "internship", info: "", skills: "", tags: ""}
+  #       result = JSON.parse(response.body)
+  #       expect(result["errCode"]).to eq Jobposting::SUCCESS
+  #       expect(Jobposting.last.title).to eq "updated"
+  #     end
+  #   end
+  # end
 
   # Test jobposting#click
   describe "PUT click" do
@@ -118,9 +135,9 @@ RSpec.describe JobpostingController, :type => :controller do
   # Test Jobposting#bookmark
   describe "PUT bookmark" do
     describe "with valid params" do
-      before do
-        Jobposting.add(Company.last.id, "test_title", "internship", "test_info", "test_skill", "test_tag")        
-      end
+      # before do
+      #   Jobposting.add(Company.last.id, "test_title", "internship", "test_info", "test_skill", "test_tag")        
+      # end
 
       it "should bookmark selected posting" do
         user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
@@ -192,7 +209,7 @@ RSpec.describe JobpostingController, :type => :controller do
 
         get :retrieve_bookmarks
         result = JSON.parse(response.body)
-        print result
+        # print result
         expect(result["value"][0]["title"]).to eq "job2"
         expect(result["value"][1]["title"]).to eq "job3"
       end
