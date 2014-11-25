@@ -94,8 +94,7 @@ $(document).ready(function(){
 	</div>
 	<div class="container">
 	
-	<!-- Berkeley Icon goes here -->
-
+	<!-- PLEASE DO NOT MESS UP WITH 'DIV' TAG -->
 	<div id="search" class="panel panel-default">
 		<div class="panel-heading">
 			<h3>
@@ -115,16 +114,15 @@ $(document).ready(function(){
 					<%= text_field_tag :q, params[:advanced_search], placeholder: "Advance Search", :class => 'form-control'%>
 					<%= submit_tag "Go!", :class => 'btn btn-default' %>
 				<% end %>
-
+			</div>
+			<% if current_user.type == "Employer" -%>
+				<h3>
+		        <i class="fa fa-plus-circle"></i>
+		          	<%= link_to "Create", create_post_path %>
+		        </h3>
+			<% end %>
 		</div>
-		<% if current_user.type == "Employer" -%>
-		<h3>
-        <i class="fa fa-plus-circle"></i>
-          	<%= link_to "Create", create_post_path %>
-        </h3>
-	<% end %>
 	</div>
-
 	<table class="table table-striped">
 	    <!-- On rows -->
 	    <thread>
