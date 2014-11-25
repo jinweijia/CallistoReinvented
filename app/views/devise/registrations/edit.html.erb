@@ -64,9 +64,6 @@
                     <div><%= f.label :skill, class: "col-sm-2 control-label"%>
                     <%= f.text_area :skill, autocomplete: "off" %></div>
                   </div>
-                <% else %>
-                  <div><%= f.label :type %><br />
-                    <%= f.select :type, User::TYPES %></div>
                 <% end %>
 
                 <div class="form-group col-lg-1">
