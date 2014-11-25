@@ -33,36 +33,21 @@
           </div>
       </div>
     </div>
-  <div class="container" style="height:500px;">
+  <div class="container" style="height:500px;width:700px;margin: auto">
     <p id="notice"><%= notice %></p>
       <h1 class="page-header">
         <%= @event.event_title %>
+        <small> <%= @event.event_type %></small>
       </h1>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <p class="list-group-item-text">hosted by <h4><%= @event.event_company %></h4> <i class="fa fa-at"></i> <%= @event.event_date %></p>
+        </div>
+        <div class="panel-body">
+          <%= @event.event_info %>
+        </div>
+      </div>
 
-    <p>
-      <h5>Event Company <small> Event hosting company name </small></h5>
-      <h3><%= @event.event_company %></h3>
-    </p>
-
-    <p>
-      <h5>Event Id <small> For debugging purposes </small></h5>
-      <h3><%= @event.id %></h3>
-    </p>
-
-    <p>
-      <h5>Event Type <small> Event type </small></h5>
-      <h3><%= @event.event_type %></h3>
-    </p>
-
-    <p>
-      <h5>Event Information <small> Details of the event </small></h5>
-      <h3><%= @event.event_info %><h3>
-    </p>
-
-    <p>
-      <h5>Event Date <small> When does the event happen? </small></h5>
-      <h3><%= @event.event_date %></h3>
-    </p>
     <% if current_user.type == "Employer" -%>
       <%= link_to 'Edit', edit_event_path(@event) %> |
       <%= link_to 'Back', events_path %>
