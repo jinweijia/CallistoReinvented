@@ -14,8 +14,19 @@ var SUCCESS = 1
 $(document).ready(function(){
 	$('#posting_id').hide();
 	// $('#bookmarked').hide();
-
-
+	var posting_id = $('#posting_id').val();
+	$.ajax({
+	    type:        'PUT',
+	    url:         '/jobposting/click/'+posting_id,
+	    data: JSON.stringify(),
+	    contentType: 'application/json',
+	    dataType:    'json',
+	    success:     function(data) {
+	        console.log(data['errCode']);
+	        if (data['errCode'] == SUCCESS) {
+	        }
+	    }
+	});
     $('#bookmark').click(function(e){
         e.preventDefault();
         var posting_id = $('#posting_id').val();
@@ -42,7 +53,7 @@ $(document).ready(function(){
 	    <div class="container">
 	      <div class="navbar-header">
 	          <a class="navbar-brand" href="/">
-	            <i class="fa fa-bars fa-lg"></i>
+	            <i class="fa fa-home"></i>
 	            Callisto ReInvented
 	          </a>
 	        </div>

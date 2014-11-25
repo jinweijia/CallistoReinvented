@@ -14,7 +14,7 @@ MAX_INFO_LENGTH = 128*128
 #this can be changed later, or any event type can be allowed
 ALLOWED_TYPES = ['info-session', 'career fair', 'Q&A']
 ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
-
+TYPES = ['Info Session', 'Career Fair', 'Q&A']
 	#TODO: ownership
 	#TODO: event ID generation
 	#TODO: proper date validation?
