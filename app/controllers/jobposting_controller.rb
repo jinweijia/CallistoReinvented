@@ -113,7 +113,8 @@ class JobpostingController < ApplicationController
   def advanced_search
     query = params[:q]
     ret = Jobposting.ranked_search(query, current_user.saved_tags)
-    @jobposting = ret[:value]
+    postings = ret[:value]
+    @jobposting = postings.map {|p, s| p}
     render template: "users/jobs"
     # render json: ret
   end

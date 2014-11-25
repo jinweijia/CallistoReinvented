@@ -10,10 +10,38 @@ class ApplicationController < ActionController::Base
   helper_method :resource, :resource_name, :devise_mapping
 
   def after_sign_in_path_for(resource)
+    # profile_index_path
     if current_user.type == 'Student'
       profile_index_path
-    else #if current_user.company_name == ''
-      new_company_path
+    else current_user.type == 'Employer'
+      if current_user.company_name == ''
+        new_company_path
+      else
+        dashboard_path
+      end
+    # else
+    #   company_path+"/"+current_user.company_name
+    end
+  end
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :type, :company_name, :skill)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:email, :password, :current_password, :type, :skill, :company_name)
+  end
+
+  def after_sign_up_path_for(resource)
+    # profile_index_path
+    if current_user.type == 'Student'
+      profile_index_path
+    else current_user.type == 'Employer'
+      if current_user.company_name == ''
+        new_company_path
+      else
+        dashboard_path
+      end
     # else
     #   company_path+"/"+current_user.company_name
     end

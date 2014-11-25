@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  TYPES = ['Student', 'Employer']
+  TYPES = ['','Student', 'Employer']
   serialize :saved_tags, Hash
   serialize :bookmarks, Array
   # Setup accessible (or protected) attributes for your model
