@@ -75,9 +75,6 @@
           <div><%= f.label :skill%>
           <%= f.text_area :skill, autocomplete: "off", class: "form-control" %></div>
         </div>
-      <% else %>
-        <div><%= f.label :type %><br />
-          <%= f.select :type, User::TYPES %></div>
       <% end %>
       <br></br>
       <%= f.submit "Update", class: "btn btn-primary"  %>
