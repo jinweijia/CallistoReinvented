@@ -9,6 +9,33 @@
 	padding-top: 40px;
 }
 </style>
+<script type="text/javascript">
+var SUCCESS = 1
+$(document).ready(function(){
+	$('#posting_id').hide();
+	// $('#bookmarked').hide();
+
+
+    $('#bookmark').click(function(e){
+        e.preventDefault();
+        var posting_id = $('#posting_id').val();
+        console.log(posting_id);
+        $.ajax({
+            type: 'PUT',
+            url:  '/jobposting/bookmark/'+posting_id,
+            data: JSON.stringify({id: posting_id}),
+            contentType: 'application/json',
+            dataType:    'json',
+            success:     function(data) {
+                console.log(data['errCode']);
+                if (data['errCode'] == SUCCESS) {
+					// $('#bookmarked').show();
+                }
+            }
+        });
+    });
+});
+</script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -39,31 +66,22 @@
 				<div class="row">
 					<h1 class="page-header">
                         <%= @jobposting.title %>
+                        <div type="submit" class="btn btn-primary" id="bookmark">Bookmark</div>
                     </h1>
-					<div class="col-md-3">
-						<div class="panel panel-default">
-						 	<div class="panel-body">
-                                <%= @jobposting.job_type %>
-						 	</div>
-						</div>
-						<div class="panel panel-default">
-						 	<div class="panel-body">
-                                <%= @jobposting.tags %>
-						 	</div>
-						</div>
+                    <div class="panel panel-default">
+					  <div class="panel-heading"><%= @jobposting.tags %></div>
+					  <div class="panel-body">
+					    <%= @jobposting.info %>
+					  </div>
+					  <div class="panel-body">
+					    <%= @jobposting.skills %>
+					  </div>
+					  <div class="panel-body">
+					  	<%= @jobposting.job_type %>
+					  </div>
 					</div>
-					<div class="col-md-9">
-						<div class="panel panel-default">
-						 	<div class="panel-body">
-                                <%= @jobposting.info %>
-						 	</div>
-						</div>
-						<div class="panel panel-default">
-						 	<div class="panel-body">
-                                <%= @jobposting.skills %>
-						 	</div>
-						</div>
-					</div>
+					<% String id = @jobposting.posting_id.to_s %>
+					<input id="posting_id" type="hidden" value='<%=id%>'>
 				</div>
 			</div>
 

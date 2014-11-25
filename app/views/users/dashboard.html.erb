@@ -2,7 +2,6 @@
 .jumbotron {
 	margin-top: -10px;
 }
-
 #footer {
 	background-color: #222222;
 	position: relative;
@@ -13,6 +12,24 @@
 	padding-top: 40px;
 }
 </style>
+<script type="text/javascript">
+var SUCCESS = 1
+$(document).ready(function(){
+    //e.preventDefault();
+    $.ajax({
+        type: 'GET',
+        url:  '/jobposting/bookmarks',
+        contentType: 'application/json',
+        dataType:    'json',
+        success: function(data) {
+            console.log(data['errCode']);
+            if (data['errCode'] == SUCCESS) {
+
+            }
+        }
+    });
+});
+</script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -29,6 +46,7 @@
 	        	<li><%= link_to "Jobs", '/posting/all' %></li>
 	      	</ul>
 	      	<ul class="nav navbar-nav navbar-right">
+	      		<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
 			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
 			</ul>
 	        <div class="navbar-collapse collapse">
@@ -59,10 +77,6 @@
 
 			</div>
 		</div>
-		<h3 class='pull-right'>
-			<i class='icon-pencil'></i><%= link_to "Edit Profile", edit_user_registration_path %>
-		</h3>	
-		<br></br>
 	</div>  
 	<div class="container">
 		<% if current_user.type == "Employer" -%>
@@ -71,6 +85,30 @@
           		<%= link_to 'List of companies', companies_path %>
         	</h3>
 		<% end %>
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+			 	<div class="panel-heading">
+			 		<h3 class="panel-title">
+			 			<i class="fa fa-star"></i>
+			 			Saved Postings
+			 		</h3> <small> Starred Postings by a user will be listed here. </small>
+			 	</div>
+			  	<div class="panel-body">
+			  	<!-- Table -->
+				  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
+					  	<tr>
+					    	<th>Event Name</th>
+					    	<th>Company</th> 
+					    	<th>Event Date</th>
+					  	</tr>
+					  	<tr>
+					    	<td>Google Workshop</td>
+					    	<td>Google</td> 
+					    	<td>October 23 2014</td>
+					  	</tr>
+					</table>
+				</div>
+			</div>
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
 			 	<div class="panel-heading">
@@ -95,30 +133,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-			 	<div class="panel-heading">
-			 		<h3 class="panel-title">
-			 			<i class="fa fa-star"></i>
-			 			Saved Postings
-			 		</h3> <small> Starred Postings by a user will be listed here. </small>
-			 	</div>
-			  	<div class="panel-body">
-			  	<!-- Table -->
-				  	<table class="table table-hover" style="width:100%">
-					  	<tr>
-					    	<th>Event Name</th>
-					    	<th>Company</th> 
-					    	<th>Event Date</th>
-					  	</tr>
-					  	<tr>
-					    	<td>Google Workshop</td>
-					    	<td>Google</td> 
-					    	<td>October 23 2014</td>
-					  	</tr>
-					</table>
-				</div>
-			</div>
+
 			<div class="panel panel-danger">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">

@@ -85,7 +85,8 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    respond_with(@event)
+    #respond_with(@event)
+    render template: "events/index"
   end
 
   private

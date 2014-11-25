@@ -6,6 +6,7 @@ class JobpostingController < ApplicationController
 
   SUCCESS = 1
   ERR_BAD_PERMISSIONS = -6
+  ERR_DUPE_BOOKMARKS = -7
 
   # For internal use only
   def validate_user_company(company)    
@@ -131,9 +132,9 @@ class JobpostingController < ApplicationController
         tags = post.skills.split(", ") + post.tags.split(", ")
         tags.each do |t|
           if saved_tags.member?(t)
-            saved_tags[t] = saved_tags[t] + 1    # Increment counter by 1
+            saved_tags[t][:count] = saved_tags[t][:count] + 1     # Increment counter by 1
           else
-            saved_tags[t] = 1    # Add tag into history and initialize counter
+            saved_tags[t] = { count: 1, weight: 1 }    # Add tag into history and initialize counter
           end
         end
         current_user.update(saved_tags: saved_tags)
@@ -152,10 +153,15 @@ class JobpostingController < ApplicationController
   def bookmark
 
     posting_id = params[:id]
+    bookmarks = current_user.bookmarks
     if Jobposting.find_by_posting_id(posting_id).blank?
       err = Jobposting::ERR_BAD_POSTING_ID
+    elsif current_user.bookmarks.include?(posting_id)
+      bookmarks.delete(posting_id.to_s)
+      current_user.update(bookmarks: bookmarks)
+      err = ERR_DUPE_BOOKMARKS # successfully removes bookmarks
     else
-      bookmarks = current_user.bookmarks + [posting_id]
+      bookmarks = bookmarks + [posting_id]
       current_user.update(bookmarks: bookmarks)
       err = SUCCESS
     end

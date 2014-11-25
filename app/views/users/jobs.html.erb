@@ -84,18 +84,10 @@ $(document).ready(function(){
 				</div>
 			</div>	
 		</div>
-		<% if current_user.type == "Employer" -%>
-			<h3 class='pull-right'>
-	        	<i class="fa fa-plus-circle"></i>
-	          	<%= link_to "Create", create_post_path %>
-        	</h3>
-		<% end %>
-		<br></br>
 	</div>
 	<div class="container">
 	
-	<!-- Berkeley Icon goes here -->
-
+	<!-- PLEASE DO NOT MESS UP WITH 'DIV' TAG -->
 	<div id="search" class="panel panel-default">
 		<div class="panel-heading">
 			<h3>
@@ -115,16 +107,15 @@ $(document).ready(function(){
 					<%= text_field_tag :q, params[:advanced_search], placeholder: "Advance Search", :class => 'form-control'%>
 					<%= submit_tag "Go!", :class => 'btn btn-default' %>
 				<% end %>
-
+			</div>
+			<% if current_user.type == "Employer" -%>
+				<h3>
+		        <i class="fa fa-plus-circle"></i>
+		          	<%= link_to "Create", create_post_path %>
+		        </h3>
+			<% end %>
 		</div>
-		<% if current_user.type == "Employer" -%>
-		<h3>
-        <i class="fa fa-plus-circle"></i>
-          	<%= link_to "Create", create_post_path %>
-        </h3>
-	<% end %>
 	</div>
-
 	<table class="table table-striped">
 	    <!-- On rows -->
 	    <thread>
@@ -132,7 +123,6 @@ $(document).ready(function(){
 	        	<th>Title</th>
 	        	<th>Company</th>
 	        	<th>Type</th>
-	        	<th>Info</th>
 	        	<th>Skill</th>
 	        	<th>Action</th>
 	        </tr>
@@ -140,7 +130,8 @@ $(document).ready(function(){
 		<tbody>
 			<% @jobposting.each do |post| %>
 				<tr>
-					<td><%= post.title %></td>
+					<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
+					<td><a href='<%=id%>'><%= post.title %></a></td>
 					<td><%= post.company_name %></td>
 					<td><%= post.job_type %></td>
 					<td><%= post.info %></td>
