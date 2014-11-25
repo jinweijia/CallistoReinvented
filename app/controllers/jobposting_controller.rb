@@ -123,6 +123,13 @@ class JobpostingController < ApplicationController
   ## PUT /jobposting/click/:id
   # This is called whenever a student clicks on a job posting. Updates the user history with posting tags.
   def click
+    def increment(weight)
+      ret = weight + 1.0 / (weight + 1.0)
+      if ret > 10.0:
+        ret = 10.0
+      end
+      return ret
+    end
 
     if current_user.type == "Student"    
       posting_id = params[:id]
@@ -132,9 +139,10 @@ class JobpostingController < ApplicationController
         tags = post.skills.split(", ") + post.tags.split(", ")
         tags.each do |t|
           if saved_tags.member?(t)
-            saved_tags[t][:count] = saved_tags[t][:count] + 1     # Increment counter by 1
+            saved_tags[t][:count ] = saved_tags[t][:count] + 1     # Increment counter by 1
+            saved_tags[t][:weight] = increment(saved_tags[t][:weight])
           else
-            saved_tags[t] = { count: 1, weight: 1 }    # Add tag into history and initialize counter
+            saved_tags[t] = { count: 1, weight: 1.0 }    # Add tag into history and initialize counter
           end
         end
         current_user.update(saved_tags: saved_tags)
@@ -184,6 +192,15 @@ class JobpostingController < ApplicationController
       format.html { render template: "users/dashboard" }   # not sure which template to use, feel free to edit
     end
 
+  end
+
+  # GET /jobposting/recommendation
+  def recommend
+    query = ""
+    ret = Jobposting.ranked_search(query, current_user.saved_tags, true)
+    postings = ret[:value]
+    @jobposting = postings.map {|p, s| p}
+    render json: ret
   end
 
   ##

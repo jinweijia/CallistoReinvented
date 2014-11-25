@@ -6421,4 +6421,4 @@ curl -H "Content-Type: application/json" \
 echo ""
 
 echo "removing temporary file"
-#rm temp
+rm temp

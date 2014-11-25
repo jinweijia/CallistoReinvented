@@ -115,7 +115,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     return {errCode: SUCCESS, value: posting}
   end
 
-  def self.ranked_search(query, user_tags={})
+  def self.ranked_search(query, user_tags={}, recommend=false)
     
     # First narrow down the list of matching postings // use Jobposting.find_each for large database (supports batch retrieval)
     # q = "%"+query+"%"
@@ -149,7 +149,11 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
           tag_matches += 1
         end
         if user_tags.member?(keyword)
-          tag_matches += user_tags[keyword][:count]
+          if recommend == false
+            tag_matches += user_tags[keyword][:count]
+          else
+            tag_matches += user_tags[keyword][:count] * user_tags[keyword][:weight]
+          end
         end      
       end
       # If posting is relevant, run algorithm to compute weight
