@@ -13,6 +13,24 @@
 	padding-top: 40px;
 }
 </style>
+<script type="text/javascript">
+var SUCCESS = 1
+$(document).ready(function(){
+    //e.preventDefault();
+    $.ajax({
+        type: 'GET',
+        url:  '/jobposting/bookmarks',
+        contentType: 'application/json',
+        dataType:    'json',
+        success: function(data) {
+            console.log(data['errCode']);
+            if (data['errCode'] == SUCCESS) {
+
+            }
+        }
+    });
+});
+</script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -66,6 +84,30 @@
 			 	<div class="panel-heading">
 			 		<h3 class="panel-title">
 			 			<i class="fa fa-star"></i>
+			 			Saved Postings
+			 		</h3> <small> Starred Postings by a user will be listed here. </small>
+			 	</div>
+			  	<div class="panel-body">
+			  	<!-- Table -->
+				  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
+					  	<tr>
+					    	<th>Event Name</th>
+					    	<th>Company</th> 
+					    	<th>Event Date</th>
+					  	</tr>
+					  	<tr>
+					    	<td>Google Workshop</td>
+					    	<td>Google</td> 
+					    	<td>October 23 2014</td>
+					  	</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+			 	<div class="panel-heading">
+			 		<h3 class="panel-title">
+			 			<i class="fa fa-star"></i>
 			 			Saved Events
 			 		</h3> <small> Starred Events by a user will be listed here. </small>
 			 	</div>
@@ -85,30 +127,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-			 	<div class="panel-heading">
-			 		<h3 class="panel-title">
-			 			<i class="fa fa-star"></i>
-			 			Saved Postings
-			 		</h3> <small> Starred Postings by a user will be listed here. </small>
-			 	</div>
-			  	<div class="panel-body">
-			  	<!-- Table -->
-				  	<table class="table table-hover" style="width:100%">
-					  	<tr>
-					    	<th>Event Name</th>
-					    	<th>Company</th> 
-					    	<th>Event Date</th>
-					  	</tr>
-					  	<tr>
-					    	<td>Google Workshop</td>
-					    	<td>Google</td> 
-					    	<td>October 23 2014</td>
-					  	</tr>
-					</table>
-				</div>
-			</div>
+
 			<div class="panel panel-danger">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">
