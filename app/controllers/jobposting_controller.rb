@@ -176,9 +176,15 @@ class JobpostingController < ApplicationController
   # This is for retrieving the current user's bookmarks.
   # Output: Array of job postings
   def retrieve_bookmarks
-
-    postings = current_user.bookmarks
-    @jobposting = Jobposting.where("posting_id = ?", postings)   # note if no bookmarks, will return nil
+    # todo: what if bookmarked posting was deleted?
+    postings = current_user.bookmarks.map { |b| b.to_i }
+    # print postings
+    # @jobposting = Jobposting.where("posting_id = ?", postings)   # note if no bookmarks, will return nil
+    @jobposting = Array.new(postings.length) { Jobposting }
+    postings.each_with_index do |p,i|
+      @jobposting[i] = Jobposting.find_by_posting_id(p)
+    end
+    # @jobposting = Jobposting.find(postings)
     respond_to do |format|
       format.json { render json: { errCode: SUCCESS, value: @jobposting } }
       format.html { render template: "users/dashboard" }   # not sure which template to use, feel free to edit
