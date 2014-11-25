@@ -43,6 +43,7 @@
         <%= f.email_field :email, class: "form-control",autofocus: true %></div>
       </div>
 
+
       <div class="form-group">
         <div><%= f.label :password%>
         <%= f.password_field :password, class: "form-control", autocomplete: "off" %></div>
@@ -84,9 +85,15 @@
     <% end %>
     <br></br>
   </div>
-  <div id="footer">
-    <div class="navbar navbar-inner  navbar-fixed-bottom">
-      <div class="form-group"><center>Unhappy? <%= link_to "Click here", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> to cancel your account</center>
-      </div>
-  </div>  
+  <div id="footer" class="hidden-print">
+    <div class="containter text-center">
+        <p class="muted credit">
+          <i class="fa fa-copyright"></i>
+          Callisto ReInvented v 1.0
+        </p>
+        <p>
+          Unhappy? <%= link_to "Click here", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> to cancel your Account</p>
+    </div>
+  </div>
+  
 </body>
