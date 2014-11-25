@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   put '/jobposting/click/:id' => 'jobposting#click', :as => :click
   put '/jobposting/bookmark/:id' => 'jobposting#bookmark', :as => :bookmark
   get '/jobposting/bookmarks' => 'jobposting#retrieve_bookmarks', :as => :retrieve_bookmarks
+  get '/jobposting/recommend' => 'jobposting#recommend', :as => :recommend
 
   post '/events/createEvent'       => 'events#create_event', :as => :event_add
   get '/events/getEvent/:id'       => 'events#get_event'

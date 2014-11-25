@@ -28,6 +28,24 @@ $(document).ready(function(){
             }
         }
     });
+    $.ajax({
+        type: 'GET',
+        url:  '/jobposting/recommend',
+        contentType: 'application/json',
+        dataType:    'json',
+        success: function(data) {
+            console.log(data['errCode']);
+            if (data['errCode'] == SUCCESS) {
+                index = Math.floor(Math.random() * Math.min(10, data['value'].length))
+                post = data['value'][index]
+                $('#rec_title').html(post[0]['title']);
+                $('#rec_company_name').html(post[0]['company_name']);
+                $('#rec_job_type').html(post[0]['job_type']);
+                $('#rec_info').html(post[0]['info']);
+                //console.log(data['value'][1][0]['job_type']);
+            }
+        }
+    });
 });
 </script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -146,14 +164,16 @@ $(document).ready(function(){
 			  	<!-- Table -->
 				  	<table class="table table-hover" style="width:100%">
 					  	<tr>
-					    	<th>Event Name</th>
-					    	<th>Company</th> 
-					    	<th>Event Date</th>
+					    	<th>Title</th>
+					    	<th>Company Name</th> 
+					    	<th>Job Type</th>
+					    	<th>Info</th>
 					  	</tr>
 					  	<tr>
-					    	<td>Google Workshop</td>
-					    	<td>Google</td> 
-					    	<td>October 23 2014</td>
+					    	<td><div id="rec_title">       </td>
+					    	<td><div id="rec_company_name"></td>
+					    	<td><div id="rec_job_type">    </td>
+					    	<td><div id="rec_info">        </td>
 					  	</tr>
 					</table>
 				</div>

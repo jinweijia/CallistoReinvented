@@ -115,7 +115,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     return {errCode: SUCCESS, value: posting}
   end
 
-  def self.ranked_search(query, user_tags={}, recommend=false)
+  def self.ranked_search(query, user_tags={})
     
     # First narrow down the list of matching postings // use Jobposting.find_each for large database (supports batch retrieval)
     # q = "%"+query+"%"
@@ -149,11 +149,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
           tag_matches += 1
         end
         if user_tags.member?(keyword)
-          if recommend == false
-            tag_matches += user_tags[keyword][:count]
-          else
-            tag_matches += user_tags[keyword][:count] * user_tags[keyword][:weight]
-          end
+          tag_matches += user_tags[keyword][:count]
         end      
       end
       # If posting is relevant, run algorithm to compute weight
@@ -165,6 +161,42 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
         rankings[post] = score
       end                
+    end
+    # This line returns a nested array of [post, score] pairs
+    result = rankings.sort_by { |post, score| score }.reverse!
+
+    return { errCode: SUCCESS, value: result }
+
+  end
+
+  def self.recommend(user_tags={})
+    
+    # Rank postings
+    rankings = Hash.new
+    Jobposting.find_each do |post|
+      # Score is used to determine ranking
+      score = -1
+      tag_matches = 0
+      skills = post.skills.split(", ")
+      tags = post.tags.split(", ")
+      search_scope_simple = [post.skills, post.tags]
+
+      user_tags.each do |keyword|        
+        # First determine if this post is relevant, if not already done
+        # if score < 0        
+          search_scope_simple.each do |s|
+            if s.include?(keyword)
+              # This posting is relevant, break out of for loop
+              score = 0
+              break
+            end
+          end
+        # end
+        if user_tags.member?(keyword)
+          tag_matches += user_tags[keyword][:count] * user_tags[keyword][:weight]
+        end
+      end
+      rankings[post] = score
     end
     # This line returns a nested array of [post, score] pairs
     result = rankings.sort_by { |post, score| score }.reverse!
