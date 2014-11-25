@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
 
     respond_to do |format|
-      format.html { render template: "company/profile" } # show.html.erb
+      format.html { render template: "users/dashboard" } # show.html.erb
       # render template: "company/profile"
       format.json  { render :json => @company }
     end
