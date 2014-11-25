@@ -133,7 +133,32 @@ $(document).ready(function(){
 					</table>
 				</div>
 			</div>
-
+			<% if current_user.type =="Student" -%>
+				<div class="panel panel-default">
+				<!-- Default panel contents -->
+			 	<div class="panel-heading">
+			 		<h3 class="panel-title">
+			 			<i class="fa fa-fire"></i>
+			 			Recommendations
+			 		</h3> <small> Recommended Jobs goes here </small>
+			 	</div>
+			  	<div class="panel-body">
+			  	<!-- Table -->
+				  	<table class="table table-hover" style="width:100%">
+					  	<tr>
+					    	<th>Event Name</th>
+					    	<th>Company</th> 
+					    	<th>Event Date</th>
+					  	</tr>
+					  	<tr>
+					    	<td>Google Workshop</td>
+					    	<td>Google</td> 
+					    	<td>October 23 2014</td>
+					  	</tr>
+					</table>
+				</div>
+			</div>
+			<% end %>
 			<div class="panel panel-danger">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">
