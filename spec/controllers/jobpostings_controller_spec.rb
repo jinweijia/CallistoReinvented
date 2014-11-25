@@ -180,6 +180,26 @@ RSpec.describe JobpostingController, :type => :controller do
         # print result["value"]
         expect(result["value"][0]["title"]).to eq "test_title"
       end
+
+      it "should retrieve multiple bookmarks" do
+        user = User.create(email: "testabcd@mail.com", password: 12345678, type: "Student")
+        sign_in user
+        user.update(company_name: "Test")
+        Jobposting.add(Company.last.id, "job2", "internship", "test_info", "test_skill", "test_tag") 
+        put :bookmark, { id: Jobposting.last.posting_id }
+        Jobposting.add(Company.last.id, "job3", "internship", "test_info", "test_skill", "test_tag") 
+        put :bookmark, { id: Jobposting.last.posting_id }
+
+        get :retrieve_bookmarks
+        result = JSON.parse(response.body)
+        print result
+        expect(result["value"][0]["title"]).to eq "job2"
+        expect(result["value"][1]["title"]).to eq "job3"
+      end
+    end
+
+    describe "with invalid params" do
+      
     end
   end
 
