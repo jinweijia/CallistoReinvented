@@ -12,9 +12,9 @@ ERR_BAD_FIELD = -8
 MAX_TITLE_LENGTH = 128
 MAX_INFO_LENGTH = 128*128
 #this can be changed later, or any event type can be allowed
-ALLOWED_TYPES = ['info-session', 'career fair', 'Q&A']
+#ALLOWED_TYPES = ['info-session', 'career fair', 'Q&A']
 ALLOWED_FIELDS = ['title', 'type', 'info', 'date']
-TYPES = ['Info Session', 'Career Fair', 'Q&A']
+ALLOWED_TYPES = ['Info Session', 'Career Fair', 'Q&A']
 	#TODO: ownership
 	#TODO: event ID generation
 	#TODO: proper date validation?
@@ -37,7 +37,11 @@ TYPES = ['Info Session', 'Career Fair', 'Q&A']
 			if last_event.blank?
 				event_id = 1
 			else
-				event_id = last_event.event_id + 1
+				if last_event.event_id.blank?
+					event_id = 1
+				else
+					event_id = last_event.event_id + 1
+				end
 			end
 
 			#event = Event.new(event_id: event_id, company_id: company, title: title, type: type, info: info, date: date)

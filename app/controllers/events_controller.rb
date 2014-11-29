@@ -12,21 +12,6 @@ class EventsController < ApplicationController
   #    toreturn = { errCode: SUCCESS }
   #  end
   #end
-  
-  #TODO: render json
-  def create_event
-    company_id = params[:company_id]
-    title = params[:title]
-    type = params[:type]
-    info = params[:info]
-    #this method expects a string in yy:mm:dd:hh:MM format, as one string with no spaces, where the hour is in range {00..23}
-    #Example: "1401032307" would be January 3rd, 2014, at 23:07
-    date = params[:date]
-    datetime = DateTime.strptime(date, "%y%m%d%H%M")
-
-    result = Event.create_event(company_id, title, type, info, datetime)
-    render json: result
-  end
 
   #TODO: render json
   def edit_event
@@ -73,8 +58,28 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.save
+    event = params[:event]
+    event_company = event[:event_company]
+    event_title = event[:event_title]
+    event_type = event[:event_type]
+    event_info = event[:event_info]
+    #this method expects a string in yy:mm:dd:hh:MM format, as one string with no spaces, where the hour is in range {00..23}
+    #Example: "1401032307" would be January 3rd, 2014, at 23:07
+    event_date = DateTime.new( event["event_date(1i)"].to_i, event["event_date(2i)"].to_i, event["event_date(3i)"].to_i, event["event_date(4i)"].to_i, event["event_date(5i)"].to_i)
+
+    #month
+    #day
+    #hour
+    #minute
+    #puts "<><><>"*10
+    #puts "DATE: " + year
+    #datetime = DateTime.strptime(date, "%y%m%d%H%M")
+
+    result = Event.create_event(event_company, event_title, event_type, event_info, event_date)
+    @event = Event.find_by(event_id: result[:event_id])
+    #render json: result
+    #@event = Event.new(event_params)
+    #@event.save
     render template: "events/show"
   end
 
