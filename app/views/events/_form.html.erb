@@ -20,7 +20,7 @@
   </div>
   <div class="form-group">
     <h5><%= f.label :event_type %><small> type of an event. </small></h5>
-    <%= f.select :event_type, Event::TYPES, class: "form-control",autofocus: true %>
+    <%= f.select :event_type, Event::ALLOWED_TYPES, class: "form-control",autofocus: true %>
   </div>
   <div class="form-group">
     <h5><%= f.label :event_info %><small> brief information on event information. </small></h5>

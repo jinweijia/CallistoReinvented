@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :events
+  
 
   devise_for :users, :path_names => 
   { :sign_up => "register" }
@@ -48,8 +48,10 @@ Rails.application.routes.draw do
   get '/events/getEvent/:id'       => 'events#get_event'
   post '/events/editEvent/:id'     => 'events#edit_event'
   delete '/events/deleteEvent/:id' => 'events#delete_event'
-  get '/events/:id'            => 'events#show'
+  get '/events/search/'            => 'events#search'
+  #get '/events/:id'            => 'events#show'
   # get '/events/search'         => 'events#search', :as => :event_search
+  resources :events
 
   # debugging routes
   get '/profile/profile' => 'profile#index'

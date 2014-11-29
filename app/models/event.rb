@@ -121,4 +121,10 @@ ALLOWED_TYPES = ['Info Session', 'Career Fair', 'Q&A']
 		event = Event.find_by(event_id: event_id)
 		return {errCode: SUCCESS, value: event}
 	end
+
+	def self.simple_search(query)# do a fuzzy over all fields that are string types and see if any match occurs
+    	q = "%"+query+"%"
+    	posting = Event.where("event_title like ? OR event_company like ? OR event_type like ? OR event_info like ?", q, q, q, q).first
+    	return {errCode: SUCCESS, value: posting}
+	end
 end
