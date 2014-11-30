@@ -1,15 +1,11 @@
 <style type="text/css">
+#simple-search-box, #simple-search-btn, #advanced-search-box, #advanced-search-btn {
+	float: left;
+}
+
 #simple-search, #advanced-search {
 	float: left;
 	margin-right: 55px;
-}
-
-#simpple-search-box, #simple-search-btn {
-	float: left;
-}
-
-#advanced-search-box, #advanced-search-btn {
-	float: left;
 }
 </style>
 <body>
@@ -21,21 +17,21 @@
 	            Callisto ReInvented
 	          </a>
 	        </div>
-	      	<ul class="nav navbar-nav">
-	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	        	<li><%= link_to "Event", events_path %></li>
-	        	<li><%= link_to "Jobs", '/posting/all' %></li>
-	      	</ul>
-	      	<ul class="nav navbar-nav navbar-right">
-			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-			</ul>
+	        <ul class="nav navbar-nav">
+	          <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+	          <li><%= link_to "Event", events_path %></li>
+	          <li><%= link_to "Jobs", '/posting/all' %></li>
+	        </ul>
+	        <ul class="nav navbar-nav navbar-right">
+	        <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+	    </ul>
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
 	            <!-- nav bar buttons go here if needed -->
 	          </ul>
-	      	</div>
+	        </div>
 	    </div>
-  	</div>
+  	</div>	
 	<div class="jumbotron jumbotron-carousel hidden-print">
 		<div ="container">
 			<div class="row">
@@ -61,7 +57,7 @@
 				<i class="fa fa-search"> Search</i>
 				</h3>
 				<div id="simple-search" class="input-group">
-					<div id="simpple-search-box">
+					<div id="simple-search-box">
 						<%= form_tag(search_path, :method => "get", id: "search-form") do %>
 					 		<%= text_field_tag :q, params[:search], placeholder: "Simple Search", :class => 'form-control'%>
 					</div>
