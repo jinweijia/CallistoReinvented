@@ -1,5 +1,29 @@
 <script type="text/javascript">
 var SUCCESS = 1
+var id = 0
+$.ajax({
+    type: 'GET',
+    url:  '/jobposting/recommend',
+    contentType: 'application/json',
+    dataType:    'json',
+    success: function(data) {
+        console.log(data['errCode']);
+        if (data['errCode'] == SUCCESS) {
+            index = Math.floor(Math.random() * Math.min(10, data['value'].length))
+            post = data['value'][index]
+            id = post[0]['posting_id']
+
+            // Javascript hyperlink insertion for the recommendation
+            document.getElementById('link_to_update').href = '/posting/posting_id/'+id;
+
+            $('#rec_title').html(post[0]['title']);
+            $('#rec_company_name').html(post[0]['company_name']);
+            $('#rec_job_type').html(post[0]['job_type']);
+            $('#rec_info').html(post[0]['info']);
+            //console.log(data['value'][1][0]['job_type']);
+        }
+    }
+});
 $(document).ready(function(){
     //e.preventDefault();
     $.ajax({
@@ -14,24 +38,7 @@ $(document).ready(function(){
             }
         }
     });
-    $.ajax({
-        type: 'GET',
-        url:  '/jobposting/recommend',
-        contentType: 'application/json',
-        dataType:    'json',
-        success: function(data) {
-            console.log(data['errCode']);
-            if (data['errCode'] == SUCCESS) {
-                index = Math.floor(Math.random() * Math.min(10, data['value'].length))
-                post = data['value'][index]
-                $('#rec_title').html(post[0]['title']);
-                $('#rec_company_name').html(post[0]['company_name']);
-                $('#rec_job_type').html(post[0]['job_type']);
-                $('#rec_info').html(post[0]['info']);
-                //console.log(data['value'][1][0]['job_type']);
-            }
-        }
-    });
+
 });
 </script>
 <body>
@@ -140,20 +147,23 @@ $(document).ready(function(){
 		<h4 class="page-header"> Recommendations <small> A list of job recommendations based on your interest. </small></h4>
 		<div id="alert" class="alert alert-success">
 			<i class="fa fa-info-circle"></i>
-          	Recommendations are pasted on tags of job posts you've been visited.
+          	Click the job title for more information.
 	    </div>
 		  	<table class="table table-hover" style="width:100%">
 			  	<tr>
 			    	<th>Title</th>
 			    	<th>Company Name</th> 
 			    	<th>Job Type</th>
-			    	<th>Info</th>
 			  	</tr>
 			  	<tr>
-			    	<td><div id="rec_title">       </td>
-			    	<td><div id="rec_company_name"></td>
-			    	<td><div id="rec_job_type">    </td>
-			    	<td><div id="rec_info">        </td>
+			  		<td>
+			  			<a id="link_to_update" href="javascript:void(0)">
+			  				<div id="rec_title">
+			  				</div>
+			  			</a>
+			  		</td>
+			    	<td><div id="rec_company_name"></div></td>
+			    	<td><div id="rec_job_type"></div></td>
 			  	</tr>
 			</table>
 			<hr class="half-rule">
@@ -165,20 +175,20 @@ $(document).ready(function(){
 			<h4 class="page-header"> Upcoming Deadlines </h4>
 			<div class="alert alert-danger">
 				<i class="fa fa-exclamation-triangle"></i>
-				A list of upcoming deadlines for both job postings and events are here.
+				Stay updated on deadlines for events and job posts.
 			</div>
 			<table class="table table-hover" style="width:100%">
 			  	<tr>
 			    	<th>Title</th>
-			    	<th>Company Name</th> 
+			    	<th>Job Name</th> 
 			    	<th>Job Type</th>
 			    	<th>Info</th>
 			  	</tr>
 			  	<tr>
-			    	<td><div id="rec_title">       </td>
-			    	<td><div id="rec_company_name"></td>
-			    	<td><div id="rec_job_type">    </td>
-			    	<td><div id="rec_info">        </td>
+			    	<td>Google Software Engineering</td>
+			    	<td>Software Development Intern</td>
+			    	<td>Internship</td>
+			    	<td>Information Goes Here</td>
 			  	</tr>
 			</table>
 		</div>
