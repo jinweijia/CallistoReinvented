@@ -33,10 +33,15 @@
             <i class="fa fa-sign-in"></i>
             Sign up
         </h1>
+
         <ul class="nav nav-tabs">
             <li class="active"><a href="#student-tab" data-toggle="tab">Student <i class="fa"></i></a></li>
             <li><a href="#employer-tab" data-toggle="tab">Employer <i class="fa"></i></a></li>
         </ul>
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle"></i>
+            If you are a student, please make sure to click 'student'; otherwise, sign up as an employer.
+        </div>
         <div id='myTabContend' class="tab-content">
             <div class="tab-pane active in" id="student-tab">
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>

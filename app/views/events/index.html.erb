@@ -56,18 +56,17 @@
           </div>
         </div>
       </div>
-      <!-- Only allow an employer to create a job post -->  
-      <div id="create_post">
-        <% if current_user.type == "Employer" -%>
-          <h3>
-            <i class="fa fa-plus-circle"></i>
-            <%= link_to "Create", new_event_path %>
-          </h3>
-        <% end %>
-      </div>
     </div>
 
-    <div class="col-xs-9">  
+    <div class="col-xs-9"> 
+      <% if current_user.type == "Employer" -%>
+        <div class="alert alert-success">
+          <i class="fa fa-info-circle"></i>
+            To create an event post, please click here
+            <i class="fa fa-plus-circle"></i>
+            <%= link_to "Create", new_event_path %>
+        </div> 
+      <% end %>
       <h3>
           <i class="fa fa-volume-up"></i>
           Event List

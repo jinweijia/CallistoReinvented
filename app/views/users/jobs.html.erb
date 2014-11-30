@@ -41,7 +41,14 @@
 		</div>
 	</div>
 	<div class="container">
-	
+		<% if current_user.type == "Employer" -%>
+	        <div class="alert alert-success">
+	          <i class="fa fa-info-circle"></i>
+	            To create an job post, please click here
+	            <i class="fa fa-plus-circle"></i>
+	            <%= link_to "Create", create_post_path %>
+	        </div> 
+     	<% end %>
 		<!-- PLEASE DO NOT MESS UP WITH 'DIV' TAG -->
 		<div id="search" class="panel panel-default">
 			<div class="panel-heading" style="height:130px;">
@@ -68,12 +75,6 @@
 					<% end %>
 					</div>
 				</div>
-				<% if current_user.type == "Employer" -%>
-					<h3>
-			        <i class="fa fa-plus-circle"></i>
-			          	<%= link_to "Create", create_post_path %>
-			        </h3>
-				<% end %>
 			</div>
 		</div>
 		<table class="table table-striped">
