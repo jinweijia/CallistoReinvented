@@ -84,43 +84,64 @@ $(document).ready(function(){
 		</div>
 	</div>  
 	<div class="container">
+
+		<!-- Alert Message for Employers Div -->
 		<% if current_user.type == "Employer" -%>
-			<div class="alert alert-success">
-        		<i class="fa fa-info-circle"></i>
-        		Click here 
-        		<i class="fa fa-bars"></i>
-          		<%= link_to 'List of companies', companies_path %>
-				to check out a list of companies on Calisto ReInvented.
-      		</div>
+			<div class="list">
+				<div id="alert" class="alert alert-success">
+	        		<i class="fa fa-info-circle"></i>
+	        		Click here 
+	        		<i class="fa fa-bars"></i>
+	          		<%= link_to 'List of companies', companies_path %>
+					to check out a list of companies on Calisto ReInvented.
+	      		</div>
+	      	</div>
       	<% end %>
-		<h4 class="page-header"> Saved Postings <small> A list of bookmarked job postings is listed here. </small></h4>
-	  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
-		  	<tr>
-		    	<th>Event Name</th>
-		    	<th>Company</th> 
-		    	<th>Event Date</th>
-		  	</tr>
-		  	<tr>
-		    	<td>Google Workshop</td>
-		    	<td>Google</td> 
-		    	<td>October 23 2014</td>
-		  	</tr>
-		</table>
-		<h4 class="page-header"> Saved Events <small> A list of bookmarked events is listed here. </small></h4>
-	  	<table class="table table-hover" style="width:100%">
-		  	<tr>
-		    	<th>Event Name</th>
-		    	<th>Company</th> 
-		    	<th>Event Date</th>
-		  	</tr>
-		  	<tr>
-		    	<td>Google Workshop</td>
-		    	<td>Google</td> 
-		    	<td>October 23 2014</td>
-		  	</tr>
-		</table>
+
+      	<!-- Saved Postings Div -->
+      	<div class="list">
+			<h4 class="page-header"> Saved Postings <small> A list of bookmarked job postings is listed here. </small></h4>
+		  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Event Name</th>
+			    	<th>Company</th> 
+			    	<th>Event Date</th>
+			  	</tr>
+			  	<tr>
+			    	<td>Google Workshop</td>
+			    	<td>Google</td> 
+			    	<td>October 23 2014</td>
+			  	</tr>
+			</table>
+			<hr class="half-rule">
+		</div>
+		
+		<!-- Saved Events Div -->
+		<div class="list">
+			<h4 class="page-header"> Saved Events <small> A list of bookmarked events is listed here. </small></h4>
+		  	<table class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Event Name</th>
+			    	<th>Company</th> 
+			    	<th>Event Date</th>
+			  	</tr>
+			  	<tr>
+			    	<td>Google Workshop</td>
+			    	<td>Google</td> 
+			    	<td>October 23 2014</td>
+			  	</tr>
+			</table>
+			<hr class="half-rule">
+		</div>
+		
+		<!-- Job Recommendations Div -->
 		<% if current_user.type =="Student" -%>
+		<div class="list">
 		<h4 class="page-header"> Recommendations <small> A list of job recommendations based on your interest. </small></h4>
+		<div id="alert" class="alert alert-success">
+			<i class="fa fa-info-circle"></i>
+          	Recommendations are pasted on tags of job posts you've been visited.
+	    </div>
 		  	<table class="table table-hover" style="width:100%">
 			  	<tr>
 			    	<th>Title</th>
@@ -135,17 +156,31 @@ $(document).ready(function(){
 			    	<td><div id="rec_info">        </td>
 			  	</tr>
 			</table>
+			<hr class="half-rule">
+		</div>
 		<% end %>
-		<div class="panel panel-danger">
-		  	<div class="panel-heading">
-		    	<h3 class="panel-title">
-		    		<i class="fa fa-exclamation-triangle"></i>
-		    		Upcoming Deadline
-		    	</h3>
-		  	</div>
-		  	<div class="panel-body">
-		    	Panel content
-		    </div>
+
+		<!-- Upcoming Deadline Div -->
+		<div class="list">
+			<h4 class="page-header"> Upcoming Deadlines </h4>
+			<div class="alert alert-danger">
+				<i class="fa fa-exclamation-triangle"></i>
+				A list of upcoming deadlines for both job postings and events are here.
+			</div>
+			<table class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Title</th>
+			    	<th>Company Name</th> 
+			    	<th>Job Type</th>
+			    	<th>Info</th>
+			  	</tr>
+			  	<tr>
+			    	<td><div id="rec_title">       </td>
+			    	<td><div id="rec_company_name"></td>
+			    	<td><div id="rec_job_type">    </td>
+			    	<td><div id="rec_info">        </td>
+			  	</tr>
+			</table>
 		</div>
 	</div>
 </body>

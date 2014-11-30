@@ -42,13 +42,19 @@
 	</div>
 	<div class="container">
 		<% if current_user.type == "Employer" -%>
-	        <div class="alert alert-success">
+	        <div id="alert" class="alert alert-success">
 	          <i class="fa fa-info-circle"></i>
 	            To create an job post, please click here
 	            <i class="fa fa-plus-circle"></i>
 	            <%= link_to "Create", create_post_path %>
 	        </div> 
      	<% end %>
+     	<div id="alert-warning" class="alert alert-warning">
+     		<i class="fa fa-info-circle"></i>
+     		Searching Tips
+          	<li>Simple Search takes only one key word. </li>
+          	<li>Advanced Search takes more than one key words, separated by commas. </li>
+	    </div> 
 		<!-- PLEASE DO NOT MESS UP WITH 'DIV' TAG -->
 		<div id="search" class="panel panel-default">
 			<div class="panel-heading" style="height:130px;">
@@ -77,40 +83,36 @@
 				</div>
 			</div>
 		</div>
-		<table class="table table-striped">
-		    <!-- On rows -->
-		    <thread>
-		        <tr>
-		        	<th>Title</th>
-		        	<th>Company</th>
-		        	<th>Type</th>
-		        	<th>Action</th>
-		        </tr>
-		    </thread>	
-			<tbody>
-				<% @jobposting.each do |post| %>
-					<tr>
-						<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
-						<td><a href='<%=id%>'><%= post.title %></a></td>
-						<td><%= post.company_name %></td>
-						<td><%= post.job_type %></td>
-						<td><%= post.info %></td>
-						<% if current_user.company_name == post.company_name -%>
-							<td>
-		             	 		<%= link_to 'Delete', "/posting/:id", method: :delete, data: { confirm: 'Are you sure?' } %>
-		             	 	</td>
-	             	 	<% end %>
-					</tr>
-		        <% end %>
-			</tbody>
-		</table>
 
-		<ul class="pagination">
-			<li><a href="#">&laquo;</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">&raquo;</a></li>
-		</ul>
-
+		<div class="list">
+			<hr class="half-rule">
+			<table class="table table-striped">
+			    <!-- On rows -->
+			    <thread>
+			        <tr>
+			        	<th>Title</th>
+			        	<th>Company</th>
+			        	<th>Type</th>
+			        	<th>Action</th>
+			        </tr>
+			    </thread>	
+				<tbody>
+					<% @jobposting.each do |post| %>
+						<tr>
+							<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
+							<td><a href='<%=id%>'><%= post.title %></a></td>
+							<td><%= post.company_name %></td>
+							<td><%= post.job_type %></td>
+							<td><%= post.info %></td>
+							<% if current_user.company_name == post.company_name -%>
+								<td>
+			             	 		<%= link_to 'Delete', "/posting/:id", method: :delete, data: { confirm: 'Are you sure?' } %>
+			             	 	</td>
+		             	 	<% end %>
+						</tr>
+			        <% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>

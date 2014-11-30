@@ -42,62 +42,56 @@
   </div> 
   <div class="container">
     <div class="col-xs-3">
-        <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Search</h2>
-        </div>
-        <div class="panel-body">
-          <h5>Keyword <small>Search keywords</small></h5>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
-              <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-               </span>
-          </div>
-        </div>
+      <h3>
+      <i class="fa fa-search"> Search</i>
+      </h3>
+      <div id="alert-warning" class="alert alert-warning">
+        <i class="fa fa-info-circle"></i>
+        Searching Tips
+            <li>Search takes only one key word. </li>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
       </div>
     </div>
 
     <div class="col-xs-9"> 
       <% if current_user.type == "Employer" -%>
-        <div class="alert alert-success">
+        <div id="alert" class="alert alert-success">
           <i class="fa fa-info-circle"></i>
             To create an event post, please click here
             <i class="fa fa-plus-circle"></i>
             <%= link_to "Create", new_event_path %>
         </div> 
       <% end %>
-      <h3>
-          <i class="fa fa-volume-up"></i>
-          Event List
-      </h3> <small> Upcoming events hosted by all companies. </small>
-      <div class="panel-body">
-        <!-- Table -->
-        <table class="table table-hover" style="width:100%">
-          <thread><tr>
-              <th>Title</th>
-              <th>Company</th> 
-              <th>Type</th>
-              <th>Date</th>
-          </tr></thread>
-          <tbody>
-              <% @events.each do |event| %>
-                <tr>
-                  <% String id = "/events/"+event.id.to_s %>
-                  <td><a href='<%=id%>'><%= event.event_title %></a></td>
-                  <!--<td><%= event.event_title %></td>-->
-                  <td><%= event.event_company %></td>
-                  <td><%= event.event_type %></td>
-                  <td><%= event.event_date %></td>
-                  <% if current_user.type == "Employer" %>
-                    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-                    <td><%= link_to 'Cancel Event', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
-                </tr>
-              <% end %>
-          </tbody>
-        </table>
-      </div>
+      <!-- Table -->
+      <table class="table table-hover" style="width:100%">
+        <thread><tr>
+            <th>Title</th>
+            <th>Company</th> 
+            <th>Type</th>
+            <th>Date</th>
+        </tr></thread>
+        <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <% String id = "/events/"+event.id.to_s %>
+                <td><a href='<%=id%>'><%= event.event_title %></a></td>
+                <!--<td><%= event.event_title %></td>-->
+                <td><%= event.event_company %></td>
+                <td><%= event.event_type %></td>
+                <td><%= event.event_date %></td>
+                <% if current_user.type == "Employer" %>
+                  <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                  <td><%= link_to 'Cancel Event', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
     </div>
   </div> 
 </body>

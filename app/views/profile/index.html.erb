@@ -37,10 +37,10 @@ $(document).ready(function() {
 						<i class="fa fa-angellist"></i>
 							Personal Profile
 					</h1>
-					<h5>
+					<p class="lead">
 						<i class="fa fa-bell-o"></i>
 							Make sure you have the most-updated information about you!
-					</h5>
+					</p>
 				</div>	
 			</div>
 		</div>
@@ -59,28 +59,30 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="col-xs-8">
-				<div class="alert alert-success">
-			        <i class="fa fa-info-circle"></i>
-			        Want to edit your profile? 
-			        <%= link_to "Edit Profile",edit_user_registration_path %>
-			    </div>
-				<h4 class="page-header"> Personal Information </h4>
-					<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-				<h4 class="page-header"> Job Recommendations </h4>
-				<table class="table table-hover" style="width:100%">
-					<tr>
-						<th>Job Title</th>
-						<th>Job Type</th> 
-						<th>Employer</th>
-						<th>Deadline<th>
-					</tr>
-					<tr>
-						<td><%= link_to "Software Engineering", post_path %></td>
-						<td>Internship</td> 
-						<td>Google</td>
-						<td>Oct 6, 20:00</td>
-					</tr>
-				</table>
+				<div class="list">
+					<div id="alert" class="alert alert-success">
+				        <i class="fa fa-info-circle"></i>
+				        Want to edit your profile? 
+				        <%= link_to "Edit Profile",edit_user_registration_path %>
+				    </div>
+				</div>
+				<div class="list">
+					<h4 class="page-header"> Job Recommendations </h4>
+					<table class="table table-hover" style="width:100%">
+						<tr>
+							<th>Job Title</th>
+							<th>Job Type</th> 
+							<th>Employer</th>
+							<th>Deadline<th>
+						</tr>
+						<tr>
+							<td><%= link_to "Software Engineering", post_path %></td>
+							<td>Internship</td> 
+							<td>Google</td>
+							<td>Oct 6, 20:00</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
