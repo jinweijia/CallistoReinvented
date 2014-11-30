@@ -53,7 +53,6 @@ Rails.application.routes.draw do
   delete '/events/deleteEvent/:id' => 'events#delete_event'
   get '/events/search/'            => 'events#search'
   #get '/events/:id'            => 'events#show'
-  # get '/events/search'         => 'events#search', :as => :event_search
   resources :events
 
   # debugging routes

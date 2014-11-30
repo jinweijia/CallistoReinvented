@@ -66,15 +66,17 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = params[:event]
-    event_company = event[:event_company]
-    event_title = event[:event_title]
-    event_type = event[:event_type]
-    event_info = event[:event_info]
-    event_date = DateTime.new( event["event_date(1i)"].to_i, event["event_date(2i)"].to_i, event["event_date(3i)"].to_i, event["event_date(4i)"].to_i, event["event_date(5i)"].to_i)
+    @event = Event.new(event_params)
+    @event.save
+    #event = params[:event]
+    #event_company = event[:event_company]
+    #event_title = event[:event_title]
+    #event_type = event[:event_type]
+    #event_info = event[:event_info]
+    #event_date = DateTime.new( event["event_date(1i)"].to_i, event["event_date(2i)"].to_i, event["event_date(3i)"].to_i, event["event_date(4i)"].to_i, event["event_date(5i)"].to_i)
 
-    result = Event.create_event(event_company, event_title, event_type, event_info, event_date)
-    @event = Event.find_by(event_id: result[:event_id])
+    #result = Event.create_event(event_company, event_title, event_type, event_info, event_date)
+    #@event = Event.find_by(event_id: result[:event_id])
     #render json: result
     #@event = Event.new(event_params)
     #@event.save

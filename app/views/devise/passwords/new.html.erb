@@ -19,20 +19,23 @@
 			</div>
 		</div>
 		<div class="container" style="height:500px;width:500px;margin: 0 auto;">
-			<h1>
-				<i class="fa fa-question-circle"></i>
-				Forgot your password?
-			</h1>
-			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-			  <%= devise_error_messages! %>
-		        <h5><%= f.label :email %> <small> We will send password recovery instructions to the email.</small></h5>
-		        <%= f.text_field :email, class: "form-control", autofocus: true %>
-		        <p></p>
-		        <div class="form-group">
-					<%= f.submit "Send", class: "btn btn-primary" %>
-				</div>
-			<% end %>
+			<hr class="half-rule">
+       		<h3 class="home-title">Forgot?</h3>
 
-			<%= render "devise/shared/links" %>
+       		<div class="list">
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+				  <%= devise_error_messages! %>
+			        <h5><%= f.label :email %> <small> We will send password recovery instructions to the email.</small></h5>
+			        <%= f.text_field :email, class: "form-control", autofocus: true %>
+			        <p></p>
+			        <center>
+				        <div class="form-group">
+							<%= f.submit "Send", class: "btn btn-defult" %>
+						</div>
+					</center>
+				<% end %>
+
+				<%= render "devise/shared/links" %>
+			</div>
 		</div>
 </body>

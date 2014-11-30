@@ -22,52 +22,58 @@
       </div>
     </div>
   </div>
-  <div class="container" style="width:500px;margin: 0 auto;"> 
-    <h2>   Edit Account for <%= current_user.email %></h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
-      <div class="form-group">
-        <div><%= f.label :email%>
-        <%= f.email_field :email, class: "form-control",autofocus: true %></div>
+  <div class="container" style="width:500px;margin: 0 auto;">
+    <hr class="half-rule">
+    <h3 class="home-title">Edit Account for <%= current_user.email %></h3> 
+    
+    <div class="list">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <div><%= f.label :email%>
+            <%= f.email_field :email, class: "form-control",autofocus: true %></div>
+          </div>
+
+
+          <div class="form-group">
+            <div><%= f.label :password%>
+            <%= f.password_field :password, class: "form-control", autocomplete: "off" %></div>
+          </div>
+
+          <div class="form-group">
+            <div><%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %></div>
+          </div>
+
+          <div class="form-group">
+            <div><%= f.label :current_password %>
+            <%= f.password_field :current_password, autocomplete: "off", class: "form-control"%></div>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+
+          <% if current_user.type == "Employer" %>
+            <div class="form-group">
+              <div><%= f.label :company_name%>
+              <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %></div>
+            </div>
+          <% end %>
+          <% if current_user.type == "Student" %>
+            <div class="form-group">
+              <div><%= f.label :skill%>
+              <%= f.text_area :skill, autocomplete: "off", class: "form-control" %></div>
+            </div>
+          <% end %>
+
+          <center>
+            <%= f.submit "Update", class: "btn btn-default"  %>
+            <a href="/profile"><button class="btn btn-default">Cancel</button></a>
+          </center>
+        <% end %>
       </div>
-
-
-      <div class="form-group">
-        <div><%= f.label :password%>
-        <%= f.password_field :password, class: "form-control", autocomplete: "off" %></div>
-      </div>
-
-      <div class="form-group">
-        <div><%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %></div>
-      </div>
-
-      <div class="form-group">
-        <div><%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: "off", class: "form-control"%></div>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-
-      <% if current_user.type == "Employer" %>
-        <div class="form-group">
-          <div><%= f.label :company_name%>
-          <%= f.text_field :company_name, autocomplete: "off", class: "form-control" %></div>
-        </div>
-      <% end %>
-      <% if current_user.type == "Student" %>
-        <div class="form-group">
-          <div><%= f.label :skill%>
-          <%= f.text_area :skill, autocomplete: "off", class: "form-control" %></div>
-        </div>
-      <% end %>
-      <br></br>
-      <%= f.submit "Update", class: "btn btn-primary"  %>
-      <a href="/profile"><button class="btn btn-primary">Cancel</button></a>
-    <% end %>
     <br></br>
   </div>
 </body>

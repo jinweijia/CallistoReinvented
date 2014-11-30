@@ -23,13 +23,14 @@
 	    </div>
   	</div>
   	<div class="container" style="width:500px;margin: 0 auto;">      
-    <h1>
-        <i class="fa fa-sign-in"></i>
-        Edit Event
-    </h1>
-	<%= render 'form' %>
+	    <hr class="half-rule">
+	    <h3 class="home-title">Edit Event</h3>
 
-	<%= link_to 'Show', @event %> |
-	<%= link_to 'Back', events_path %>
+	    <div class="list">
+			<%= render 'form' %>
+
+			<%= link_to 'Show', @event %> |
+			<%= link_to 'Back', events_path %>
+		</div>
 	</div>
 </body>

@@ -23,15 +23,13 @@
 	    </div>
   	</div>
   	<div class="container" style="width:500px;margin: 0 auto;">      
-    <h1>
-        <i class="fa fa-sign-in"></i>
-        New Event
-    </h1>
-	<%= render 'form' %>
+	    <hr class="half-rule">
+	    <h3 class="home-title">New Event</h3>
 
-	<h3>
-		<i class="fa fa-chevron-left"></i>
-		<%= link_to 'Back', events_path %>
-	</h3>
+	    <div class="list">
+			<%= render 'form' %>
+				<i class="fa fa-chevron-left"></i>
+				<%= link_to 'Back', events_path %>
+		</div>
 	</div>
 </body>
