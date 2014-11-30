@@ -1,9 +1,7 @@
 <script type="text/javascript">
 var SUCCESS = 1
 $(document).ready(function(){
-	$('#created').hide();
     $('#createButton').click(function(e){
-        $('#message').hide();
         e.preventDefault();
         var title       = $(      '#title').val()
         var job_type    = $(   '#job_type').val()
@@ -21,7 +19,10 @@ $(document).ready(function(){
             success:     function(data) {
                 //console.log(data['count']);
                 if (data['errCode'] == SUCCESS) {
-					$('#created').show();
+					$('#created').html('<h3>Success!</h3>');
+                }
+                else {
+                	$('#created').html('<h3>Failed!</h3>');
                 }
             }
         });
@@ -73,9 +74,8 @@ $(document).ready(function(){
 		<input type="text" class="form-control" placeholder="Job Application URL" id="url">
 		<p></p>
 		<div type="submit" class="btn btn-primary" id="createButton">Create</div>
-		<br></br>
+		<div id="created">
+    	</div>
+    	<br></br>
 	</div>
-    <div id="created">
-    	Success
-    </div>
 </body>

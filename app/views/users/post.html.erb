@@ -2,7 +2,7 @@
 var SUCCESS = 1
 $(document).ready(function(){
 	$('#posting_id').hide();
-	// $('#bookmarked').hide();
+	
 	var posting_id = $('#posting_id').val();
 	$.ajax({
 	    type:        'PUT',
@@ -16,6 +16,7 @@ $(document).ready(function(){
 	        }
 	    }
 	});
+
     $('#bookmark').click(function(e){
         e.preventDefault();
         var posting_id = $('#posting_id').val();
@@ -29,7 +30,10 @@ $(document).ready(function(){
             success:     function(data) {
                 console.log(data['errCode']);
                 if (data['errCode'] == SUCCESS) {
-					// $('#bookmarked').show();
+					$('#bookmarked').html('<h3>Success!</h3>');
+                }
+                else {
+                	$('#bookmarked').html('<h3>Failed!</h3>');
                 }
             }
         });
@@ -66,6 +70,8 @@ $(document).ready(function(){
 					<h1 class="page-header">
                         <%= @jobposting.title %>
                         <div type="submit" class="btn btn-primary" id="bookmark">Bookmark</div>
+                        <div id="bookmarked">
+						</div>
                     </h1>
                     <div class="panel panel-default">
 					  <div class="panel-heading"><%= @jobposting.tags %></div>

@@ -83,7 +83,6 @@
 		        	<th>Title</th>
 		        	<th>Company</th>
 		        	<th>Type</th>
-		        	<th>Skill</th>
 		        	<th>Action</th>
 		        </tr>
 		    </thread>	
@@ -95,7 +94,6 @@
 						<td><%= post.company_name %></td>
 						<td><%= post.job_type %></td>
 						<td><%= post.info %></td>
-						<td><%= post.skills %></td>
 						<% if current_user.company_name == post.company_name -%>
 							<td>
 		             	 		<%= link_to 'Delete', "/posting/:id", method: :delete, data: { confirm: 'Are you sure?' } %>
