@@ -1,8 +1,4 @@
 <style type="text/css">
-.jumbotron {
-  margin-top: -10px;
-}
-
 #footer {
   background-color: #222222;
   position: relative;
@@ -13,8 +9,6 @@
   padding-top: 40px;
 }
 </style>
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
       <div class="container">
@@ -26,7 +20,7 @@
           </div>
           <ul class="nav navbar-nav">
             <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-            <li><%= link_to "Event", '/users/calendar' %></li>
+            <li><%= link_to "Event", '/events' %></li>
             <li><%= link_to "Jobs", '/posting/all' %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -115,16 +109,5 @@
         </table>
       </div>
     </div>
-  </div>
-  <div id="footer" class="hidden-print">
-    <div class="containter text-center">
-        <p class="muted credit">
-          <i class="fa fa-copyright"></i>
-          Callisto ReInvented v 1.0
-        </p>
-        <p>
-          Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
-        </p>
-    </div>
-  </div>  
+  </div> 
 </body>
