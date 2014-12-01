@@ -35,7 +35,8 @@ class UsersController < ApplicationController
     similar_tags_matrix = []
     similarity_matrix   = []
     tags_to_estimate    = []
-    threshold = 0.1
+    threshold           = 0.1 # threshold for cosine similarity, can be fine-tuned to increase performance
+    minimum_tag_overlap = user_tags.length/2
     User.all.each do |u|
       if u[:email] != current_user[:email]
         alikeness_matrix = []
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
           if u[:saved_tags].member?(tag[0])
             alikeness_matrix.append([u[:saved_tags][tag[0]][:weight], user_tags[tag[0]][:weight]])
           end
-          if alikeness_matrix.length > 1
+          if alikeness_matrix.length > minimum_tag_overlap
             dot_product   = 0.0
             len_squared_1 = 0.0
             len_squared_2 = 0.0
