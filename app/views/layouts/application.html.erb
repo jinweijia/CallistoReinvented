@@ -1,3 +1,165 @@
+<style type="text/css">
+/* Main CR icon CSS */
+.cr-icon {
+  display: block;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  cursor: default;
+  border-radius: 15%;
+  width: 154px;
+  height: 154px;
+  font-size: 108px;
+  line-height: 140px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+/* Title and Submitle of the main page */
+.home-title {
+  margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: 400;
+  color: #333;
+  text-align: center;
+}
+
+.sub-home-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+  text-align: center;
+  color: #797777;
+  margin: 0 0 10px;
+  width: 700px;
+}
+
+/* Homepage Container CSS */
+#why {
+  display: block;
+  overflow-x: hidden;
+}
+
+.feature-list .col-md-4 {
+  margin-bottom: 22px;
+}
+
+.col-md-4 {
+  width: 33.33333333%;
+}
+
+.col-md-4 {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+} 
+
+/* jumbotron lineup */
+#jumbotron {
+	margin-top: -10px;
+  background-color: #222222;
+  text-align: center;
+}
+
+#jumbotron h1 {
+  font-size: 80px;
+  letter-spacing: -2px;
+  line-height: 1;
+  text-shadow: 4px 3px 0px #464444, 9px 8px 0px rgba(0, 0, 0, 0.15);
+  margin: 0 0 15px;
+  color: #ffffff;
+}
+
+#jumbotron p {
+  font-family: proxima-nova-sc-osf, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #797777;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+#jumbotron-icon {
+  margin-top: -30px;
+  padding: 30px 0 25px;
+  background-color: #eeeeee;
+  color: #222222;
+  border-bottom-color: #d1d1d1;
+  border-top-color: #f7f7f7;
+}
+
+/* body html css setup */
+body {
+  font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+}
+
+#alert {
+  background-color: #f1f9f7;
+  border-color: #e0f1e9;
+  color: #1d9d74;
+}
+
+#alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+
+.half-rule {
+  width: 100px;
+  margin: 40px auto;
+}
+
+.list {
+  margin-bottom: 80px;
+  margin-top: 80px;
+}
+
+/* footer css for all pages */
+#footer {
+	background-color: #222222;
+	position: relative;
+	height: 251px;
+	border-top: 1px solid #797777;
+	color: #797777;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	padding-top: 40px;
+}
+
+/* home/index.html.erb */
+#wrap {
+  margin: 0 auto -251px;
+  padding: 0 0 311px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
+
+/* users/jobs.html.erb */
+#simple-search-box, #simple-search-btn, #advanced-search-box, #advanced-search-btn {
+  float: left;
+}
+
+#simple-search, #advanced-search {
+  float: left;
+  margin-right: 55px;
+}
+
+#createButton, #created {
+  float: left;
+}
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,4 +171,17 @@
 </head>
 
 <%= yield %>
+<body>
+  <div id="footer" class="hidden-print">
+    <div class="containter text-center">
+        <p class="muted credit">
+          <i class="fa fa-copyright"></i>
+          Callisto ReInvented v 1.0
+        </p>
+        <p>
+          Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
+        </p>
+    </div>
+  </div> 
+</body>
 </html>

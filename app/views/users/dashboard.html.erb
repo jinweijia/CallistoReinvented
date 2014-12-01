@@ -1,19 +1,29 @@
-<style type="text/css">
-.jumbotron {
-	margin-top: -10px;
-}
-#footer {
-	background-color: #222222;
-	position: relative;
-	height: 251px;
-	border-top: 1px solid #797777;
-	color: #797777;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-	padding-top: 40px;
-}
-</style>
 <script type="text/javascript">
 var SUCCESS = 1
+var id = 0
+$.ajax({
+    type: 'GET',
+    url:  '/jobposting/recommend',
+    contentType: 'application/json',
+    dataType:    'json',
+    success: function(data) {
+        console.log(data['errCode']);
+        if (data['errCode'] == SUCCESS) {
+            index = Math.floor(Math.random() * Math.min(10, data['value'].length))
+            post = data['value'][index]
+            id = post[0]['posting_id']
+
+            // Javascript hyperlink insertion for the recommendation
+            document.getElementById('link_to_update').href = '/posting/posting_id/'+id;
+
+            $('#rec_title').html(post[0]['title']);
+            $('#rec_company_name').html(post[0]['company_name']);
+            $('#rec_job_type').html(post[0]['job_type']);
+            $('#rec_info').html(post[0]['info']);
+            //console.log(data['value'][1][0]['job_type']);
+        }
+    }
+});
 $(document).ready(function(){
     //e.preventDefault();
     $.ajax({
@@ -28,27 +38,9 @@ $(document).ready(function(){
             }
         }
     });
-    $.ajax({
-        type: 'GET',
-        url:  '/jobposting/recommend',
-        contentType: 'application/json',
-        dataType:    'json',
-        success: function(data) {
-            console.log(data['errCode']);
-            if (data['errCode'] == SUCCESS) {
-                index = Math.floor(Math.random() * Math.min(10, data['value'].length))
-                post = data['value'][index]
-                $('#rec_title').html(post[0]['title']);
-                $('#rec_company_name').html(post[0]['company_name']);
-                $('#rec_job_type').html(post[0]['job_type']);
-                $('#rec_info').html(post[0]['info']);
-                //console.log(data['value'][1][0]['job_type']);
-            }
-        }
-    });
+
 });
 </script>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
 	    <div class="container">
@@ -74,7 +66,7 @@ $(document).ready(function(){
 	      	</div>
 	    </div>
   	</div>
-	<div class="jumbotron jumbotron-carousel hidden-print">
+	<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
 		<div ="container">
 			<div class="row">
 				<div class="col-md-8 col-sm-8 text-center">
@@ -88,8 +80,10 @@ $(document).ready(function(){
 							<% end %>
 					</h1>
 					<h5>
-						<i class="fa fa-bell-o"></i>
+						<p class="lead">
+							<i class="fa fa-bell-o"></i>
 							Keep Tracking on Deadlines and Upcoming Events
+						</p>
 					</h5>
 				</div>	
 
@@ -97,111 +91,106 @@ $(document).ready(function(){
 		</div>
 	</div>  
 	<div class="container">
+
+		<!-- Alert Message for Employers Div -->
 		<% if current_user.type == "Employer" -%>
-			<h3>
-        		<i class="fa fa-bars"></i>
-          		<%= link_to 'List of companies', companies_path %>
-        	</h3>
+			<div class="list">
+				<div id="alert" class="alert alert-success">
+	        		<i class="fa fa-info-circle"></i>
+	        		Click here 
+	        		<i class="fa fa-bars"></i>
+	          		<%= link_to 'List of companies', companies_path %>
+					to check out a list of companies on Calisto ReInvented.
+	      		</div>
+	      	</div>
+      	<% end %>
+
+      	<!-- Saved Postings Div -->
+      	<div class="list">
+			<h4 class="page-header"> Saved Postings <small> A list of bookmarked job postings is listed here. </small></h4>
+		  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Event Name</th>
+			    	<th>Company</th> 
+			    	<th>Event Date</th>
+			  	</tr>
+			  	<tr>
+			    	<td>Google Workshop</td>
+			    	<td>Google</td> 
+			    	<td>October 23 2014</td>
+			  	</tr>
+			</table>
+			<hr class="half-rule">
+		</div>
+		
+		<!-- Saved Events Div -->
+		<div class="list">
+			<h4 class="page-header"> Saved Events <small> A list of bookmarked events is listed here. </small></h4>
+		  	<table class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Event Name</th>
+			    	<th>Company</th> 
+			    	<th>Event Date</th>
+			  	</tr>
+			  	<tr>
+			    	<td>Google Workshop</td>
+			    	<td>Google</td> 
+			    	<td>October 23 2014</td>
+			  	</tr>
+			</table>
+			<hr class="half-rule">
+		</div>
+		
+		<!-- Job Recommendations Div -->
+		<% if current_user.type =="Student" -%>
+		<div class="list">
+		<h4 class="page-header"> Recommendations <small> A list of job recommendations based on your interest. </small></h4>
+		<div id="alert" class="alert alert-success">
+			<i class="fa fa-info-circle"></i>
+          	Click the job title for more information.
+	    </div>
+		  	<table class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Title</th>
+			    	<th>Company Name</th> 
+			    	<th>Job Type</th>
+			  	</tr>
+			  	<tr>
+			  		<td>
+			  			<a id="link_to_update" href="javascript:void(0)">
+			  				<div id="rec_title">
+			  				</div>
+			  			</a>
+			  		</td>
+			    	<td><div id="rec_company_name"></div></td>
+			    	<td><div id="rec_job_type"></div></td>
+			  	</tr>
+			</table>
+			<hr class="half-rule">
+		</div>
 		<% end %>
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-			 	<div class="panel-heading">
-			 		<h3 class="panel-title">
-			 			<i class="fa fa-star"></i>
-			 			Saved Postings
-			 		</h3> <small> Starred Postings by a user will be listed here. </small>
-			 	</div>
-			  	<div class="panel-body">
-			  	<!-- Table -->
-				  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
-					  	<tr>
-					    	<th>Event Name</th>
-					    	<th>Company</th> 
-					    	<th>Event Date</th>
-					  	</tr>
-					  	<tr>
-					    	<td>Google Workshop</td>
-					    	<td>Google</td> 
-					    	<td>October 23 2014</td>
-					  	</tr>
-					</table>
-				</div>
+
+		<!-- Upcoming Deadline Div -->
+		<div class="list">
+			<h4 class="page-header"> Upcoming Deadlines </h4>
+			<div class="alert alert-danger">
+				<i class="fa fa-exclamation-triangle"></i>
+				Stay updated on deadlines for events and job posts.
 			</div>
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-			 	<div class="panel-heading">
-			 		<h3 class="panel-title">
-			 			<i class="fa fa-star"></i>
-			 			Saved Events
-			 		</h3> <small> Starred Events by a user will be listed here. </small>
-			 	</div>
-			  	<div class="panel-body">
-			  	<!-- Table -->
-				  	<table class="table table-hover" style="width:100%">
-					  	<tr>
-					    	<th>Event Name</th>
-					    	<th>Company</th> 
-					    	<th>Event Date</th>
-					  	</tr>
-					  	<tr>
-					    	<td>Google Workshop</td>
-					    	<td>Google</td> 
-					    	<td>October 23 2014</td>
-					  	</tr>
-					</table>
-				</div>
-			</div>
-			<% if current_user.type =="Student" -%>
-				<div class="panel panel-default">
-				<!-- Default panel contents -->
-			 	<div class="panel-heading">
-			 		<h3 class="panel-title">
-			 			<i class="fa fa-fire"></i>
-			 			Recommendations
-			 		</h3> <small> Recommended Jobs goes here </small>
-			 	</div>
-			  	<div class="panel-body">
-			  	<!-- Table -->
-				  	<table class="table table-hover" style="width:100%">
-					  	<tr>
-					    	<th>Title</th>
-					    	<th>Company Name</th> 
-					    	<th>Job Type</th>
-					    	<th>Info</th>
-					  	</tr>
-					  	<tr>
-					    	<td><div id="rec_title">       </td>
-					    	<td><div id="rec_company_name"></td>
-					    	<td><div id="rec_job_type">    </td>
-					    	<td><div id="rec_info">        </td>
-					  	</tr>
-					</table>
-				</div>
-			</div>
-			<% end %>
-			<div class="panel panel-danger">
-			  	<div class="panel-heading">
-			    	<h3 class="panel-title">
-			    		<i class="fa fa-exclamation-triangle"></i>
-			    		Upcoming Deadline
-			    	</h3>
-			  	</div>
-			  	<div class="panel-body">
-			    	Panel content
-			    </div>
-			</div>
+			<table class="table table-hover" style="width:100%">
+			  	<tr>
+			    	<th>Title</th>
+			    	<th>Job Name</th> 
+			    	<th>Job Type</th>
+			    	<th>Info</th>
+			  	</tr>
+			  	<tr>
+			    	<td>Google Software Engineering</td>
+			    	<td>Software Development Intern</td>
+			    	<td>Internship</td>
+			    	<td>Information Goes Here</td>
+			  	</tr>
+			</table>
 		</div>
 	</div>
-	<br></br>
-	<div id="footer" class="hidden-print">
- 		<div class="containter text-center">
-   			<p class="muted credit">
-   				<i class="fa fa-copyright"></i>
-   				Callisto ReInvented v 1.0
-   			</p>
-   			<p>
-   				Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
-   			</p>
- 		</div>
- 	</div>
 </body>

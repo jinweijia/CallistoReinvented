@@ -1,11 +1,5 @@
-<style type="text/css">
-.jumbotron {
-	margin-top: -10px;
-}
-</style>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div id="jumbotron" class="navbar navbar-inverse navbar-fixed-top hidden-print">
 	    <div class="container">
 	      <div class="navbar-header">
 	          <a class="navbar-brand" href="/">
@@ -15,7 +9,7 @@
 	        </div>
 	      	<ul class="nav navbar-nav">
 	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	        	<li><%= link_to "Event", events_path %></li>
+	        	<li><%= link_to "Event", '/events' %></li>
 	        	<li><%= link_to "Jobs", '/users/jobs' %></li>
 	      	</ul>
 	      	<ul class="nav navbar-nav navbar-right">
@@ -29,18 +23,13 @@
 	    </div>
   	</div>
   	<div class="container" style="width:500px;margin: 0 auto;">      
-    <h1>
-        <i class="fa fa-sign-in"></i>
-        New Event
-    </h1>
-	<%= render 'form' %>
+	    <hr class="half-rule">
+	    <h3 class="home-title">New Event</h3>
 
-	<h3>
-		<i class="fa fa-chevron-left"></i>
-		<%= link_to 'Back', events_path %>
-	</h3>
+	    <div class="list">
+			<%= render 'form' %>
+				<i class="fa fa-chevron-left"></i>
+				<%= link_to 'Back', events_path %>
+		</div>
 	</div>
-	<footer class="footer">
-        <p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-    </footer>
 </body>

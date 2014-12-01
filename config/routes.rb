@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   # get 'users/register' => 'users#register', :as => :register
   # get 'users/profile' => 'users#profile', :as => :student_profile
   get 'users/dashboard' => 'users#dashboard', :as => :dashboard
-  get 'users/calendar'  => 'users#calendar', :as => :calendar
   get 'users/jobs' => 'users#jobs', :as => :jobs
   get 'users/post' => 'users#post', :as => :post
   get 'users/new' => 'users#new', :as => :new_user
@@ -54,7 +53,6 @@ Rails.application.routes.draw do
   delete '/events/deleteEvent/:id' => 'events#delete_event'
   get '/events/search/'            => 'events#search'
   #get '/events/:id'            => 'events#show'
-  # get '/events/search'         => 'events#search', :as => :event_search
   resources :events
 
   # debugging routes

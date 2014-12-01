@@ -1,15 +1,3 @@
-<style type="text/css">
-#footer {
-    background-color: #222222;
-    position: relative;
-    height: 251px;
-    border-top: 1px solid #797777;
-    color: #797777;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-    padding-top: 40px;
-}
-</style>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -40,94 +28,85 @@
     </div>
   </div>
 
-<div class="container" style="width:500px;margin: 0 auto;">      
-    <h1>
-        <i class="fa fa-sign-in"></i>
-        Sign up
-    </h1>
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#student-tab" data-toggle="tab">Student <i class="fa"></i></a></li>
-        <li><a href="#employer-tab" data-toggle="tab">Employer <i class="fa"></i></a></li>
-    </ul>
-    <div id='myTabContend' class="tab-content">
-        <div class="tab-pane active in" id="student-tab">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-                <%= devise_error_messages! %>
-                <%= f.hidden_field :type, value: "Student" %>
-                <p></p>
+    <div class="container" style="width:500px;margin: 0 auto;">      
+        <hr class="half-rule">
+        <h3 class="home-title">Sign Up</h3>
 
-                <div class="form-group">
-                    <h5><%= f.label :email %></h5>
-                    <%= f.text_field :email, class: "form-control",autofocus: true %>
+        <div class="list">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#student-tab" data-toggle="tab">Student <i class="fa"></i></a></li>
+                <li><a href="#employer-tab" data-toggle="tab">Employer <i class="fa"></i></a></li>
+            </ul>
+            <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i>
+                If you are a student, please make sure to click 'student'; otherwise, sign up as an employer.
+            </div>
+            <div id='myTabContend' class="tab-content">
+                <div class="tab-pane active in" id="student-tab">
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+                        <%= devise_error_messages! %>
+                        <%= f.hidden_field :type, value: "Student" %>
+                        <p></p>
+
+                        <div class="form-group">
+                            <h5><%= f.label :email %></h5>
+                            <%= f.text_field :email, class: "form-control",autofocus: true %>
+                        </div>
+
+                        <div class="form-group">
+                            <%= f.submit "Sign up", class: "btn btn-primary", id: "employerSubmit" %>
+                        </div>
+                        <div class="form-group">
+                            <h5><%= f.label :password %><small> Must have more than 8 characters</small></h5>
+                            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                        </div>
+                        <div class="form-group">
+                            <h5><%= f.label :skill %><small> Separate by commas</small></h5>
+                            <%= f.text_area :skill, autocomplete: "off", class: "form-control" %>
+                        </div>
+
+                        <center>
+                            <div class="form-group">
+                                    <%= f.submit "Sign up", class: "btn btn-default", id: "studentSubmit" %>
+                            </div>
+                        </center>
+
+                    <% end %>
                 </div>
+                <div class="tab-pane fade" id="employer-tab">
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+                        <%= devise_error_messages! %>
+                        <%= f.hidden_field :type, value: "Employer" %>
+                        <p></p>
+                        <div class="form-group">
+                            <h5><%= f.label :email %><small> Please use your official working email</small></h5>
+                            <%= f.text_field :email, class: "form-control",autofocus: true %>
+                        </div>
 
-                <div class="form-group">
-                    <h5><%= f.label :password %><small> Must have more than 8 characters</small></h5>
-                    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                        <div class="form-group">
+                            <h5><%= f.label :password %><small> Must have more than 8 characters</small></h5>
+                            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                        </div>
+
+                        <div class="form-group">
+                            <%= f.label :password_confirmation %>
+                            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                        </div>
+
+                        <div class="form-group">
+                            <h5><%= f.label :company_name, for: "tags" %><small> If your company is not among existing companies, leave blank</small></h5>
+                            <%= f.text_field :company_name, id:"tags", autocomplete: "on", class: "form-control" %>
+                        </div>
+
+                        <center>
+                            <div class="form-group">
+                                    <%= f.submit "Sign up", class: "btn btn-default", id: "employerSubmit" %>
+                            </div>
+                        </center>
+
+                    <% end %>
                 </div>
-
-                <div class="form-group">
-                    <%= f.label :password_confirmation %>
-                    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <h5><%= f.label :skill %><small> Separate by commas</small></h5>
-                    <%= f.text_area :skill, autocomplete: "off", class: "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <%= f.submit "Sign up", class: "btn btn-primary", id: "employerSubmit" %>
-                </div>
-
-            <% end %>
-        </div>
-        <div class="tab-pane fade" id="employer-tab">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-                <%= devise_error_messages! %>
-                <%= f.hidden_field :type, value: "Employer" %>
-                <p></p>
-                <div class="form-group">
-                    <h5><%= f.label :email %><small> Please use your official working email</small></h5>
-                    <%= f.text_field :email, class: "form-control",autofocus: true %>
-                </div>
-
-                <div class="form-group">
-                    <h5><%= f.label :password %><small> Must have more than 8 characters</small></h5>
-                    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <%= f.label :password_confirmation %>
-                    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <h5><%= f.label :company_name, for: "tags" %><small> If your company is not among existing companies, leave blank</small></h5>
-                    <%= f.text_field :company_name, id:"tags", autocomplete: "on", class: "form-control" %>
-                </div>
-
-                <div class="form-group">
-                        <%= f.submit "Sign up", class: "btn btn-primary", id: "employerSubmit" %>
-                </div>
-
-            <% end %>
-        </div>
-    </div>
-
-
-    
-
-    </div>
-    <div id="footer" class="hidden-print">
-        <div class="containter text-center">
-            <p class="muted credit">
-                <i class="fa fa-copyright"></i>
-                Callisto ReInvented v 1.0
-            </p>
-            <p>
-                Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
-            </p>
+            </div>
         </div>
     </div>
 </body>

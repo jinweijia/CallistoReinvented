@@ -1,20 +1,3 @@
-<style type="text/css">
-.jumbotron {
-  margin-top: -10px;
-}
-
-#footer {
-  background-color: #222222;
-  position: relative;
-  height: 251px;
-  border-top: 1px solid #797777;
-  color: #797777;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  padding-top: 40px;
-}
-</style>
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
       <div class="container">
@@ -26,7 +9,7 @@
           </div>
           <ul class="nav navbar-nav">
             <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-            <li><%= link_to "Event", '/users/calendar' %></li>
+            <li><%= link_to "Event", '/events' %></li>
             <li><%= link_to "Jobs", '/posting/all' %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -39,7 +22,7 @@
           </div>
       </div>
     </div>
-  <div class="jumbotron jumbotron-carousel hidden-print">
+  <div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
     <div ="container">
       <div class="row">
         <div class="col-md-8 col-sm-8 text-center">
@@ -48,46 +31,43 @@
               Events
           </h1>
           <h5>
-            <i class="fa fa-bell-o"></i>
+            <p class="lead">
+              <i class="fa fa-bell-o"></i>
               Keep Tracking on Deadlines and Upcoming Events
+            </p>
           </h5>
         </div>  
       </div>
     </div>
   </div> 
-  <div class="container">
-    <div class="col-xs-3">
-        <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Search</h2>
+  <div class="list">
+    <div class="container">
+      <div class="col-xs-3">
+        <h3>
+        <i class="fa fa-search"> Search</i>
+        </h3>
+        <div id="alert-warning" class="alert alert-warning">
+          <i class="fa fa-info-circle"></i>
+          Searching Tips
+              <li>Search takes only one key word. </li>
         </div>
-        <div class="panel-body">
-          <h5>Keyword <small>Search keywords</small></h5>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
-              <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-               </span>
-          </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
         </div>
       </div>
-      <!-- Only allow an employer to create a job post -->  
-      <div id="create_post">
-        <% if current_user.type == "Employer" -%>
-          <h3>
-            <i class="fa fa-plus-circle"></i>
-            <%= link_to "Create", new_event_path %>
-          </h3>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="col-xs-9">  
-      <h3>
-          <i class="fa fa-volume-up"></i>
-          Event List
-      </h3> <small> Upcoming events hosted by all companies. </small>
-      <div class="panel-body">
+      <div class="col-xs-9"> 
+        <% if current_user.type == "Employer" -%>
+          <div id="alert" class="alert alert-success">
+            <i class="fa fa-info-circle"></i>
+              To create an event post, please click here
+              <i class="fa fa-plus-circle"></i>
+              <%= link_to "Create", new_event_path %>
+          </div> 
+        <% end %>
         <!-- Table -->
         <table class="table table-hover" style="width:100%">
           <thread><tr>
@@ -99,7 +79,7 @@
           <tbody>
               <% @events.each do |event| %>
                 <tr>
-                  <% String id = "/events/"+event.id.to_s %>
+                  <% String id = "/events/getEvent/"+event.id.to_s %>
                   <td><a href='<%=id%>'><%= event.event_title %></a></td>
                   <!--<td><%= event.event_title %></td>-->
                   <td><%= event.event_company %></td>
@@ -114,17 +94,6 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> 
   </div>
-  <div id="footer" class="hidden-print">
-    <div class="containter text-center">
-        <p class="muted credit">
-          <i class="fa fa-copyright"></i>
-          Callisto ReInvented v 1.0
-        </p>
-        <p>
-          Created by Alex Jin, Alex Neilson, Eunbe Grace Kim, Jass Chen, Weijia Jin <i class="fa fa-at"></i> UC Berkeley
-        </p>
-    </div>
-  </div>  
 </body>

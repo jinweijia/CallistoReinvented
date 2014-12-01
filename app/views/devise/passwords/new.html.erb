@@ -1,48 +1,41 @@
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-		      <a class="navbar-brand" href="/">CR</a>
-		    </div>
-			<ul class="nav navbar-nav">
-				<li><%= link_to "DashBoard", dashboard_path %></li>
-	        	<li><%= link_to "Event", events_path %></li>
-				<li><%= link_to "Jobs", jobs_path %></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form pull-right" role="search">
-		    		<div class="form-group">
-		        		<input type="text" class="form-control" placeholder="Search">
-		    		</div>
-		    		<button type="submit" class="btn btn-default">Search</span></button>
-				</form>
-				<li><%= link_to "Log Out", destroy_user_session_path,:method => :delete %></li>
-			</ul>
+	<div class="wrap">
+		<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+			<div class="container">
+				<div class="navbar-header">
+			      <a class="navbar-brand" href="/">
+			      	<i class="fa fa-home"></i>
+			      	Callisto ReInvented
+			      </a>
+			    </div>
+			    <div class="navbar-collapse collapse">
+			    	<ul class="nav navbar-nav">
+			    		<!-- nav bar buttons go here if needed -->
+			    	</ul>
+					<ul class="nav navbar-nav navbar-right">
+			    		<li><%= link_to "Sign Up",  new_user_registration_path %></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-	<h2>Forgot your password?</h2>
+		<div class="container" style="height:500px;width:500px;margin: 0 auto;">
+			<hr class="half-rule">
+       		<h3 class="home-title">Forgot?</h3>
 
-	<p style="margin-left:20px">We will send password recovery instructions to the email below.</p>
+       		<div class="list">
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+				  <%= devise_error_messages! %>
+			        <h5><%= f.label :email %> <small> We will send password recovery instructions to the email.</small></h5>
+			        <%= f.text_field :email, class: "form-control", autofocus: true %>
+			        <p></p>
+			        <center>
+				        <div class="form-group">
+							<%= f.submit "Send", class: "btn btn-defult" %>
+						</div>
+					</center>
+				<% end %>
 
-	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-	  <%= devise_error_messages! %>
-
-	 <div style="margin-left:20px">
-        <%= f.label :email, class: "col-sm-1 control-label" %>
-        <div class="col-sm-6">
-            <%= f.text_field :email, class: "form-control",autofocus: true %>
-        </div>
-    </div>
-    <br></br>
-    <br></br>
-	<div style="margin-left:20px"><%= f.submit "Send", class: "btn btn-primary" %></div>
-	<% end %>
-
-	<%= render "devise/shared/links" %>
-
-	<div id="footer">
-        <div class="navbar navbar-inner  navbar-fixed-bottom">
-        	<p class="muted credit"><center>Callisto ReInvented | 2014</center></p>
-    	</div>
-	</div>
+				<%= render "devise/shared/links" %>
+			</div>
+		</div>
 </body>
