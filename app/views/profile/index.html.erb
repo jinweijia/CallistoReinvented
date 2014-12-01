@@ -1,18 +1,41 @@
 <script type="text/javascript">
 $(document).ready(function() {
-  var SUCCESS = 1;
-  $.ajax({
-    type:        'POST',
-    url:         '/users/fill_tags',
-    data:        JSON.stringify(),
-    contentType: 'application/json',
-    dataType:    'json',
-    success:     function(data) {
-      console.log(data['errCode']);
-      if (data['errCode'] == SUCCESS) {
-      }
-    }
-  });
+	  var SUCCESS = 1;
+	  $.ajax({
+	    type: 'GET',
+	    url:  '/jobposting/recommend',
+	    contentType: 'application/json',
+	    dataType:    'json',
+	    success: function(data) {
+	        console.log(data['errCode']);
+	        if (data['errCode'] == SUCCESS) {
+	            index = Math.floor(Math.random() * Math.min(10, data['value'].length))
+	            post = data['value'][index]
+	            id = post[0]['posting_id']
+
+	            // Javascript hyperlink insertion for the recommendation
+	            document.getElementById('link_to_update').href = '/posting/posting_id/'+id;
+
+	            $('#rec_title').html(post[0]['title']);
+	            $('#rec_company_name').html(post[0]['company_name']);
+	            $('#rec_job_type').html(post[0]['job_type']);
+	            $('#rec_info').html(post[0]['info']);
+	            //console.log(data['value'][1][0]['job_type']);
+	        }
+	    }
+	});
+	  $.ajax({
+	    type:        'POST',
+	    url:         '/users/fill_tags',
+	    data:        JSON.stringify(),
+	    contentType: 'application/json',
+	    dataType:    'json',
+	    success:     function(data) {
+	      console.log(data['errCode']);
+	      if (data['errCode'] == SUCCESS) {
+	      }
+	    }
+	  });
 });
 </script>
 <body>
@@ -79,21 +102,29 @@ $(document).ready(function() {
 				    </div>
 				</div>
 				<div class="list">
-					<h4 class="page-header"> Job Recommendations </h4>
-					<table class="table table-hover" style="width:100%">
-						<tr>
-							<th>Job Title</th>
-							<th>Job Type</th> 
-							<th>Employer</th>
-							<th>Deadline<th>
-						</tr>
-						<tr>
-							<td><%= link_to "Software Engineering", post_path %></td>
-							<td>Internship</td> 
-							<td>Google</td>
-							<td>Oct 6, 20:00</td>
-						</tr>
+					<h4 class="page-header"> Recommendations <small> A list of job recommendations based on your interest. </small></h4>
+					<div id="alert" class="alert alert-success">
+						<i class="fa fa-info-circle"></i>
+			          	Click the job title for more information.
+				    </div>
+				  	<table class="table table-hover" style="width:100%">
+					  	<tr>
+					    	<th>Title</th>
+					    	<th>Company Name</th> 
+					    	<th>Job Type</th>
+					  	</tr>
+					  	<tr>
+					  		<td>
+					  			<a id="link_to_update" href="javascript:void(0)">
+					  				<div id="rec_title">
+					  				</div>
+					  			</a>
+					  		</td>
+					    	<td><div id="rec_company_name"></div></td>
+					    	<td><div id="rec_job_type"></div></td>
+					  	</tr>
 					</table>
+					<hr class="half-rule">
 				</div>
 			</div>
 		</div>
