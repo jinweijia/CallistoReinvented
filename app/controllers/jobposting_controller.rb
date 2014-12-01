@@ -132,7 +132,7 @@ class JobpostingController < ApplicationController
         tags.each do |t|
           if saved_tags.member?(t)
             saved_tags[t][:count ] = saved_tags[t][:count] + 1     # Increment counter by 1
-            saved_tags[t][:weight] = saved_tags[t][:weight] + 1.0 / (1.0 + saved_tag[t][:weight])
+            saved_tags[t][:weight] = saved_tags[t][:weight] + 1.0 / (1.0 + saved_tags[t][:weight])
           else
             saved_tags[t] = { count: 1, weight: 1.0 }    # Add tag into history and initialize counter
           end

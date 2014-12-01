@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   get 'users/post' => 'users#post', :as => :post
   get 'users/new' => 'users#new', :as => :new_user
   get 'users/create_post'    => 'users#create_post', :as => :create_post
-  post 'users/initialize_tags' => 'users#initialize_tags'
-  post 'users/fill_tags' => 'users#fill_tags'
-  post 'users/reset_tags' => 'users#reset_tags'
+  get 'users/initialize_tags' => 'users#initialize_tags', :as => :user_initialize_tags
+  post 'users/fill_tags' => 'users#fill_tags', :as => :user_fill_tags
+  post 'users/reset_tags' => 'users#reset_tags', :as => :user_reset_tags
   
   get 'company/profile' => 'company#profile', :as => :com_profile
   get 'company/jobs' => 'company#jobs', :as => :com_jobs
