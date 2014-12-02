@@ -52,13 +52,13 @@
                             <h5><%= f.label :email %></h5>
                             <%= f.text_field :email, class: "form-control",autofocus: true %>
                         </div>
-
-                        <div class="form-group">
-                            <%= f.submit "Sign up", class: "btn btn-primary", id: "employerSubmit" %>
-                        </div>
                         <div class="form-group">
                             <h5><%= f.label :password %><small> Must have more than 8 characters</small></h5>
                             <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                        </div>
+                        <div class="form-group">
+                            <h5><%= f.label :password_confirmation %><small> Must match with the password above</small></h5>
+                            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
                         </div>
                         <div class="form-group">
                             <h5><%= f.label :skill %><small> Separate by commas</small></h5>
@@ -89,7 +89,7 @@
                         </div>
 
                         <div class="form-group">
-                            <%= f.label :password_confirmation %>
+                            <h5><%= f.label :password_confirmation %><small> Must match with the password above</small></h5>
                             <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
                         </div>
 
