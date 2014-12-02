@@ -185,15 +185,15 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
         # First determine if this post is relevant, if not already done
         # if score < 0        
           search_scope_simple.each do |s|
-            if s.include?(keyword)
+            if s.include?(keyword[0])
               # This posting is relevant, break out of for loop
               score = 0
               break
             end
           end
         # end
-        if user_tags.member?(keyword)
-          tag_matches += user_tags[keyword][:count] * user_tags[keyword][:weight]
+        if user_tags.member?(keyword[0])
+          tag_matches += user_tags[keyword[0]][:count] * user_tags[keyword[0]][:weight]
         end
       end
       rankings[post] = score
