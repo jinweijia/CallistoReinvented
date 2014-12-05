@@ -1,119 +1,117 @@
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-	    <div class="container">
-	      <div class="navbar-header">
-	          <a class="navbar-brand" href="/">
-	            <i class="fa fa-home"></i>
-	            Callisto ReInvented
-	          </a>
-	        </div>
-	        <ul class="nav navbar-nav">
-	          <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	          <li><%= link_to "Event", events_path %></li>
-	          <li><%= link_to "Jobs", '/posting/all' %></li>
-	        </ul>
-	        <ul class="nav navbar-nav navbar-right">
-	        <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-	    </ul>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <!-- nav bar buttons go here if needed -->
-	          </ul>
-	        </div>
-	    </div>
-  	</div>	
-	<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
-		<div ="container">
-			<div class="row">
-				<div class="col-md-8 col-sm-8 text-center">
-					<h1>
-						<i class="fa fa-search"></i>
-						Job Search
-					</h1>
-					<h5>
-						<p class="lead">
-							<i class="fa fa-bolt"></i>
-							Simple and Easy Job Search!
-						</p>
-					</h5>
-				</div>
-			</div>	
-		</div>
+<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-home"></i>
+            Callisto ReInvented
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+          <li><%= link_to "Event", events_path %></li>
+          <li><%= link_to "Jobs", '/posting/all' %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+    </ul>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- nav bar buttons go here if needed -->
+          </ul>
+        </div>
+    </div>
+</div>	
+<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
+	<div ="container">
+		<div class="row">
+			<div class="col-md-8 col-sm-8 text-center">
+				<h1>
+					<i class="fa fa-search"></i>
+					Job Search
+				</h1>
+				<h5>
+					<p class="lead">
+						<i class="fa fa-bolt"></i>
+						Simple and Easy Job Search!
+					</p>
+				</h5>
+			</div>
+		</div>	
 	</div>
-	<div class="container">
-		<% if current_user.type == "Employer" -%>
-	        <div id="alert" class="alert alert-success">
-	          <i class="fa fa-info-circle"></i>
-	            To create an job post, please click here
-	            <i class="fa fa-plus-circle"></i>
-	            <%= link_to "Create", create_post_path %>
-	        </div> 
-     	<% end %>
-     	<div id="alert-warning" class="alert alert-warning">
-     		<i class="fa fa-info-circle"></i>
-     		Searching Tips
-          	<li>Simple Search takes only one key word. </li>
-          	<li>Advanced Search takes more than one key words, separated by commas. </li>
-	    </div> 
-		<!-- PLEASE DO NOT MESS UP WITH 'DIV' TAG -->
-		<div id="search" class="panel panel-default">
-			<div class="panel-heading" style="height:130px;">
-				<h3>
-				<i class="fa fa-search"> Search</i>
-				</h3>
-				<div id="simple-search" class="input-group">
-					<div id="simple-search-box">
-						<%= form_tag(search_path, :method => "get", id: "search-form") do %>
-					 		<%= text_field_tag :q, params[:search], placeholder: "Simple Search", :class => 'form-control'%>
-					</div>
-					<div id="simple-search-btn">
-					  <%= submit_tag "Go!", :class => 'btn btn-default' %>
-					<% end %>
-					</div>
+</div>
+<div class="container">
+	<% if current_user.type == "Employer" -%>
+        <div id="alert" class="alert alert-success">
+          <i class="fa fa-info-circle"></i>
+            To create an job post, please click here
+            <i class="fa fa-plus-circle"></i>
+            <%= link_to "Create", create_post_path %>
+        </div> 
+ 	<% end %>
+ 	<div id="alert-warning" class="alert alert-warning">
+ 		<i class="fa fa-info-circle"></i>
+ 		Searching Tips
+      	<li>Simple Search takes only one key word. </li>
+      	<li>Advanced Search takes more than one key words, separated by commas. </li>
+    </div> 
+	<!-- PLEASE DO NOT MESS UP WITH 'DIV' TAG -->
+	<div id="search" class="panel panel-default">
+		<div class="panel-heading" style="height:130px;">
+			<h3>
+			<i class="fa fa-search"> Search</i>
+			</h3>
+			<div id="simple-search" class="input-group">
+				<div id="simple-search-box">
+					<%= form_tag(search_path, :method => "get", id: "search-form") do %>
+				 		<%= text_field_tag :q, params[:search], placeholder: "Simple Search", :class => 'form-control'%>
 				</div>
-				<div id="advanced-search" class="input-group">
-					<div id="advanced-search-box">
-						<%= form_tag(advanced_search_path, :method => "get", id: "advanced-search-form") do %>
-							<%= text_field_tag :q, params[:advanced_search], placeholder: "Advance Search", :class => 'form-control'%>
-					</div>
-					<div id="advanced-search-btn">
-						<%= submit_tag "Go!", :class => 'btn btn-default' %>
-					<% end %>
-					</div>
+				<div id="simple-search-btn">
+				  <%= submit_tag "Go!", :class => 'btn btn-default' %>
+				<% end %>
+				</div>
+			</div>
+			<div id="advanced-search" class="input-group">
+				<div id="advanced-search-box">
+					<%= form_tag(advanced_search_path, :method => "get", id: "advanced-search-form") do %>
+						<%= text_field_tag :q, params[:advanced_search], placeholder: "Advance Search", :class => 'form-control'%>
+				</div>
+				<div id="advanced-search-btn">
+					<%= submit_tag "Go!", :class => 'btn btn-default' %>
+				<% end %>
 				</div>
 			</div>
 		</div>
-
-		<div class="list">
-			<hr class="half-rule">
-			<table class="table table-striped">
-			    <!-- On rows -->
-			    <thread>
-			        <tr>
-			        	<th>Title</th>
-			        	<th>Company</th>
-			        	<th>Type</th>
-			        	<th>Info</th>
-			        	<th>Action</th>
-			        </tr>
-			    </thread>	
-				<tbody>
-					<% @jobposting.each do |post| %>
-						<tr>
-							<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
-							<td><a href='<%=id%>'><%= post.title %></a></td>
-							<td><%= post.company_name %></td>
-							<td><%= post.job_type %></td>
-							<td><%= post.info %></td>
-							<% if current_user.company_name == post.company_name -%>
-								<td>
-			             	 		<%= link_to 'Delete', "/posting/:id", method: :delete, data: { confirm: 'Are you sure?' } %>
-			             	 	</td>
-		             	 	<% end %>
-						</tr>
-			        <% end %>
-				</tbody>
-			</table>
-		</div>
 	</div>
-</body>
+
+	<div class="list">
+		<hr class="half-rule">
+		<table class="table table-striped">
+		    <!-- On rows -->
+		    <thread>
+		        <tr>
+		        	<th>Title</th>
+		        	<th>Company</th>
+		        	<th>Type</th>
+		        	<th>Info</th>
+		        	<th>Action</th>
+		        </tr>
+		    </thread>	
+			<tbody>
+				<% @jobposting.each do |post| %>
+					<tr>
+						<% String id = "/posting/posting_id/"+post.posting_id.to_s %>
+						<td><a href='<%=id%>'><%= post.title %></a></td>
+						<td><%= post.company_name %></td>
+						<td><%= post.job_type %></td>
+						<td><%= post.info %></td>
+						<% if current_user.company_name == post.company_name -%>
+							<td>
+		             	 		<%= link_to 'Delete', "/posting/:id", method: :delete, data: { confirm: 'Are you sure?' } %>
+		             	 	</td>
+	             	 	<% end %>
+					</tr>
+		        <% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

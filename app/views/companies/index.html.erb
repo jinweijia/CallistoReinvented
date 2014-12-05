@@ -1,76 +1,74 @@
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-      <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-              <i class="fa fa-home"></i>
-              Callisto ReInvented
-            </a>
-          </div>
+  <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-home"></i>
+            Callisto ReInvented
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+          <li><%= link_to "Event", events_path %></li>
+          <li><%= link_to "Jobs", '/posting/all' %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+    </ul>
+        <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-            <li><%= link_to "Event", events_path %></li>
-            <li><%= link_to "Jobs", '/posting/all' %></li>
+            <!-- nav bar buttons go here if needed -->
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-      </ul>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <!-- nav bar buttons go here if needed -->
-            </ul>
-          </div>
-      </div>
-    </div>
-  <div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
-    <div ="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-8 text-center">
-          <h1>
-            <i class="fa fa-bars"></i>
-              Company List
-          </h1>
-          <h5>
-            <p class="lead">
-              <i class="fa fa-bell-o"></i>
-              What are the companies on our database?
-            </p>
-          </h5>
-        </div>  
-      </div>
+        </div>
     </div>
   </div>
-  <div class="container">
-      <div id="alert" class="alert alert-success">
-        <i class="fa fa-info-circle"></i>
-        Please create your company first before posting a job or event.
-        <%= link_to 'Add Company', new_company_path %>
-      </div>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Company name</th>
-            <th>Company info</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
+  <div ="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8 text-center">
+        <h1>
+          <i class="fa fa-bars"></i>
+            Company List
+        </h1>
+        <h5>
+          <p class="lead">
+            <i class="fa fa-bell-o"></i>
+            What are the companies on our database?
+          </p>
+        </h5>
+      </div>  
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div id="alert" class="alert alert-success">
+      <i class="fa fa-info-circle"></i>
+      Please create your company first before posting a job or event.
+      <%= link_to 'Add Company', new_company_path %>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Company name</th>
+          <th>Company info</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <% @companies.each do |company| %>
-            <tr>
-              <td><%= company.company_id %></td>
-              <td><%= company.company_name %></td>
-              <td><%= company.company_info %></td>
-              <% if current_user.company_name==company.company_name %>
-              <td><%= link_to 'Edit', edit_company_path(company) %>
-              <%= link_to 'Delete', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% else %>
-                <td> None </td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-  </div>
-</body>
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= company.company_id %></td>
+            <td><%= company.company_name %></td>
+            <td><%= company.company_info %></td>
+            <% if current_user.company_name==company.company_name %>
+            <td><%= link_to 'Edit', edit_company_path(company) %>
+            <%= link_to 'Delete', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+              <td> None </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
