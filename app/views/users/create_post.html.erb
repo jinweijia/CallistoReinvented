@@ -30,52 +30,50 @@ $(document).ready(function(){
 
 });
 </script>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-	    <div class="container">
-	      <div class="navbar-header">
-	          <a class="navbar-brand" href="/">
-	            <i class="fa fa-home"></i>
-	            Callisto ReInvented
-	          </a>
-	        </div>
-	      	<ul class="nav navbar-nav">
-	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	        	<li><%= link_to "Event", events_path %></li>
-	        	<li><%= link_to "Jobs", '/posting/all' %></li>
-	      	</ul>
-	      	<ul class="nav navbar-nav navbar-right">
-			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-			</ul>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <!-- nav bar buttons go here if needed -->
-	          </ul>
-	      	</div>
-	    </div>
-  	</div>
-	<div class="container" style="width:500px;margin: 0 auto;">
-		<h1 class="page-header">Create A Post</h1>
-		<h5>Job Title <small>Insert the job title here. </small></h5>
-		<input type="text" class="form-control" placeholder="Posting Title" id="title">
-		<h5>Job Type <small>Insert the job type here. </small></h5>
-		<select class="form-control">
-			<option>Full-time</option>
-			<option>Internship</option>
-			<option>Part-time</option>
-		</select>
-		<h5>Skills <small>Insert skills required for the job. </small></h5>
-		<input type="text" class="form-control" placeholder="Skills" id="skills">
-		<h5>Tags <small>Insert keywords that describe the job. </small></h5>
-		<input type="text" class="form-control" placeholder="Tags" id="tags">
-		<h5>Job Description <small>Insert a pharagraph of job description. </small></h5>
-		<textarea class="form-control" rows="3" id="description"></textarea>
-		<h5>Job Application URL <small>Insert URL to job application. </small></h5>
-		<input type="text" class="form-control" placeholder="Job Application URL" id="url">
-		<p></p>
-		<div type="submit" class="btn btn-primary" id="createButton">Create</div>
-		<div id="created">
-    	</div>
-    	<br></br>
+<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-home"></i>
+            Callisto ReInvented
+          </a>
+        </div>
+      	<ul class="nav navbar-nav">
+        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
+        	<li><%= link_to "Event", events_path %></li>
+        	<li><%= link_to "Jobs", '/posting/all' %></li>
+      	</ul>
+      	<ul class="nav navbar-nav navbar-right">
+		    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+		</ul>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- nav bar buttons go here if needed -->
+          </ul>
+      	</div>
+    </div>
+</div>
+<div class="container" style="width:500px;margin: 0 auto;">
+	<h1 class="page-header">Create A Post</h1>
+	<h5>Job Title <small>Insert the job title here. </small></h5>
+	<input type="text" class="form-control" placeholder="Posting Title" id="title">
+	<h5>Job Type <small>Insert the job type here. </small></h5>
+	<select class="form-control">
+		<option>Full-time</option>
+		<option>Internship</option>
+		<option>Part-time</option>
+	</select>
+	<h5>Skills <small>Insert skills required for the job. </small></h5>
+	<input type="text" class="form-control" placeholder="Skills" id="skills">
+	<h5>Tags <small>Insert keywords that describe the job. </small></h5>
+	<input type="text" class="form-control" placeholder="Tags" id="tags">
+	<h5>Job Description <small>Insert a pharagraph of job description. </small></h5>
+	<textarea class="form-control" rows="3" id="description"></textarea>
+	<h5>Job Application URL <small>Insert URL to job application. </small></h5>
+	<input type="text" class="form-control" placeholder="Job Application URL" id="url">
+	<p></p>
+	<div type="submit" class="btn btn-primary" id="createButton">Create</div>
+	<div id="created">
 	</div>
-</body>
+	<br></br>
+</div>

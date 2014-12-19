@@ -24,173 +24,163 @@ $.ajax({
         }
     }
 });
-$(document).ready(function(){
-    //e.preventDefault();
-    $.ajax({
-        type: 'GET',
-        url:  '/jobposting/bookmarks',
-        contentType: 'application/json',
-        dataType:    'json',
-        success: function(data) {
-            console.log(data['errCode']);
-            if (data['errCode'] == SUCCESS) {
+$.ajax({
+    type: 'GET',
+    url:  '/jobposting/bookmarks',
+    contentType: 'application/json',
+    dataType:    'json',
+    success: function(data) {
+        console.log(data['errCode']);
+        if (data['errCode'] == SUCCESS) {
+        	console.log(data['value'].length);
+        	for (i = 0; i < data['value'].length; i++) { 
+	            post = data['value'][i]
+	            id = post['posting_id']
 
-            }
+	            // Javascript hyperlink insertion for the recommendation
+	            document.getElementById('bookmark_update').href = '/posting/posting_id/'+id;
+	            $('#bookmark_title').html(post['title']);
+	            $('#bookmark_company_name').html(post['company_name']);
+	            $('#bookmark_job_type').html(post['job_type']);
+        	}
         }
-    });
-
+    }
 });
 </script>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-	    <div class="container">
-	      <div class="navbar-header">
-	          <a class="navbar-brand" href="/">
-	            <i class="fa fa-home"></i>
-	            Callisto ReInvented
-	          </a>
-	        </div>
-	      	<ul class="nav navbar-nav">
-	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	        	<li><%= link_to "Event", events_path %></li>
-	        	<li><%= link_to "Jobs", '/posting/all' %></li>
-	      	</ul>
-	      	<ul class="nav navbar-nav navbar-right">
-	      		<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-			</ul>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <!-- nav bar buttons go here if needed -->
-	          </ul>
-	      	</div>
-	    </div>
-  	</div>
-	<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
-		<div ="container">
-			<div class="row">
-				<div class="col-md-8 col-sm-8 text-center">
-					<h1>
-						<i class="fa fa-newspaper-o"></i>
-							<% if current_user.type =="Student" -%>
-								<%= current_user.email %>
-							<% end %>
-							<% if current_user.type =="Employer" -%>
-								<%= current_user.company_name %>
-							<% end %>
-					</h1>
-					<h5>
-						<p class="lead">
-							<i class="fa fa-bell-o"></i>
-							Keep Tracking on Deadlines and Upcoming Events
-						</p>
-					</h5>
-				</div>	
+<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-home"></i>
+            Callisto ReInvented
+          </a>
+        </div>
+      	<ul class="nav navbar-nav">
+        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
+        	<li><%= link_to "Event", events_path %></li>
+        	<li><%= link_to "Jobs", '/posting/all' %></li>
+      	</ul>
+      	<ul class="nav navbar-nav navbar-right">
+      		<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+		    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+		</ul>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- nav bar buttons go here if needed -->
+          </ul>
+      	</div>
+    </div>
+</div>
+<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
+	<div ="container">
+		<div class="row">
+			<div class="col-md-8 col-sm-8 text-center">
+				<h1>
+					<i class="fa fa-newspaper-o"></i>
+						<% if current_user.type =="Student" -%>
+							<%= current_user.email %>
+						<% end %>
+						<% if current_user.type =="Employer" -%>
+							<%= current_user.company_name %>
+						<% end %>
+				</h1>
+				<h5>
+					<p class="lead">
+						<i class="fa fa-bell-o"></i>
+						Keep Tracking on Deadlines and Upcoming Events
+					</p>
+				</h5>
+			</div>	
 
-			</div>
-		</div>
-	</div>  
-	<div class="container">
-
-		<!-- Alert Message for Employers Div -->
-		<% if current_user.type == "Employer" -%>
-			<div class="list">
-				<div id="alert" class="alert alert-success">
-	        		<i class="fa fa-info-circle"></i>
-	        		Click here 
-	        		<i class="fa fa-bars"></i>
-	          		<%= link_to 'List of companies', companies_path %>
-					to check out a list of companies on Calisto ReInvented.
-	      		</div>
-	      	</div>
-      	<% end %>
-
-      	<!-- Saved Postings Div -->
-      	<div class="list">
-			<h4 class="page-header"> Saved Postings <small> A list of bookmarked job postings is listed here. </small></h4>
-		  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
-			  	<tr>
-			    	<th>Event Name</th>
-			    	<th>Company</th> 
-			    	<th>Event Date</th>
-			  	</tr>
-			  	<tr>
-			    	<td>Google Workshop</td>
-			    	<td>Google</td> 
-			    	<td>October 23 2014</td>
-			  	</tr>
-			</table>
-			<hr class="half-rule">
-		</div>
-		
-		<!-- Saved Events Div -->
-		<div class="list">
-			<h4 class="page-header"> Saved Events <small> A list of bookmarked events is listed here. </small></h4>
-		  	<table class="table table-hover" style="width:100%">
-			  	<tr>
-			    	<th>Event Name</th>
-			    	<th>Company</th> 
-			    	<th>Event Date</th>
-			  	</tr>
-			  	<tr>
-			    	<td>Google Workshop</td>
-			    	<td>Google</td> 
-			    	<td>October 23 2014</td>
-			  	</tr>
-			</table>
-			<hr class="half-rule">
-		</div>
-		
-		<!-- Job Recommendations Div -->
-		<% if current_user.type =="Student" -%>
-		<div class="list">
-		<h4 class="page-header"> Recommendations <small> A list of job recommendations based on your interest. </small></h4>
-		<div id="alert" class="alert alert-success">
-			<i class="fa fa-info-circle"></i>
-          	Click the job title for more information.
-	    </div>
-		  	<table class="table table-hover" style="width:100%">
-			  	<tr>
-			    	<th>Title</th>
-			    	<th>Company Name</th> 
-			    	<th>Job Type</th>
-			  	</tr>
-			  	<tr>
-			  		<td>
-			  			<a id="link_to_update" href="javascript:void(0)">
-			  				<div id="rec_title">
-			  				</div>
-			  			</a>
-			  		</td>
-			    	<td><div id="rec_company_name"></div></td>
-			    	<td><div id="rec_job_type"></div></td>
-			  	</tr>
-			</table>
-			<hr class="half-rule">
-		</div>
-		<% end %>
-
-		<!-- Upcoming Deadline Div -->
-		<div class="list">
-			<h4 class="page-header"> Upcoming Deadlines </h4>
-			<div class="alert alert-danger">
-				<i class="fa fa-exclamation-triangle"></i>
-				Stay updated on deadlines for events and job posts.
-			</div>
-			<table class="table table-hover" style="width:100%">
-			  	<tr>
-			    	<th>Title</th>
-			    	<th>Job Name</th> 
-			    	<th>Job Type</th>
-			    	<th>Info</th>
-			  	</tr>
-			  	<tr>
-			    	<td>Google Software Engineering</td>
-			    	<td>Software Development Intern</td>
-			    	<td>Internship</td>
-			    	<td>Information Goes Here</td>
-			  	</tr>
-			</table>
 		</div>
 	</div>
-</body>
+</div>  
+<div class="container">
+	<!-- Alert Message for Employers Div -->
+	<% if current_user.type == "Employer" -%>
+		<div class="list">
+			<div id="alert" class="alert alert-success">
+        		<i class="fa fa-info-circle"></i>
+        		Click here 
+        		<i class="fa fa-bars"></i>
+          		<%= link_to 'List of companies', companies_path %>
+				to check out a list of companies on Calisto ReInvented.
+      		</div>
+      	</div>
+  	<% end %>
+
+  	<!-- Saved Postings Div -->
+  	<div class="list">
+		<h4 class="page-header"> Saved Postings <small> A list of bookmarked job postings is listed here. </small></h4>
+	  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
+		  	<tr>
+		    	<th>Title</th>
+		    	<th>Company</th> 
+		    	<th>Job Type</th>
+		  	</tr>
+		  	<tr>
+		    	<td>
+		    		<a id="bookmark_update" href="javascript:void(0)">
+		    			<div id="bookmark_title">
+		    			</div>
+		    		</a>
+		    	</td>
+		    	<td><div id="bookmark_company_name"></div></td> 
+		    	<td><div id="bookmark_job_type"></div></td>
+		  	</tr>
+		</table>
+		<hr class="half-rule">
+	</div>
+	
+	<!-- Job Recommendations Div -->
+	<% if current_user.type =="Student" -%>
+	<div class="list">
+	<h4 class="page-header"> Recommendations <small> A list of job recommendations based on your interest. </small></h4>
+	<div id="alert" class="alert alert-success">
+		<i class="fa fa-info-circle"></i>
+      	Click the job title for more information.
+    </div>
+	  	<table class="table table-hover" style="width:100%">
+		  	<tr>
+		    	<th>Title</th>
+		    	<th>Company</th> 
+		    	<th>Job Type</th>
+		  	</tr>
+		  	<tr>
+		  		<td>
+		  			<a id="link_to_update" href="javascript:void(0)">
+		  				<div id="rec_title">
+		  				</div>
+		  			</a>
+		  		</td>
+		    	<td><div id="rec_company_name"></div></td>
+		    	<td><div id="rec_job_type"></div></td>
+		  	</tr>
+		</table>
+		<hr class="half-rule">
+	</div>
+	<% end %>
+
+	<!-- Upcoming Deadline Div -->
+	<div class="list">
+		<h4 class="page-header"> Upcoming Deadlines </h4>
+		<div class="alert alert-danger">
+			<i class="fa fa-exclamation-triangle"></i>
+			Stay updated on deadlines for events and job posts.
+		</div>
+		<table class="table table-hover" style="width:100%">
+		  	<tr>
+		    	<th>Title</th>
+		    	<th>Job Name</th> 
+		    	<th>Job Type</th>
+		    	<th>Info</th>
+		  	</tr>
+		  	<tr>
+		    	<td>Google Software Engineering</td>
+		    	<td>Software Development Intern</td>
+		    	<td>Internship</td>
+		    	<td>Information Goes Here</td>
+		  	</tr>
+		</table>
+	</div>
+</div>

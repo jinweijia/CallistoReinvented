@@ -1,99 +1,99 @@
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-      <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-              <i class="fa fa-home"></i>
-              Callisto ReInvented
-            </a>
-          </div>
+  <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-home"></i>
+            Callisto ReInvented
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "DashBoard", '/users/dashboard' %></li>
+          <li><%= link_to "Event", '/events' %></li>
+          <li><%= link_to "Jobs", '/posting/all' %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+    </ul>
+        <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "DashBoard", '/users/dashboard' %></li>
-            <li><%= link_to "Event", '/events' %></li>
-            <li><%= link_to "Jobs", '/posting/all' %></li>
+            <!-- nav bar buttons go here if needed -->
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-      </ul>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <!-- nav bar buttons go here if needed -->
-            </ul>
-          </div>
+        </div>
+    </div>
+  </div>
+<div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
+  <div ="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8 text-center">
+        <h1>
+          <i class="fa fa-calendar-o"></i>
+            Events
+        </h1>
+        <h5>
+          <p class="lead">
+            <i class="fa fa-bell-o"></i>
+            Keep Tracking on Deadlines and Upcoming Events
+          </p>
+        </h5>
+      </div>  
+    </div>
+  </div>
+</div> 
+<div class="list">
+  <div class="container">
+    <div class="col-xs-3">
+      <h3>
+      <i class="fa fa-search"> Search</i>
+      </h3>
+      <div id="alert-warning" class="alert alert-warning">
+        <i class="fa fa-info-circle"></i>
+        Searching Tips
+            <li>Search takes only one key word. </li>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
       </div>
     </div>
-  <div id="jumbotron" class="jumbotron jumbotron-carousel hidden-print">
-    <div ="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-8 text-center">
-          <h1>
-            <i class="fa fa-calendar-o"></i>
-              Events
-          </h1>
-          <h5>
-            <p class="lead">
-              <i class="fa fa-bell-o"></i>
-              Keep Tracking on Deadlines and Upcoming Events
-            </p>
-          </h5>
-        </div>  
-      </div>
+
+    <div class="col-xs-9"> 
+      <% if current_user.type == "Employer" -%>
+        <div id="alert" class="alert alert-success">
+          <i class="fa fa-info-circle"></i>
+            To create an event post, please click here
+            <i class="fa fa-plus-circle"></i>
+            <%= link_to "Create", new_event_path %>
+        </div> 
+      <% end %>
+      <!-- Table -->
+      <table class="table table-hover" style="width:100%">
+        <thread><tr>
+            <th>Title</th>
+            <th>Company</th> 
+            <th>Type</th>
+            <th>Info</th>
+            <th>Date</th>
+        </tr></thread>
+        <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <% String id = "/events/getEvent/"+event.id.to_s %>
+                <td><a href='<%=id%>'><%= event.event_title %></a></td>
+                <!--<td><%= event.event_title %></td>-->
+                <td><%= event.event_company %></td>
+                <td><%= event.event_type %></td>
+                <td><%= event.event_info %></td>
+                <td><%= event.event_date %></td>
+                <% if current_user.type == "Employer" %>
+                  <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                  <td><%= link_to 'Cancel Event', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
     </div>
   </div> 
-  <div class="list">
-    <div class="container">
-      <div class="col-xs-3">
-        <h3>
-        <i class="fa fa-search"> Search</i>
-        </h3>
-        <div id="alert-warning" class="alert alert-warning">
-          <i class="fa fa-info-circle"></i>
-          Searching Tips
-              <li>Search takes only one key word. </li>
-        </div>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
-
-      <div class="col-xs-9"> 
-        <% if current_user.type == "Employer" -%>
-          <div id="alert" class="alert alert-success">
-            <i class="fa fa-info-circle"></i>
-              To create an event post, please click here
-              <i class="fa fa-plus-circle"></i>
-              <%= link_to "Create", new_event_path %>
-          </div> 
-        <% end %>
-        <!-- Table -->
-        <table class="table table-hover" style="width:100%">
-          <thread><tr>
-              <th>Title</th>
-              <th>Company</th> 
-              <th>Type</th>
-              <th>Date</th>
-          </tr></thread>
-          <tbody>
-              <% @events.each do |event| %>
-                <tr>
-                  <% String id = "/events/getEvent/"+event.id.to_s %>
-                  <td><a href='<%=id%>'><%= event.event_title %></a></td>
-                  <!--<td><%= event.event_title %></td>-->
-                  <td><%= event.event_company %></td>
-                  <td><%= event.event_type %></td>
-                  <td><%= event.event_date %></td>
-                  <% if current_user.type == "Employer" %>
-                    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-                    <td><%= link_to 'Cancel Event', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
-                </tr>
-              <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div> 
-  </div>
-</body>
+</div>

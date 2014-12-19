@@ -12,7 +12,13 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     # profile_index_path
     if current_user.type == 'Student'
-      profile_index_path
+      count = current_user.sign_in_count
+      if count == 1
+        current_user.update(sign_in_count: count+1)
+        user_initialize_tags_path
+      else
+        profile_index_path
+      end
     else current_user.type == 'Employer'
       if current_user.company_name == ''
         new_company_path
@@ -30,21 +36,6 @@ class ApplicationController < ActionController::Base
 
   def account_update_params
     params.require(:user).permit(:email, :password, :current_password, :type, :skill, :company_name)
-  end
-
-  def after_sign_up_path_for(resource)
-    # profile_index_path
-    if current_user.type == 'Student'
-      profile_index_path
-    else current_user.type == 'Employer'
-      if current_user.company_name == ''
-        new_company_path
-      else
-        dashboard_path
-      end
-    # else
-    #   company_path+"/"+current_user.company_name
-    end
   end
 
   def resource_name
@@ -70,5 +61,4 @@ class ApplicationController < ActionController::Base
 
   def log_out
   end
-  
 end

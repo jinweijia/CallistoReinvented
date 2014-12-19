@@ -1,26 +1,11 @@
 <script type="text/javascript">
-var SUCCESS = 1
 $(document).ready(function(){
+	var SUCCESS = 1
 	$('#posting_id').hide();
-	
-	var posting_id = $('#posting_id').val();
-	$.ajax({
-	    type:        'PUT',
-	    url:         '/jobposting/click/'+posting_id,
-	    data: JSON.stringify(),
-	    contentType: 'application/json',
-	    dataType:    'json',
-	    success:     function(data) {
-	        console.log(data['errCode']);
-	        if (data['errCode'] == SUCCESS) {
-	        }
-	    }
-	});
-
     $('#bookmark').click(function(e){
         e.preventDefault();
         var posting_id = $('#posting_id').val();
-        console.log(posting_id);
+        //console.log(posting_id);
         $.ajax({
             type: 'PUT',
             url:  '/jobposting/bookmark/'+posting_id,
@@ -28,7 +13,7 @@ $(document).ready(function(){
             contentType: 'application/json',
             dataType:    'json',
             success:     function(data) {
-                console.log(data['errCode']);
+                //console.log(data['errCode']);
                 if (data['errCode'] == SUCCESS) {
 					$('#bookmarked').html('<h3>Success!</h3>');
                 }
@@ -38,73 +23,66 @@ $(document).ready(function(){
             }
         });
     });
+
+    var posting_id = $('#posting_id').val();
+	$.ajax({
+	    type:        'PUT',
+	    url:         '/jobposting/click/'+posting_id,
+	    data: JSON.stringify(),
+	    contentType: 'application/json',
+	    dataType:    'json',
+	    success:     function(data) {
+	        //console.log(data['errCode']);
+	        if (data['errCode'] == SUCCESS) {
+                console.log('click updated');
+	        }
+	    }
+	});
 });
 </script>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
-	    <div class="container">
-	      <div class="navbar-header">
-	          <a class="navbar-brand" href="/">
-	            <i class="fa fa-home"></i>
-	            Callisto ReInvented
-	          </a>
-	        </div>
-	      	<ul id="hide" class="nav navbar-nav">
-	        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
-	        	<li><%= link_to "Event", events_path %></li>
-	        	<li><%= link_to "Jobs", '/posting/all' %></li>	      	</ul>
-	      	<ul class="nav navbar-nav navbar-right">
-			    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
-			</ul>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <!-- nav bar buttons go here if needed -->
-	          </ul>
-	      	</div>
-	    </div>
-  	</div>
-	<div class="container" style="height:500px;">
-		<div class="row">
-			<div class="col-md-9">
-				<div class="row">
-					<h1 class="page-header">
-                        <%= @jobposting.title %>
-                        <div type="submit" class="btn btn-primary" id="bookmark">Bookmark</div>
-                        <div id="bookmarked">
-						</div>
-                    </h1>
-                    <div class="panel panel-default">
-					  <div class="panel-heading"><%= @jobposting.tags %></div>
-					  <div class="panel-body">
-					    <%= @jobposting.info %>
-					  </div>
-					  <div class="panel-body">
-					    <%= @jobposting.skills %>
-					  </div>
-					  <div class="panel-body">
-					  	<%= @jobposting.job_type %>
-					  </div>
-					</div>
-					<% String id = @jobposting.posting_id.to_s %>
-					<input id="posting_id" type="hidden" value='<%=id%>'>
-				</div>
+<div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <i class="fa fa-home"></i>
+            Callisto ReInvented
+          </a>
+        </div>
+      	<ul id="hide" class="nav navbar-nav">
+        	<li><%= link_to "DashBoard", '/users/dashboard' %></li>
+        	<li><%= link_to "Event", events_path %></li>
+        	<li><%= link_to "Jobs", '/posting/all' %></li>	      	</ul>
+      	<ul class="nav navbar-nav navbar-right">
+		    <li><%= link_to "Log Out",  destroy_user_session_path, :method => :delete %></li>
+		</ul>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- nav bar buttons go here if needed -->
+          </ul>
+      	</div>
+    </div>
+</div>
+<center>
+	<div class="container" style="width:1000">
+		<h1 class="page-header">
+            <%= @jobposting.title %>
+            <div type="submit" class="btn btn-default" id="bookmark">Bookmark</div>
+            <div id="bookmarked">
 			</div>
-
-			<div class="col-xs-3">
-				<br></br>
-				<div class="list-group">
-				  <a href="https://www.google.com/about/careers/search?src=Online/TOPs/NA+Tech+University#!t=jo&jid=3256001" target="_blank" class="list-group-item active">
-				    <h4 class="list-group-item-heading">Apply</h4>
-				    <p class="list-group-item-text">Apply through company's website</p>
-				  </a>
-				</div>
-				<div class="btn-group">
-					<% if current_user.type == "Employer" -%>
-				  		<button type="button" class="btn btn-default">Delete</button>
-				  		<button type="button" class="btn btn-default">Edit</button>
-				  	<% end %>
-				</div>
-			</div>
+        </h1>
+        <div class="panel panel-default">
+		  <div class="panel-heading">Tags: <%= @jobposting.tags.join(", ") %></div>
+		  <div class="panel-body" style="text-align:left;">
+		    <%= simple_format @jobposting.info %>
+		  </div>
+		  <div class="panel-body">
+		    Skills: <%= @jobposting.skills.join(", ") %>
+		  </div>
+		  <div class="panel-body">
+		  	<%= @jobposting.job_type %>
+		  </div>
 		</div>
+		<% String id = @jobposting.posting_id.to_s %>
+		<input id="posting_id" type="hidden" value='<%=id%>'>
 	</div>
-</body>
+</center>
