@@ -24,21 +24,27 @@ $.ajax({
         }
     }
 });
-$(document).ready(function(){
-    //e.preventDefault();
-    $.ajax({
-        type: 'GET',
-        url:  '/jobposting/bookmarks',
-        contentType: 'application/json',
-        dataType:    'json',
-        success: function(data) {
-            console.log(data['errCode']);
-            if (data['errCode'] == SUCCESS) {
+$.ajax({
+    type: 'GET',
+    url:  '/jobposting/bookmarks',
+    contentType: 'application/json',
+    dataType:    'json',
+    success: function(data) {
+        console.log(data['errCode']);
+        if (data['errCode'] == SUCCESS) {
+        	console.log(data['value'].length);
+        	for (i = 0; i < data['value'].length; i++) { 
+	            post = data['value'][i]
+	            id = post['posting_id']
 
-            }
+	            // Javascript hyperlink insertion for the recommendation
+	            document.getElementById('bookmark_update').href = '/posting/posting_id/'+id;
+	            $('#bookmark_title').html(post['title']);
+	            $('#bookmark_company_name').html(post['company_name']);
+	            $('#bookmark_job_type').html(post['job_type']);
+        	}
         }
-    });
-
+    }
 });
 </script>
 <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
@@ -109,32 +115,19 @@ $(document).ready(function(){
 		<h4 class="page-header"> Saved Postings <small> A list of bookmarked job postings is listed here. </small></h4>
 	  	<table id="bookmarked_jobs" class="table table-hover" style="width:100%">
 		  	<tr>
-		    	<th>Event Name</th>
+		    	<th>Title</th>
 		    	<th>Company</th> 
-		    	<th>Event Date</th>
+		    	<th>Job Type</th>
 		  	</tr>
 		  	<tr>
-		    	<td>Google Workshop</td>
-		    	<td>Google</td> 
-		    	<td>October 23 2014</td>
-		  	</tr>
-		</table>
-		<hr class="half-rule">
-	</div>
-	
-	<!-- Saved Events Div -->
-	<div class="list">
-		<h4 class="page-header"> Saved Events <small> A list of bookmarked events is listed here. </small></h4>
-	  	<table class="table table-hover" style="width:100%">
-		  	<tr>
-		    	<th>Event Name</th>
-		    	<th>Company</th> 
-		    	<th>Event Date</th>
-		  	</tr>
-		  	<tr>
-		    	<td>Google Workshop</td>
-		    	<td>Google</td> 
-		    	<td>October 23 2014</td>
+		    	<td>
+		    		<a id="bookmark_update" href="javascript:void(0)">
+		    			<div id="bookmark_title">
+		    			</div>
+		    		</a>
+		    	</td>
+		    	<td><div id="bookmark_company_name"></div></td> 
+		    	<td><div id="bookmark_job_type"></div></td>
 		  	</tr>
 		</table>
 		<hr class="half-rule">
@@ -151,7 +144,7 @@ $(document).ready(function(){
 	  	<table class="table table-hover" style="width:100%">
 		  	<tr>
 		    	<th>Title</th>
-		    	<th>Company Name</th> 
+		    	<th>Company</th> 
 		    	<th>Job Type</th>
 		  	</tr>
 		  	<tr>
