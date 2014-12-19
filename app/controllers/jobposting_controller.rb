@@ -8,6 +8,8 @@ class JobpostingController < ApplicationController
   ERR_BAD_PERMISSIONS = -6
   ERR_DUPE_BOOKMARKS = -7
 
+  require 'will_paginate/array'
+
   # For internal use only
   def validate_user_company(company)    
     
@@ -81,7 +83,7 @@ class JobpostingController < ApplicationController
   def show_all
     ret = Jobposting.show_all()
     # render json: ret
-    @jobposting = ret[:value]
+    @jobposting = ret[:value].paginate(:page => params[:page])
     render template: "users/jobs"
   end
 
@@ -105,7 +107,7 @@ class JobpostingController < ApplicationController
   def search
     query = params[:q]
     ret = Jobposting.simple_search(query)
-    @jobposting = ret[:value]
+    @jobposting = ret[:value].paginate(:page => params[:page])
     render template: "users/jobs"
     #render json: ret
     # ret[:value]. 
@@ -115,7 +117,8 @@ class JobpostingController < ApplicationController
     query = params[:q]
     ret = Jobposting.ranked_search(query, current_user.saved_tags)
     postings = ret[:value]
-    @jobposting = postings.map {|p, s| p}
+    results = postings.map {|p, s| p}
+    @jobposting = results.paginate(:page => params[:page])
     render template: "users/jobs"
     # render json: ret
   end
@@ -128,7 +131,7 @@ class JobpostingController < ApplicationController
       post = Jobposting.find_by_posting_id(posting_id)
       if !post.blank?
         saved_tags = current_user.saved_tags
-        tags = post.skills.split(", ") + post.tags.split(", ")
+        tags = post.skills + post.tags
         tags.each do |t|
           if saved_tags.member?(t)
             saved_tags[t][:count ] = saved_tags[t][:count] + 1     # Increment counter by 1
@@ -182,7 +185,7 @@ class JobpostingController < ApplicationController
     # @jobposting = Jobposting.where("posting_id = ?", postings)   # note if no bookmarks, will return nil
     @jobposting = Array.new(postings.length) { Jobposting }
     postings.each_with_index do |p,i|
-      @jobposting[i] = Jobposting.find_by_posting_id(p)
+      @jobposting[i] = Jobposting.find_by_posting_id(p).paginate(:page => params[:page])
     end
     # @jobposting = Jobposting.find(postings)
     respond_to do |format|

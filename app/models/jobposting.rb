@@ -10,10 +10,12 @@ MAX_TITLE_LENGTH   = 128
 MAX_INFO_LENGTH    = 128*128
 ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
 
-  # serialize :skills, Hash
-  # serialize :tags, Hash
+  serialize :skills, Array
+  serialize :tags, Array
 
-  def self.add(company_id, title, job_type, info="", skills="", tags="")
+  self.per_page = 10
+  
+  def self.add(company_id, title, job_type, info="", skills=[], tags=[])
     # verify title:
     if title == "" or title.length > MAX_TITLE_LENGTH
       return {errCode: ERR_TITLE}
@@ -26,9 +28,9 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       company_name = company.company_name
     end
     # verify job_type:
-    if not ALLOWED_TYPES.include?(job_type)
-      return {errCode: ERR_BAD_TYPE}
-    end
+    # if not ALLOWED_TYPES.include?(job_type)
+    #   return {errCode: ERR_BAD_TYPE}
+    # end
     # verify info:
     if info.length > MAX_INFO_LENGTH
       return {errCode: ERR_INFO_LENGTH}
@@ -54,7 +56,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
     return {errCode: SUCCESS}
   end
 
-  def self.update(posting_id, title, job_type, info="", skills="", tags="")
+  def self.update(posting_id, title, job_type, info="", skills=[], tags=[])
     # verify title:
     if title == "" or title.length > MAX_TITLE_LENGTH
       return {errCode: ERR_TITLE}
@@ -111,7 +113,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   def self.simple_search(query)
     # do a fuzzy over all fields that are string types and see if any match occurs
     q = "%"+query+"%"
-    posting = Jobposting.where("title like ? OR company_name like ? OR job_type like ? OR info like ? OR skills like ? OR tags like ?", q, q, q, q, q, q)
+    posting = Jobposting.where("title like ? OR company_name like ? OR job_type like ? OR info like ?", q, q, q, q)
     return {errCode: SUCCESS, value: posting}
   end
 
@@ -129,9 +131,9 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       # Score is used to determine ranking
       score = -1
       tag_matches = 0
-      skills = post.skills.split(", ")
-      tags = post.tags.split(", ")
-      search_scope_simple = [post.title, post.company_name, post.job_type, post.info, post.skills, post.tags]
+      # skills = post.skills.split(", ")
+      # tags = post.tags.split(", ")
+      search_scope_simple = [post.title, post.company_name, post.job_type, post.info]
 
       query.each do |keyword|        
         # First determine if this post is relevant, if not already done
@@ -145,7 +147,7 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
           end
         # end
         # Check if keyword matches any tags
-        if skills.include?(keyword) or tags.include?(keyword)           
+        if post.skills.include?(keyword) or post.tags.include?(keyword)           
           tag_matches += 1
         end
         if user_tags.member?(keyword)
@@ -177,8 +179,8 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       # Score is used to determine ranking
       score = -1
       tag_matches = 0
-      skills = post.skills.split(", ")
-      tags = post.tags.split(", ")
+      # skills = post.skills.split(", ")
+      # tags = post.tags.split(", ")
       search_scope_simple = [post.skills, post.tags]
 
       user_tags.each do |keyword|        
@@ -233,3 +235,4 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
   end
 
 end
+
