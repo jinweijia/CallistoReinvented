@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141201023352) do
     t.datetime "event_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "end_date"
   end
 
   create_table "jobpostings", force: true do |t|

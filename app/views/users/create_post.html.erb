@@ -17,7 +17,7 @@ $(document).ready(function(){
             contentType: 'application/json',
             dataType:    'json',
             success:     function(data) {
-                //console.log(data['count']);
+                console.log(data['errCode']);
                 if (data['errCode'] == SUCCESS) {
 					        $('#created').html('<h3>Success!</h3>');
                 }
