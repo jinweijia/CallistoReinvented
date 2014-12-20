@@ -135,9 +135,9 @@ class JobpostingController < ApplicationController
         tags.each do |t|
           if saved_tags.member?(t)
             saved_tags[t][:count ] = saved_tags[t][:count] + 1     # Increment counter by 1
-            saved_tags[t][:weight] = saved_tags[t][:weight] + 1.0 / (1.0 + saved_tags[t][:weight])
+            saved_tags[t][:weight] = saved_tags[t][:weight] + 2.0 / (1.0 + saved_tags[t][:weight])
           else
-            saved_tags[t] = { count: 1, weight: 1.0 }    # Add tag into history and initialize counter
+            saved_tags[t] = { count: 1, weight: 2.0 }    # Add tag into history and initialize counter
           end
         end
         current_user.update(saved_tags: saved_tags)
@@ -185,7 +185,7 @@ class JobpostingController < ApplicationController
     # @jobposting = Jobposting.where("posting_id = ?", postings)   # note if no bookmarks, will return nil
     @jobposting = Array.new(postings.length) { Jobposting }
     postings.each_with_index do |p,i|
-      @jobposting[i] = Jobposting.find_by_posting_id(p).paginate(:page => params[:page])
+      @jobposting[i] = Jobposting.find_by_posting_id(p) #.paginate(:page => params[:page])
     end
     # @jobposting = Jobposting.find(postings)
     respond_to do |format|
@@ -201,7 +201,7 @@ class JobpostingController < ApplicationController
     ret = Jobposting.recommend(current_user.saved_tags)
     postings = ret[:value]
     @jobposting = postings.map {|p, s| p}
-    render json: ret
+    render json: { errCode: SUCCESS, value: @jobposting }
   end
 
   ##

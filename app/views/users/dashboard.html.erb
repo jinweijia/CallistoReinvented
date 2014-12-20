@@ -7,19 +7,48 @@ $.ajax({
     contentType: 'application/json',
     dataType:    'json',
     success: function(data) {
-        console.log(data['errCode']);
+        // console.log(data['errCode']);
         if (data['errCode'] == SUCCESS) {
-            index = Math.floor(Math.random() * Math.min(10, data['value'].length))
-            post = data['value'][index]
-            id = post[0]['posting_id']
+
+            index = Math.floor(Math.random() * Math.min(5, data['value'].length))
+
+            post = data['value'][0]            
+            id = post['posting_id']
+            // post = data['value']; //.slice(0,3);
+
+            // $('#recommendationtable').html("""
+            // 	""");
+
+   //          function myCreateFunction(post) {
+			// 	var table = document.getElementById("recommendationtable");
+			// 	var x = table.rows.length;
+			// 	console.log("rec "+x)
+			// 	var row = table.insertRow(x);
+			// 	var cell1 = row.insertCell(0);
+			// 	var cell2 = row.insertCell(1);
+			// 	var cell3 = row.insertCell(2);
+			// 	//var cell4 = row.insertCell(3);
+			// 	String id = "/posting/posting_id/"+post.posting_id.to_s;
+			// 	console.log(id);
+			// 	String t = post['title'];
+			// 	cell1.innerHTML = "<a href=id>t</a>";
+			// 	cell2.innerHTML = post['company_name'];
+			// 	cell3.innerHTML = post['job_type'];
+			// 	//cell4.innerHTML = post['info']; // .truncate(500, omission: '... ');
+			// 	cell1.href = '/posting/posting_id/'+post['posting_id'];
+			// }
 
             // Javascript hyperlink insertion for the recommendation
             document.getElementById('link_to_update').href = '/posting/posting_id/'+id;
 
-            $('#rec_title').html(post[0]['title']);
-            $('#rec_company_name').html(post[0]['company_name']);
-            $('#rec_job_type').html(post[0]['job_type']);
-            $('#rec_info').html(post[0]['info']);
+            // for (i = 0; i < data['value'].length; i++) {
+            // 	myCreateFunction(post[i]);
+            // }
+
+            $('#rec_title').html(post['title']);
+            $('#rec_company_name').html(post['company_name']);
+            $('#rec_job_type').html(post['job_type']);
+            $('#rec_info').html(post['info']);
             //console.log(data['value'][1][0]['job_type']);
         }
     }
@@ -158,30 +187,10 @@ $.ajax({
 		    	<td><div id="rec_job_type"></div></td>
 		  	</tr>
 		</table>
-		<hr class="half-rule">
+<!-- 		<table id="recommendationtable" class="table table-hover" style="width:100%"></table>
+ -->		<hr class="half-rule">
 	</div>
 	<% end %>
 
-	<!-- Upcoming Deadline Div -->
-	<div class="list">
-		<h4 class="page-header"> Upcoming Deadlines </h4>
-		<div class="alert alert-danger">
-			<i class="fa fa-exclamation-triangle"></i>
-			Stay updated on deadlines for events and job posts.
-		</div>
-		<table class="table table-hover" style="width:100%">
-		  	<tr>
-		    	<th>Title</th>
-		    	<th>Job Name</th> 
-		    	<th>Job Type</th>
-		    	<th>Info</th>
-		  	</tr>
-		  	<tr>
-		    	<td>Google Software Engineering</td>
-		    	<td>Software Development Intern</td>
-		    	<td>Internship</td>
-		    	<td>Information Goes Here</td>
-		  	</tr>
-		</table>
-	</div>
+	
 </div>

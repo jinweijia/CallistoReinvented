@@ -11,15 +11,15 @@ $(document).ready(function() {
 	        if (data['errCode'] == SUCCESS) {
 	            index = Math.floor(Math.random() * Math.min(10, data['value'].length))
 	            post = data['value'][index]
-	            id = post[0]['posting_id']
+	            id = post['posting_id']
 
 	            // Javascript hyperlink insertion for the recommendation
 	            document.getElementById('link_to_update').href = '/posting/posting_id/'+id;
 
-	            $('#rec_title').html(post[0]['title']);
-	            $('#rec_company_name').html(post[0]['company_name']);
-	            $('#rec_job_type').html(post[0]['job_type']);
-	            $('#rec_info').html(post[0]['info']);
+	            $('#rec_title').html(post['title']);
+	            $('#rec_company_name').html(post['company_name']);
+	            $('#rec_job_type').html(post['job_type']);
+	            $('#rec_info').html(post['info']);
 	            //console.log(data['value'][1][0]['job_type']);
 	        }
 	    }

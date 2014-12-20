@@ -19,9 +19,10 @@ $(document).ready(function(){
             success:     function(data) {
                 //console.log(data['count']);
                 if (data['errCode'] == SUCCESS) {
-					$('#created').html('<h3>Success!</h3>');
+					        $('#created').html('<h3>Success!</h3>');
                 }
                 else {
+                  console.log(data['errCode']);
                 	$('#created').html('<h3>Failed!</h3>');
                 }
             }

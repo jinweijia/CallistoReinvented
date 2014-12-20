@@ -134,7 +134,6 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
       # skills = post.skills.split(", ")
       # tags = post.tags.split(", ")
       search_scope_simple = [post.title, post.company_name, post.job_type, post.info]
-
       query.each do |keyword|        
         # First determine if this post is relevant, if not already done
         # if score < 0        
@@ -198,10 +197,14 @@ ALLOWED_TYPES      = ['full-time', 'internship', 'part-time']
           tag_matches += user_tags[keyword[0]][:count] * user_tags[keyword[0]][:weight]
         end
       end
+      if score == 0
+        score = tag_matches
+      end
       rankings[post] = score
     end
     # This line returns a nested array of [post, score] pairs
     result = rankings.sort_by { |post, score| score }.reverse!
+    # result = result
 
     return { errCode: SUCCESS, value: result }
 
