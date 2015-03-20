@@ -27,21 +27,21 @@ class JobpostingController < ApplicationController
 
 
   def add
-    # a hack so we don't have to deal with devise for testing
+    # hack for loading jobs for testing
     # REMOVE DURING ACTUAL RELEASE!!!
-    hack = params[:hack]
-    if hack == 1296
-      title        = params[:title]
-      job_type     = params[:job_type]
-      info         = params[:info]
-      skills       = params[:skills]
-      tags         = params[:tags]
-      company_name = params[:company_name]
-      company      = Company.find_by(company_name: company_name)
-      ret = Jobposting.add(company.id, title, job_type, info, skills, tags)
-      render json: ret
-      return
-    end
+    # hack = params[:hack]
+    # if hack == 1296
+    #   title        = params[:title]
+    #   job_type     = params[:job_type]
+    #   info         = params[:info]
+    #   skills       = params[:skills]
+    #   tags         = params[:tags]
+    #   company_name = params[:company_name]
+    #   company      = Company.find_by(company_name: company_name)
+    #   ret = Jobposting.add(company.id, title, job_type, info, skills, tags)
+    #   render json: ret
+    #   return
+    # end
 
     title      = params[:title]
     job_type   = params[:job_type]
